@@ -1,0 +1,27 @@
+{
+  "name": "reasonml-tic-tac-toe",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parcel": "parcel src/index.html",
+    "parcel:production": "parcel build src/index.html"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "emotion": "^9.2.8",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "reason-react": ">=0.4.0"
+  },
+  "devDependencies": {
+    "bs-platform": "^4.0.5",
+    "parcel-bundler": "^1.9.7"
+  }
+}
