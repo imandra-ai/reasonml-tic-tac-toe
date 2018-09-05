@@ -1,6 +1,6 @@
 # ReasonML Tic Tac Toe with Imandra
 
-![Imandra](img/imandra_raas_logo.svg "Imandra") 
+![Imandra](dist/img/imandra_raas_logo.svg "Imandra") 
 
 This repo contains a ReasonReact app containing a game of Tic Tac Toe.
 
