@@ -18,41 +18,16 @@ type grid = {
   i: square_state,
 };
 
-type move =
-  | A
-  | B
-  | C
-  | D
-  | E
-  | F
-  | G
-  | H
-  | I;
-
-type game_state = {
-  grid,
-  last_player: option(player),
-};
-
-type game_status =
-  | Won(player)
-  | InProgress
-  | InvalidMove(move)
-  | Tied;
-
-let initial_game = {
-  grid: {
-    a: None,
-    b: None,
-    c: None,
-    d: None,
-    e: None,
-    f: None,
-    g: None,
-    h: None,
-    i: None,
-  },
-  last_player: None,
+let a_grid = {
+  a: Some(O),
+  b: Some(X),
+  c: Some(O),
+  d: None,
+  e: None,
+  f: Some(X),
+  g: None,
+  h: None,
+  i: None,
 };
 
 /* [@program] */
@@ -90,19 +65,44 @@ let initial_game = {
 /*     ++ f(g.i), */
 /*   ); */
 /* }; */
-let a_grid = {
-  a: Some(O),
-  b: Some(X),
-  c: Some(O),
-  d: None,
-  e: None,
-  f: Some(X),
-  g: None,
-  h: None,
-  i: None,
+/* #install_doc doc_of_grid; */
+type move =
+  | A
+  | B
+  | C
+  | D
+  | E
+  | F
+  | G
+  | H
+  | I;
+
+type game_state = {
+  grid,
+  last_player: option(player),
 };
 
-/* #install_doc doc_of_grid; */
+type game_status =
+  | Won(player)
+  | InProgress
+  | InvalidMove(move)
+  | Tied;
+
+let initial_game = {
+  grid: {
+    a: None,
+    b: None,
+    c: None,
+    d: None,
+    e: None,
+    f: None,
+    g: None,
+    h: None,
+    i: None,
+  },
+  last_player: None,
+};
+
 let initial_player = X;
 
 let value = ({grid: {a, b, c, d, e, f, g, h, i}, _}) =>
@@ -158,14 +158,17 @@ let is_valid_grid = (grid, last_player) => {
   };
 };
 
-/* instance((game, p) => is_valid_grid(game.grid, p)); */
-/* instance((game, p) => {
+let is_tie = ({grid: {a, b, c, d, e, f, g, h, i}, _}) =>
+  List.for_all((!=)(None), [a, b, c, d, e, f, g, h, i]);
+
+/* instance((game) => is_valid_grid(game.grid, game.last_player)); */
+/* instance((game) => {
    let (x, o) = move_counts(game.grid);
-   is_valid_grid(game.grid, p) && ((x - o) >= 2)
+   is_valid_grid(game.grid, game.last_player) && ((x - o) >= 2)
    }); */
-/* verify((game, p) => {
+/* verify((game) => {
    let (x, o) = move_counts(game.grid);
-   not(is_valid_grid(game.grid, p) && ((x - o) >= 2))
+   not(is_valid_grid(game.grid, game.last_player) && ((x - o) >= 2))
    }); */
 let is_valid_game = game => {
   let winning_X = is_winning(game, X);
@@ -177,18 +180,16 @@ let is_valid_game = game => {
 /* instance((game) => is_valid_game(game)); */
 /* instance((game) => is_valid_game(game) && is_winning(game, X)); */
 /* instance((game) => is_valid_game(game) && is_winning(game, O)); */
-let is_tie = ({grid: {a, b, c, d, e, f, g, h, i}, _}) =>
-  List.for_all((!=)(None), [a, b, c, d, e, f, g, h, i]);
-
 /* instance((game) => is_valid_game(game) && is_tie(game)); */
 let is_valid_move = (game, player, move) =>
   ! (is_winning(game, X) || is_winning(game, O) || is_tie(game))
-  && value(game, move) == None
   && is_valid_game(game)
   && (
     game.last_player == None
+    && player == initial_player
     || game.last_player == Some(other_player(player))
-  );
+  )
+  && value(game, move) == None;
 
 let play_move = ({grid, _}, player, move) => {
   let play = Some(player);
