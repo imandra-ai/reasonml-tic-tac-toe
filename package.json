@@ -7,7 +7,8 @@
     "clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
     "parcel": "parcel src/index.html",
-    "parcel:production": "parcel build src/index.html"
+    "parcel:production": "parcel build --public-url /reasonml-tic-tac-toe/ src/index.html",
+    "publish": "gh-pages -d dist"
   },
   "keywords": [
     "BuckleScript"
@@ -16,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "emotion": "^9.2.8",
+    "gh-pages": "^1.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "reason-react": ">=0.4.0"
