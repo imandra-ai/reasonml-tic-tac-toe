@@ -6,24 +6,28 @@ type state = {
 };
 
 type action =
-  | Move(TicTacToeLogic.move);
+  | Move(TicTacToeLogic.move)
+  | Restart;
 
 /* Component template declaration.
    Needs to be **after** state and action declarations! */
 let component = ReasonReact.reducerComponent("Example");
+
+let initialState = {
+  game: TicTacToeLogic.initial_game,
+  status: TicTacToeLogic.status(TicTacToeLogic.initial_game),
+};
 
 /* greeting and children are props. `children` isn't used, therefore ignored.
    We ignore it by prepending it with an underscore */
 let make = (~onGameFinished, _children) => {
   /* spread the other default fields of component here and override a few */
   ...component,
-  initialState: () => {
-    game: TicTacToeLogic.initial_game,
-    status: TicTacToeLogic.status(TicTacToeLogic.initial_game),
-  },
+  initialState: () => initialState,
   /* State transitions */
   reducer: (action, state) =>
     switch (action) {
+    | Restart => ReasonReact.Update(initialState)
     | Move(move) =>
       let (next, status) = TicTacToeLogic.play(state.game, move);
       let newState = {status, game: next};
@@ -53,26 +57,23 @@ let make = (~onGameFinished, _children) => {
       };
     let buttonCss = b => {
       let base =
-        css("display: block; width: 50px; height: 50px; margin: 2px;");
+        css("display: block; width: 78px; height: 78px; margin: 3px;");
       switch (self.state.status) {
       | InvalidMove(m) when b == m =>
-        base ++ " " ++ css("background-color: red")
+        base ++ " " ++ css("border: solid 1px red !important")
       | _ => base
       };
     };
     let overlay =
       switch (self.state.status) {
-      | Tied => Some("-")
+      | Tied => Some("=")
       | Won(X) => Some("X")
       | Won(O) => Some("O")
       | _ => None
       };
     let rowCss = css("display: flex; flex-direction: row");
     let elems =
-      <div
-        className=(
-          css("button { background-color: #F5FAFE; border-radius: 5px; }")
-        )>
+      <div>
         <div className=rowCss>
           <button
             className=(buttonCss(A))
@@ -137,21 +138,22 @@ let make = (~onGameFinished, _children) => {
     let sub =
       switch (overlay) {
       | None => [|elems|]
-      | Some(o) => [|
+      | Some(overlayText) => [|
           elems,
           <div
             className=(
               css(
-                "position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; font-size: 150px; display: flex; flex-direction: row; justify-content: space-around;",
+                "position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; font-size: 150px; display: flex; flex-direction: row; justify-content: space-around; background: #FBFBFB; color: #3276B5; user-select: none; cursor: pointer;",
               )
-            )>
+            )
+            onClick=(_event => self.send(Restart))>
             <div
               className=(
                 css(
                   "display: flex; flex-direction: column; justify-content: space-around;",
                 )
               )>
-              (ReasonReact.string(o))
+              (ReasonReact.string(overlayText))
             </div>
           </div>,
         |]
