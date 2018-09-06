@@ -53,16 +53,16 @@ let make = (~onGameFinished, _children) => {
       };
     let buttonCss = b => {
       let base =
-        css("display: block; width: 50px; height: 50px; margin: 2px;");
+        css("display: block; width: 78px; height: 78px; margin: 3px;");
       switch (self.state.status) {
       | InvalidMove(m) when b == m =>
-        base ++ " " ++ css("background-color: red")
+        base ++ " " ++ css("border: solid 1px red !important")
       | _ => base
       };
     };
     let overlay =
       switch (self.state.status) {
-      | Tied => Some("-")
+      | Tied => Some("=")
       | Won(X) => Some("X")
       | Won(O) => Some("O")
       | _ => None
@@ -142,7 +142,7 @@ let make = (~onGameFinished, _children) => {
           <div
             className=(
               css(
-                "position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; font-size: 150px; display: flex; flex-direction: row; justify-content: space-around;",
+                "position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; font-size: 150px; display: flex; flex-direction: row; justify-content: space-around; background: #FBFBFB; color: #3276B5;",
               )
             )>
             <div
