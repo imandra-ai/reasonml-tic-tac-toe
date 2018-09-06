@@ -69,7 +69,10 @@ let make = (~onGameFinished, _children) => {
       };
     let rowCss = css("display: flex; flex-direction: row");
     let elems =
-      <div>
+      <div
+        className=(
+          css("button { background-color: #F5FAFE; border-radius: 5px; }")
+        )>
         <div className=rowCss>
           <button
             className=(buttonCss(A))
