@@ -69,10 +69,7 @@ let make = (~onGameFinished, _children) => {
       };
     let rowCss = css("display: flex; flex-direction: row");
     let elems =
-      <div
-        className=(
-          css("button { background-color: #F5FAFE; border-radius: 5px; }")
-        )>
+      <div>
         <div className=rowCss>
           <button
             className=(buttonCss(A))
@@ -137,7 +134,7 @@ let make = (~onGameFinished, _children) => {
     let sub =
       switch (overlay) {
       | None => [|elems|]
-      | Some(o) => [|
+      | Some(overlayText) => [|
           elems,
           <div
             className=(
@@ -151,7 +148,7 @@ let make = (~onGameFinished, _children) => {
                   "display: flex; flex-direction: column; justify-content: space-around;",
                 )
               )>
-              (ReasonReact.string(o))
+              (ReasonReact.string(overlayText))
             </div>
           </div>,
         |]
