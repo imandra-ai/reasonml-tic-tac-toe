@@ -2,7 +2,7 @@
 
 ![Imandra](img/imandra_raas_logo.svg "Imandra")
 
-This repo contains a ReasonReact app containing a game of Tic Tac Toe.
+This repo contains a ReasonReact app containing a game of Tic Tac Toe. The core logic of the game has been checked with some verification statements using [Imandra](https://www.imandra.ai).
 
 See https://docs.imandra.ai/imandra-docs/notebooks/reasonml-tic-tac-toe/ for a walk through of the model, and explanation of the `verify` and `instance` comments throughout the file `src/TicTacToeLogic.re`.
 
