@@ -31,5 +31,5 @@ This will replace the development artifact with an optimized version.
 To deploy:
 
 ```sh
-npm deploy
+npm run deploy
 ```
