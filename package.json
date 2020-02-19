@@ -18,7 +18,8 @@
   "dependencies": {
     "emotion": "^10.0.27",
     "gh-pages": "^1.2.0",
-    "reason-react": "^0.7.0"
+    "reason-react": "^0.7.0",
+    "reason-react-update": "^1.0.0"
   },
   "devDependencies": {
     "bs-platform": "^7.1.1",
