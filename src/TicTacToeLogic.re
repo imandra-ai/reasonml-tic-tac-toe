@@ -149,15 +149,15 @@ let move_counts = ({a, b, c, d, e, f, g, h, i}) =>
 
 let is_valid_grid = (grid, last_player) => {
   let (x, o) = move_counts(grid);
-  if (x > o) {
-    last_player == Some(X) && x - o == 1;
-  } else if (x < o) {
-    last_player == Some(O) && o - x == 1;
-  } else if (x + o == 0) {
-    last_player == None;
-  } else {
-    true;
-  };
+
+  x
+  + o == 0
+  && last_player == None
+  || x
+  - o == 1
+  && last_player == Some(X)
+  || x == o
+  && last_player == Some(O);
 };
 
 let is_tie = ({grid: {a, b, c, d, e, f, g, h, i}, _}) =>
@@ -176,7 +176,7 @@ let is_valid_game = game => {
   let winning_X = is_winning(game, X);
   let winning_O = is_winning(game, O);
   is_valid_grid(game.grid, game.last_player)
-  && (! winning_X && ! winning_O || winning_X != winning_O);
+  && (!winning_X && !winning_O || winning_X != winning_O);
 };
 
 /* instance((game) => is_valid_game(game)); */
@@ -184,7 +184,7 @@ let is_valid_game = game => {
 /* instance((game) => is_valid_game(game) && is_winning(game, O)); */
 /* instance((game) => is_valid_game(game) && is_tie(game)); */
 let is_valid_move = (game, player, move) =>
-  ! (is_winning(game, X) || is_winning(game, O) || is_tie(game))
+  !(is_winning(game, X) || is_winning(game, O) || is_tie(game))
   && is_valid_game(game)
   && (
     game.last_player == None
