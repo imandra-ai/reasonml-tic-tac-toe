@@ -10,6 +10,12 @@ See https://docs.imandra.ai/reasonml-tic-tac-toe/ for the built example.
 
 ## Run Project
 
+You'll need a docker image with `imandra-extract` in it pre-pulled to convert the Imandra source file `src/TicTacToeLogic.ire` to regular OCaml so it can be compiled with bucklescript (the conversion is done using bucklescript generators, see `bsconfig.json`):
+
+```sh
+docker pull imandra/imandra-client-switch
+```
+
 ```sh
 npm install
 npm start

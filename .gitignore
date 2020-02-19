@@ -10,3 +10,4 @@ npm-debug.log
 .vscode/
 .cache/
 dist/
+src/TicTacToeLogic.ml

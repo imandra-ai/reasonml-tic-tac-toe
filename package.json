@@ -18,6 +18,7 @@
   "dependencies": {
     "emotion": "^10.0.27",
     "gh-pages": "^1.2.0",
+    "imandra-prelude": "git+https://github.com/aestheticintegration/imandra-prelude.git#303a18f7858391251a6fcc3005dc0de363de179b",
     "reason-react": "^0.7.0",
     "reason-react-update": "^1.0.0"
   },

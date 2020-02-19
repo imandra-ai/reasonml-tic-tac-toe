@@ -1,5 +1,3 @@
-open Imandra_prelude;
-
 type player =
   | X
   | O;
@@ -150,13 +148,11 @@ let move_counts = ({a, b, c, d, e, f, g, h, i}) =>
 let is_valid_grid = (grid, last_player) => {
   let (x, o) = move_counts(grid);
 
-  x
-  + o == 0
+  Z.equal(x + o, 0)
   && last_player == None
-  || x
-  - o == 1
+  || Z.equal(x - o, 1)
   && last_player == Some(X)
-  || x == o
+  || Z.equal(x, o)
   && last_player == Some(O);
 };
 
@@ -182,13 +178,13 @@ let is_valid_game = game => {
 /* deliberately broken version of is_valid_move. See the full explanation at
    https://docs.imandra.ai/imandra-docs/notebooks/reasonml-tic-tac-toe/ */
 let is_valid_move_broken = (game, player, _move) =>
-  ! (is_winning(game, X) || is_winning(game, O) || is_tie(game))
+  !(is_winning(game, X) || is_winning(game, O) || is_tie(game))
   && is_valid_game(game)
   && (
-  game.last_player == None
+    game.last_player == None
     && player == initial_player
-  || game.last_player == Some(other_player(player))
-);
+    || game.last_player == Some(other_player(player))
+  );
 
 /* instance((game) => is_valid_game(game)); */
 /* instance((game) => is_valid_game(game) && is_winning(game, X)); */
@@ -234,7 +230,7 @@ let status = game =>
   };
 
 /* modified slightly from the notebook version to allow us to inject the broken
-is_valid_move function for demonstration purposes */
+   is_valid_move function for demonstration purposes */
 let play = (is_valid_fn, {last_player, _} as game, move) => {
   let player =
     switch (last_player) {
