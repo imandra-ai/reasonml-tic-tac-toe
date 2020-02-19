@@ -17,6 +17,8 @@ npm start
 npm run parcel
 ```
 
+Then visit http://localhost:1234/index.html or http://localhost:1234/index-initial.html for the version of the model that contains the deliberate bug.
+
 ## Build for Production
 
 ```sh
