@@ -28,8 +28,8 @@ npm run parcel:production
 
 This will replace the development artifact with an optimized version.
 
-To deploy
+To deploy:
 
 ```sh
-npx gh-pages -d dist
+npx publish
 ```
