@@ -16,14 +16,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "emotion": "^9.2.8",
+    "emotion": "^10.0.27",
     "gh-pages": "^1.2.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "reason-react": ">=0.4.0"
+    "reason-react": "^0.7.0"
   },
   "devDependencies": {
-    "bs-platform": "^4.0.5",
+    "bs-platform": "^7.1.1",
     "parcel-bundler": "^1.12.4"
   }
 }
