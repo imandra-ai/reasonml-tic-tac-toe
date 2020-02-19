@@ -181,7 +181,7 @@ let is_valid_game = game => {
 
 /* deliberately broken version of is_valid_move. See the full explanation at
    https://docs.imandra.ai/imandra-docs/notebooks/reasonml-tic-tac-toe/ */
-let is_valid_move_broken = (game, player, move) =>
+let is_valid_move_broken = (game, player, _move) =>
   ! (is_winning(game, X) || is_winning(game, O) || is_tie(game))
   && is_valid_game(game)
   && (
