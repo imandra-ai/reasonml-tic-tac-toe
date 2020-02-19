@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "parcel": "parcel src/index.html src/index-initial.html",
     "parcel:production": "parcel build --public-url /reasonml-tic-tac-toe/ src/index.html src/index-initial.html",
-    "publish": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "BuckleScript"
