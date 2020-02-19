@@ -31891,10 +31891,10 @@ function hydrateToElementWithId(reactElement, id) {
   }
 }
 
-var Ref = /* module */[];
+var Ref = { };
 
 function createElementVariadic(domClassName, props, children) {
-  var variadicArguments = /* array */[
+  var variadicArguments = [
       domClassName,
       props
     ].concat(children);
@@ -31911,10 +31911,10 @@ function unsafeAddProp(style, property, value) {
   return combine(style, dict);
 }
 
-var Style = /* module */[
-  /* combine */combine,
-  /* unsafeAddProp */unsafeAddProp
-];
+var Style = {
+  combine: combine,
+  unsafeAddProp: unsafeAddProp
+};
 
 exports.renderToElementWithClassName = renderToElementWithClassName;
 exports.renderToElementWithId = renderToElementWithId;
@@ -31992,10 +31992,9 @@ function caml_array_set(xs, index, newval) {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
         ];
-  } else {
-    xs[index] = newval;
-    return /* () */0;
   }
+  xs[index] = newval;
+  return /* () */0;
 }
 
 function caml_array_get(xs, index) {
@@ -32004,9 +32003,8 @@ function caml_array_get(xs, index) {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
         ];
-  } else {
-    return xs[index];
   }
+  return xs[index];
 }
 
 function caml_make_vect(len, init) {
@@ -32062,7 +32060,8 @@ function app(_f, _args) {
   while(true) {
     var args = _args;
     var f = _f;
-    var arity = f.length;
+    var init_arity = f.length;
+    var arity = init_arity === 0 ? 1 : init_arity;
     var len = args.length;
     var d = arity - len | 0;
     if (d === 0) {
@@ -32074,7 +32073,7 @@ function app(_f, _args) {
     } else {
       return (function(f,args){
       return function (x) {
-        return app(f, args.concat(/* array */[x]));
+        return app(f, args.concat([x]));
       }
       }(f,args));
     }
@@ -32083,34 +32082,34 @@ function app(_f, _args) {
 
 function curry_1(o, a0, arity) {
   switch (arity) {
-    case 1 : 
+    case 1 :
         return o(a0);
-    case 2 : 
+    case 2 :
         return (function (param) {
             return o(a0, param);
           });
-    case 3 : 
+    case 3 :
         return (function (param, param$1) {
             return o(a0, param, param$1);
           });
-    case 4 : 
+    case 4 :
         return (function (param, param$1, param$2) {
             return o(a0, param, param$1, param$2);
           });
-    case 5 : 
+    case 5 :
         return (function (param, param$1, param$2, param$3) {
             return o(a0, param, param$1, param$2, param$3);
           });
-    case 6 : 
+    case 6 :
         return (function (param, param$1, param$2, param$3, param$4) {
             return o(a0, param, param$1, param$2, param$3, param$4);
           });
-    case 7 : 
+    case 7 :
         return (function (param, param$1, param$2, param$3, param$4, param$5) {
             return o(a0, param, param$1, param$2, param$3, param$4, param$5);
           });
     default:
-      return app(o, /* array */[a0]);
+      return app(o, [a0]);
   }
 }
 
@@ -32136,32 +32135,32 @@ function __1(o) {
 
 function curry_2(o, a0, a1, arity) {
   switch (arity) {
-    case 1 : 
-        return app(o(a0), /* array */[a1]);
-    case 2 : 
+    case 1 :
+        return app(o(a0), [a1]);
+    case 2 :
         return o(a0, a1);
-    case 3 : 
+    case 3 :
         return (function (param) {
             return o(a0, a1, param);
           });
-    case 4 : 
+    case 4 :
         return (function (param, param$1) {
             return o(a0, a1, param, param$1);
           });
-    case 5 : 
+    case 5 :
         return (function (param, param$1, param$2) {
             return o(a0, a1, param, param$1, param$2);
           });
-    case 6 : 
+    case 6 :
         return (function (param, param$1, param$2, param$3) {
             return o(a0, a1, param, param$1, param$2, param$3);
           });
-    case 7 : 
+    case 7 :
         return (function (param, param$1, param$2, param$3, param$4) {
             return o(a0, a1, param, param$1, param$2, param$3, param$4);
           });
     default:
-      return app(o, /* array */[
+      return app(o, [
                   a0,
                   a1
                 ]);
@@ -32190,33 +32189,33 @@ function __2(o) {
 
 function curry_3(o, a0, a1, a2, arity) {
   switch (arity) {
-    case 1 : 
-        return app(o(a0), /* array */[
+    case 1 :
+        return app(o(a0), [
                     a1,
                     a2
                   ]);
-    case 2 : 
-        return app(o(a0, a1), /* array */[a2]);
-    case 3 : 
+    case 2 :
+        return app(o(a0, a1), [a2]);
+    case 3 :
         return o(a0, a1, a2);
-    case 4 : 
+    case 4 :
         return (function (param) {
             return o(a0, a1, a2, param);
           });
-    case 5 : 
+    case 5 :
         return (function (param, param$1) {
             return o(a0, a1, a2, param, param$1);
           });
-    case 6 : 
+    case 6 :
         return (function (param, param$1, param$2) {
             return o(a0, a1, a2, param, param$1, param$2);
           });
-    case 7 : 
+    case 7 :
         return (function (param, param$1, param$2, param$3) {
             return o(a0, a1, a2, param, param$1, param$2, param$3);
           });
     default:
-      return app(o, /* array */[
+      return app(o, [
                   a0,
                   a1,
                   a2
@@ -32246,35 +32245,35 @@ function __3(o) {
 
 function curry_4(o, a0, a1, a2, a3, arity) {
   switch (arity) {
-    case 1 : 
-        return app(o(a0), /* array */[
+    case 1 :
+        return app(o(a0), [
                     a1,
                     a2,
                     a3
                   ]);
-    case 2 : 
-        return app(o(a0, a1), /* array */[
+    case 2 :
+        return app(o(a0, a1), [
                     a2,
                     a3
                   ]);
-    case 3 : 
-        return app(o(a0, a1, a2), /* array */[a3]);
-    case 4 : 
+    case 3 :
+        return app(o(a0, a1, a2), [a3]);
+    case 4 :
         return o(a0, a1, a2, a3);
-    case 5 : 
+    case 5 :
         return (function (param) {
             return o(a0, a1, a2, a3, param);
           });
-    case 6 : 
+    case 6 :
         return (function (param, param$1) {
             return o(a0, a1, a2, a3, param, param$1);
           });
-    case 7 : 
+    case 7 :
         return (function (param, param$1, param$2) {
             return o(a0, a1, a2, a3, param, param$1, param$2);
           });
     default:
-      return app(o, /* array */[
+      return app(o, [
                   a0,
                   a1,
                   a2,
@@ -32305,38 +32304,38 @@ function __4(o) {
 
 function curry_5(o, a0, a1, a2, a3, a4, arity) {
   switch (arity) {
-    case 1 : 
-        return app(o(a0), /* array */[
+    case 1 :
+        return app(o(a0), [
                     a1,
                     a2,
                     a3,
                     a4
                   ]);
-    case 2 : 
-        return app(o(a0, a1), /* array */[
+    case 2 :
+        return app(o(a0, a1), [
                     a2,
                     a3,
                     a4
                   ]);
-    case 3 : 
-        return app(o(a0, a1, a2), /* array */[
+    case 3 :
+        return app(o(a0, a1, a2), [
                     a3,
                     a4
                   ]);
-    case 4 : 
-        return app(o(a0, a1, a2, a3), /* array */[a4]);
-    case 5 : 
+    case 4 :
+        return app(o(a0, a1, a2, a3), [a4]);
+    case 5 :
         return o(a0, a1, a2, a3, a4);
-    case 6 : 
+    case 6 :
         return (function (param) {
             return o(a0, a1, a2, a3, a4, param);
           });
-    case 7 : 
+    case 7 :
         return (function (param, param$1) {
             return o(a0, a1, a2, a3, a4, param, param$1);
           });
     default:
-      return app(o, /* array */[
+      return app(o, [
                   a0,
                   a1,
                   a2,
@@ -32368,42 +32367,42 @@ function __5(o) {
 
 function curry_6(o, a0, a1, a2, a3, a4, a5, arity) {
   switch (arity) {
-    case 1 : 
-        return app(o(a0), /* array */[
+    case 1 :
+        return app(o(a0), [
                     a1,
                     a2,
                     a3,
                     a4,
                     a5
                   ]);
-    case 2 : 
-        return app(o(a0, a1), /* array */[
+    case 2 :
+        return app(o(a0, a1), [
                     a2,
                     a3,
                     a4,
                     a5
                   ]);
-    case 3 : 
-        return app(o(a0, a1, a2), /* array */[
+    case 3 :
+        return app(o(a0, a1, a2), [
                     a3,
                     a4,
                     a5
                   ]);
-    case 4 : 
-        return app(o(a0, a1, a2, a3), /* array */[
+    case 4 :
+        return app(o(a0, a1, a2, a3), [
                     a4,
                     a5
                   ]);
-    case 5 : 
-        return app(o(a0, a1, a2, a3, a4), /* array */[a5]);
-    case 6 : 
+    case 5 :
+        return app(o(a0, a1, a2, a3, a4), [a5]);
+    case 6 :
         return o(a0, a1, a2, a3, a4, a5);
-    case 7 : 
+    case 7 :
         return (function (param) {
             return o(a0, a1, a2, a3, a4, a5, param);
           });
     default:
-      return app(o, /* array */[
+      return app(o, [
                   a0,
                   a1,
                   a2,
@@ -32436,8 +32435,8 @@ function __6(o) {
 
 function curry_7(o, a0, a1, a2, a3, a4, a5, a6, arity) {
   switch (arity) {
-    case 1 : 
-        return app(o(a0), /* array */[
+    case 1 :
+        return app(o(a0), [
                     a1,
                     a2,
                     a3,
@@ -32445,38 +32444,38 @@ function curry_7(o, a0, a1, a2, a3, a4, a5, a6, arity) {
                     a5,
                     a6
                   ]);
-    case 2 : 
-        return app(o(a0, a1), /* array */[
+    case 2 :
+        return app(o(a0, a1), [
                     a2,
                     a3,
                     a4,
                     a5,
                     a6
                   ]);
-    case 3 : 
-        return app(o(a0, a1, a2), /* array */[
+    case 3 :
+        return app(o(a0, a1, a2), [
                     a3,
                     a4,
                     a5,
                     a6
                   ]);
-    case 4 : 
-        return app(o(a0, a1, a2, a3), /* array */[
+    case 4 :
+        return app(o(a0, a1, a2, a3), [
                     a4,
                     a5,
                     a6
                   ]);
-    case 5 : 
-        return app(o(a0, a1, a2, a3, a4), /* array */[
+    case 5 :
+        return app(o(a0, a1, a2, a3, a4), [
                     a5,
                     a6
                   ]);
-    case 6 : 
-        return app(o(a0, a1, a2, a3, a4, a5), /* array */[a6]);
-    case 7 : 
+    case 6 :
+        return app(o(a0, a1, a2, a3, a4, a5), [a6]);
+    case 7 :
         return o(a0, a1, a2, a3, a4, a5, a6);
     default:
-      return app(o, /* array */[
+      return app(o, [
                   a0,
                   a1,
                   a2,
@@ -32510,8 +32509,8 @@ function __7(o) {
 
 function curry_8(o, a0, a1, a2, a3, a4, a5, a6, a7, arity) {
   switch (arity) {
-    case 1 : 
-        return app(o(a0), /* array */[
+    case 1 :
+        return app(o(a0), [
                     a1,
                     a2,
                     a3,
@@ -32520,8 +32519,8 @@ function curry_8(o, a0, a1, a2, a3, a4, a5, a6, a7, arity) {
                     a6,
                     a7
                   ]);
-    case 2 : 
-        return app(o(a0, a1), /* array */[
+    case 2 :
+        return app(o(a0, a1), [
                     a2,
                     a3,
                     a4,
@@ -32529,36 +32528,36 @@ function curry_8(o, a0, a1, a2, a3, a4, a5, a6, a7, arity) {
                     a6,
                     a7
                   ]);
-    case 3 : 
-        return app(o(a0, a1, a2), /* array */[
+    case 3 :
+        return app(o(a0, a1, a2), [
                     a3,
                     a4,
                     a5,
                     a6,
                     a7
                   ]);
-    case 4 : 
-        return app(o(a0, a1, a2, a3), /* array */[
+    case 4 :
+        return app(o(a0, a1, a2, a3), [
                     a4,
                     a5,
                     a6,
                     a7
                   ]);
-    case 5 : 
-        return app(o(a0, a1, a2, a3, a4), /* array */[
+    case 5 :
+        return app(o(a0, a1, a2, a3, a4), [
                     a5,
                     a6,
                     a7
                   ]);
-    case 6 : 
-        return app(o(a0, a1, a2, a3, a4, a5), /* array */[
+    case 6 :
+        return app(o(a0, a1, a2, a3, a4, a5), [
                     a6,
                     a7
                   ]);
-    case 7 : 
-        return app(o(a0, a1, a2, a3, a4, a5, a6), /* array */[a7]);
+    case 7 :
+        return app(o(a0, a1, a2, a3, a4, a5, a6), [a7]);
     default:
-      return app(o, /* array */[
+      return app(o, [
                   a0,
                   a1,
                   a2,
@@ -32622,7 +32621,7 @@ exports.__8 = __8;
 'use strict';
 
 
-var undefinedHeader = /* array */[];
+var undefinedHeader = [];
 
 function some(x) {
   if (x === undefined) {
@@ -32647,7 +32646,7 @@ function some(x) {
 
 function nullable_to_opt(x) {
   if (x === null || x === undefined) {
-    return undefined;
+    return ;
   } else {
     return some(x);
   }
@@ -32655,7 +32654,7 @@ function nullable_to_opt(x) {
 
 function undefined_to_opt(x) {
   if (x === undefined) {
-    return undefined;
+    return ;
   } else {
     return some(x);
   }
@@ -32663,7 +32662,7 @@ function undefined_to_opt(x) {
 
 function null_to_opt(x) {
   if (x === null) {
-    return undefined;
+    return ;
   } else {
     return some(x);
   }
@@ -32673,7 +32672,7 @@ function valFromOption(x) {
   if (x !== null && x[0] === undefinedHeader) {
     var depth = x[1];
     if (depth === 0) {
-      return undefined;
+      return ;
     } else {
       return /* tuple */[
               undefinedHeader,
@@ -32687,7 +32686,7 @@ function valFromOption(x) {
 
 function option_get(x) {
   if (x === undefined) {
-    return undefined;
+    return ;
   } else {
     return valFromOption(x);
   }
@@ -32695,7 +32694,7 @@ function option_get(x) {
 
 function option_get_unwrap(x) {
   if (x === undefined) {
-    return undefined;
+    return ;
   } else {
     return valFromOption(x)[1];
   }
@@ -32720,7 +32719,6 @@ function _assign(prim, prim$1) {
 }
 
 var emptyObject = { };
-
 
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -32761,11 +32759,9 @@ var ReactPropTypeLocationNames;
 // } else {
   ReactPropTypeLocationNames = {};
 // }
-
 ;
 
-var factory = (
-function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
+var factory = (function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
   /**
    * Policies that describe methods in `ReactClassInterface`.
    */
@@ -33594,8 +33590,7 @@ function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
   }
 
   return createClass;
-}
-);
+});
 
 var reactNoopUpdateQueue = new React.Component().updater;
 
@@ -33618,7 +33613,7 @@ var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exception
 var ReasonReactOptimizedCreateClass = require("./ReasonReactOptimizedCreateClass.js");
 
 function createDomElement(s, props, children) {
-  var vararg = /* array */[
+  var vararg = [
       s,
       props
     ].concat(children);
@@ -33634,7 +33629,7 @@ function anyToTrue(param) {
 }
 
 function willReceivePropsDefault(param) {
-  return param[/* state */1];
+  return param.state;
 }
 
 function renderDefault(_self) {
@@ -33671,19 +33666,19 @@ function createClass(debugName) {
               subscriptions: null,
               self: (function (state, retainedProps) {
                   var $$this = this ;
-                  return /* record */[
-                          /* handle */$$this.handleMethod,
-                          /* state */state,
-                          /* retainedProps */retainedProps,
-                          /* send */$$this.sendMethod,
-                          /* onUnmount */$$this.onUnmountMethod
-                        ];
+                  return {
+                          handle: $$this.handleMethod,
+                          state: state,
+                          retainedProps: retainedProps,
+                          send: $$this.sendMethod,
+                          onUnmount: $$this.onUnmountMethod
+                        };
                 }),
               getInitialState: (function () {
                   var thisJs = this;
                   var convertedReasonProps = convertPropsIfTheyreFromJs(thisJs.props, thisJs.jsPropsToReason, debugName);
                   return {
-                          reasonState: Curry._1(convertedReasonProps[0][/* initialState */10], /* () */0)
+                          reasonState: Curry._1(convertedReasonProps[0].initialState, /* () */0)
                         };
                 }),
               componentDidMount: (function () {
@@ -33693,9 +33688,9 @@ function createClass(debugName) {
                   var component = convertedReasonProps[0];
                   var curTotalState = thisJs.state;
                   var curReasonState = curTotalState.reasonState;
-                  var self = $$this.self(curReasonState, component[/* retainedProps */11]);
-                  if (component[/* didMount */4] !== anyToUnit) {
-                    return Curry._1(component[/* didMount */4], self);
+                  var self = $$this.self(curReasonState, component.retainedProps);
+                  if (component.didMount !== anyToUnit) {
+                    return Curry._1(component.didMount, self);
                   } else {
                     return 0;
                   }
@@ -33708,26 +33703,25 @@ function createClass(debugName) {
                   var newJsProps = thisJs.props;
                   var newConvertedReasonProps = convertPropsIfTheyreFromJs(newJsProps, thisJs.jsPropsToReason, debugName);
                   var newComponent = newConvertedReasonProps[0];
-                  if (newComponent[/* didUpdate */5] !== anyToUnit) {
-                    var match = prevProps === newJsProps;
-                    var oldConvertedReasonProps = match ? newConvertedReasonProps : convertPropsIfTheyreFromJs(prevProps, thisJs.jsPropsToReason, debugName);
+                  if (newComponent.didUpdate !== anyToUnit) {
+                    var oldConvertedReasonProps = prevProps === newJsProps ? newConvertedReasonProps : convertPropsIfTheyreFromJs(prevProps, thisJs.jsPropsToReason, debugName);
                     var prevReasonState = prevState.reasonState;
-                    var newSelf = $$this.self(curReasonState, newComponent[/* retainedProps */11]);
-                    var oldSelf_000 = /* handle */newSelf[/* handle */0];
-                    var oldSelf_002 = /* retainedProps */oldConvertedReasonProps[0][/* retainedProps */11];
-                    var oldSelf_003 = /* send */newSelf[/* send */3];
-                    var oldSelf_004 = /* onUnmount */newSelf[/* onUnmount */4];
-                    var oldSelf = /* record */[
-                      oldSelf_000,
-                      /* state */prevReasonState,
-                      oldSelf_002,
-                      oldSelf_003,
-                      oldSelf_004
-                    ];
-                    return Curry._1(newComponent[/* didUpdate */5], /* record */[
-                                /* oldSelf */oldSelf,
-                                /* newSelf */newSelf
-                              ]);
+                    var newSelf = $$this.self(curReasonState, newComponent.retainedProps);
+                    var oldSelf_handle = newSelf.handle;
+                    var oldSelf_retainedProps = oldConvertedReasonProps[0].retainedProps;
+                    var oldSelf_send = newSelf.send;
+                    var oldSelf_onUnmount = newSelf.onUnmount;
+                    var oldSelf = {
+                      handle: oldSelf_handle,
+                      state: prevReasonState,
+                      retainedProps: oldSelf_retainedProps,
+                      send: oldSelf_send,
+                      onUnmount: oldSelf_onUnmount
+                    };
+                    return Curry._1(newComponent.didUpdate, {
+                                oldSelf: oldSelf,
+                                newSelf: newSelf
+                              });
                   } else {
                     return 0;
                   }
@@ -33739,8 +33733,8 @@ function createClass(debugName) {
                   var component = convertedReasonProps[0];
                   var curState = thisJs.state;
                   var curReasonState = curState.reasonState;
-                  if (component[/* willUnmount */6] !== anyToUnit) {
-                    Curry._1(component[/* willUnmount */6], $$this.self(curReasonState, component[/* retainedProps */11]));
+                  if (component.willUnmount !== anyToUnit) {
+                    Curry._1(component.willUnmount, $$this.self(curReasonState, component.retainedProps));
                   }
                   var match = $$this.subscriptions;
                   if (match !== null) {
@@ -33757,29 +33751,28 @@ function createClass(debugName) {
                   var thisJs = this;
                   var newConvertedReasonProps = convertPropsIfTheyreFromJs(nextProps, thisJs.jsPropsToReason, debugName);
                   var newComponent = newConvertedReasonProps[0];
-                  if (newComponent[/* willUpdate */7] !== anyToUnit) {
+                  if (newComponent.willUpdate !== anyToUnit) {
                     var oldJsProps = thisJs.props;
-                    var match = nextProps === oldJsProps;
-                    var oldConvertedReasonProps = match ? newConvertedReasonProps : convertPropsIfTheyreFromJs(oldJsProps, thisJs.jsPropsToReason, debugName);
+                    var oldConvertedReasonProps = nextProps === oldJsProps ? newConvertedReasonProps : convertPropsIfTheyreFromJs(oldJsProps, thisJs.jsPropsToReason, debugName);
                     var curState = thisJs.state;
                     var curReasonState = curState.reasonState;
                     var nextReasonState = nextState.reasonState;
-                    var newSelf = $$this.self(nextReasonState, newComponent[/* retainedProps */11]);
-                    var oldSelf_000 = /* handle */newSelf[/* handle */0];
-                    var oldSelf_002 = /* retainedProps */oldConvertedReasonProps[0][/* retainedProps */11];
-                    var oldSelf_003 = /* send */newSelf[/* send */3];
-                    var oldSelf_004 = /* onUnmount */newSelf[/* onUnmount */4];
-                    var oldSelf = /* record */[
-                      oldSelf_000,
-                      /* state */curReasonState,
-                      oldSelf_002,
-                      oldSelf_003,
-                      oldSelf_004
-                    ];
-                    return Curry._1(newComponent[/* willUpdate */7], /* record */[
-                                /* oldSelf */oldSelf,
-                                /* newSelf */newSelf
-                              ]);
+                    var newSelf = $$this.self(nextReasonState, newComponent.retainedProps);
+                    var oldSelf_handle = newSelf.handle;
+                    var oldSelf_retainedProps = oldConvertedReasonProps[0].retainedProps;
+                    var oldSelf_send = newSelf.send;
+                    var oldSelf_onUnmount = newSelf.onUnmount;
+                    var oldSelf = {
+                      handle: oldSelf_handle,
+                      state: curReasonState,
+                      retainedProps: oldSelf_retainedProps,
+                      send: oldSelf_send,
+                      onUnmount: oldSelf_onUnmount
+                    };
+                    return Curry._1(newComponent.willUpdate, {
+                                oldSelf: oldSelf,
+                                newSelf: newSelf
+                              });
                   } else {
                     return 0;
                   }
@@ -33789,15 +33782,14 @@ function createClass(debugName) {
                   var thisJs = this;
                   var newConvertedReasonProps = convertPropsIfTheyreFromJs(nextProps, thisJs.jsPropsToReason, debugName);
                   var newComponent = newConvertedReasonProps[0];
-                  if (newComponent[/* willReceiveProps */3] !== willReceivePropsDefault) {
+                  if (newComponent.willReceiveProps !== willReceivePropsDefault) {
                     var oldJsProps = thisJs.props;
-                    var match = nextProps === oldJsProps;
-                    var oldConvertedReasonProps = match ? newConvertedReasonProps : convertPropsIfTheyreFromJs(oldJsProps, thisJs.jsPropsToReason, debugName);
+                    var oldConvertedReasonProps = nextProps === oldJsProps ? newConvertedReasonProps : convertPropsIfTheyreFromJs(oldJsProps, thisJs.jsPropsToReason, debugName);
                     var oldComponent = oldConvertedReasonProps[0];
                     return thisJs.setState((function (curTotalState, param) {
                                   var curReasonState = curTotalState.reasonState;
-                                  var oldSelf = $$this.self(curReasonState, oldComponent[/* retainedProps */11]);
-                                  var nextReasonState = Curry._1(newComponent[/* willReceiveProps */3], oldSelf);
+                                  var oldSelf = $$this.self(curReasonState, oldComponent.retainedProps);
+                                  var nextReasonState = Curry._1(newComponent.willReceiveProps, oldSelf);
                                   if (nextReasonState !== curTotalState) {
                                     return {
                                             reasonState: nextReasonState
@@ -33815,29 +33807,28 @@ function createClass(debugName) {
                   var thisJs = this;
                   var curJsProps = thisJs.props;
                   var oldConvertedReasonProps = convertPropsIfTheyreFromJs(thisJs.props, thisJs.jsPropsToReason, debugName);
-                  var match = nextJsProps === curJsProps;
-                  var newConvertedReasonProps = match ? oldConvertedReasonProps : convertPropsIfTheyreFromJs(nextJsProps, thisJs.jsPropsToReason, debugName);
+                  var newConvertedReasonProps = nextJsProps === curJsProps ? oldConvertedReasonProps : convertPropsIfTheyreFromJs(nextJsProps, thisJs.jsPropsToReason, debugName);
                   var newComponent = newConvertedReasonProps[0];
                   var nextReasonState = nextState.reasonState;
-                  var newSelf = $$this.self(nextReasonState, newComponent[/* retainedProps */11]);
-                  if (newComponent[/* shouldUpdate */8] !== anyToTrue) {
+                  var newSelf = $$this.self(nextReasonState, newComponent.retainedProps);
+                  if (newComponent.shouldUpdate !== anyToTrue) {
                     var curState = thisJs.state;
                     var curReasonState = curState.reasonState;
-                    var oldSelf_000 = /* handle */newSelf[/* handle */0];
-                    var oldSelf_002 = /* retainedProps */oldConvertedReasonProps[0][/* retainedProps */11];
-                    var oldSelf_003 = /* send */newSelf[/* send */3];
-                    var oldSelf_004 = /* onUnmount */newSelf[/* onUnmount */4];
-                    var oldSelf = /* record */[
-                      oldSelf_000,
-                      /* state */curReasonState,
-                      oldSelf_002,
-                      oldSelf_003,
-                      oldSelf_004
-                    ];
-                    return Curry._1(newComponent[/* shouldUpdate */8], /* record */[
-                                /* oldSelf */oldSelf,
-                                /* newSelf */newSelf
-                              ]);
+                    var oldSelf_handle = newSelf.handle;
+                    var oldSelf_retainedProps = oldConvertedReasonProps[0].retainedProps;
+                    var oldSelf_send = newSelf.send;
+                    var oldSelf_onUnmount = newSelf.onUnmount;
+                    var oldSelf = {
+                      handle: oldSelf_handle,
+                      state: curReasonState,
+                      retainedProps: oldSelf_retainedProps,
+                      send: oldSelf_send,
+                      onUnmount: oldSelf_onUnmount
+                    };
+                    return Curry._1(newComponent.shouldUpdate, {
+                                oldSelf: oldSelf,
+                                newSelf: newSelf
+                              });
                   } else {
                     return true;
                   }
@@ -33849,7 +33840,7 @@ function createClass(debugName) {
                     match.push(subscription);
                     return /* () */0;
                   } else {
-                    $$this.subscriptions = /* array */[subscription];
+                    $$this.subscriptions = [subscription];
                     return /* () */0;
                   }
                 }),
@@ -33860,7 +33851,7 @@ function createClass(debugName) {
                       var curState = thisJs.state;
                       var curReasonState = curState.reasonState;
                       var convertedReasonProps = convertPropsIfTheyreFromJs(thisJs.props, thisJs.jsPropsToReason, debugName);
-                      return Curry._2(callback, callbackPayload, $$this.self(curReasonState, convertedReasonProps[0][/* retainedProps */11]));
+                      return Curry._2(callback, callbackPayload, $$this.self(curReasonState, convertedReasonProps[0].retainedProps));
                     });
                 }),
               sendMethod: (function (action) {
@@ -33868,11 +33859,13 @@ function createClass(debugName) {
                   var thisJs = this;
                   var convertedReasonProps = convertPropsIfTheyreFromJs(thisJs.props, thisJs.jsPropsToReason, debugName);
                   var component = convertedReasonProps[0];
-                  if (component[/* reducer */12] !== reducerDefault) {
-                    var sideEffects = /* record */[/* contents */(function (prim) {
+                  if (component.reducer !== reducerDefault) {
+                    var sideEffects = {
+                      contents: (function (prim) {
                           return /* () */0;
-                        })];
-                    var partialStateApplication = Curry._1(component[/* reducer */12], action);
+                        })
+                    };
+                    var partialStateApplication = Curry._1(component.reducer, action);
                     return thisJs.setState((function (curTotalState, param) {
                                   var curReasonState = curTotalState.reasonState;
                                   var reasonStateUpdate = Curry._1(partialStateApplication, curReasonState);
@@ -33884,17 +33877,17 @@ function createClass(debugName) {
                                       nextTotalState = curTotalState;
                                     } else {
                                       switch (reasonStateUpdate.tag | 0) {
-                                        case 0 : 
+                                        case /* Update */0 :
                                             nextTotalState = {
                                               reasonState: reasonStateUpdate[0]
                                             };
                                             break;
-                                        case 1 : 
-                                            sideEffects[/* contents */0] = reasonStateUpdate[0];
+                                        case /* SideEffects */1 :
+                                            sideEffects.contents = reasonStateUpdate[0];
                                             nextTotalState = curTotalState;
                                             break;
-                                        case 2 : 
-                                            sideEffects[/* contents */0] = reasonStateUpdate[1];
+                                        case /* UpdateWithSideEffects */2 :
+                                            sideEffects.contents = reasonStateUpdate[1];
                                             nextTotalState = {
                                               reasonState: reasonStateUpdate[0]
                                             };
@@ -33909,7 +33902,7 @@ function createClass(debugName) {
                                     }
                                   }
                                 }), $$this.handleMethod((function (param, self) {
-                                      return Curry._1(sideEffects[/* contents */0], self);
+                                      return Curry._1(sideEffects.contents, self);
                                     })));
                   } else {
                     return 0;
@@ -33922,28 +33915,30 @@ function createClass(debugName) {
                   var created = convertedReasonProps[0];
                   var curState = thisJs.state;
                   var curReasonState = curState.reasonState;
-                  return Curry._1(created[/* render */9], $$this.self(curReasonState, created[/* retainedProps */11]));
+                  return Curry._1(created.render, $$this.self(curReasonState, created.retainedProps));
                 })
             });
 }
 
 function basicComponent(debugName) {
-  return /* record */[
-          /* debugName */debugName,
-          /* reactClassInternal */createClass(debugName),
-          /* handedOffState : record */[/* contents */undefined],
-          /* willReceiveProps */willReceivePropsDefault,
-          /* didMount */anyToUnit,
-          /* didUpdate */anyToUnit,
-          /* willUnmount */anyToUnit,
-          /* willUpdate */anyToUnit,
-          /* shouldUpdate */anyToTrue,
-          /* render */renderDefault,
-          /* initialState */initialStateDefault,
-          /* retainedProps : () */0,
-          /* reducer */reducerDefault,
-          /* jsElementWrapped */undefined
-        ];
+  return {
+          debugName: debugName,
+          reactClassInternal: createClass(debugName),
+          handedOffState: {
+            contents: undefined
+          },
+          willReceiveProps: willReceivePropsDefault,
+          didMount: anyToUnit,
+          didUpdate: anyToUnit,
+          willUnmount: anyToUnit,
+          willUpdate: anyToUnit,
+          shouldUpdate: anyToTrue,
+          render: renderDefault,
+          initialState: initialStateDefault,
+          retainedProps: /* () */0,
+          reducer: reducerDefault,
+          jsElementWrapped: undefined
+        };
 }
 
 var statelessComponent = basicComponent;
@@ -33958,11 +33953,11 @@ function element($staropt$star, $staropt$star$1, component) {
   var key = $staropt$star !== undefined ? $staropt$star : undefined;
   var ref = $staropt$star$1 !== undefined ? $staropt$star$1 : undefined;
   var element$1 = /* Element */[component];
-  var match = component[/* jsElementWrapped */13];
+  var match = component.jsElementWrapped;
   if (match !== undefined) {
     return Curry._2(match, key, ref);
   } else {
-    return React.createElement(component[/* reactClassInternal */1], {
+    return React.createElement(component.reactClassInternal, {
                 key: key,
                 ref: ref,
                 reasonProps: element$1
@@ -33972,9 +33967,8 @@ function element($staropt$star, $staropt$star$1, component) {
 
 function wrapReasonForJs(component, jsPropsToReason) {
   var uncurriedJsPropsToReason = Curry.__1(jsPropsToReason);
-  var tmp = component[/* reactClassInternal */1].prototype;
-  tmp.jsPropsToReason = Caml_option.some(uncurriedJsPropsToReason);
-  return component[/* reactClassInternal */1];
+  component.reactClassInternal.prototype.jsPropsToReason = Caml_option.some(uncurriedJsPropsToReason);
+  return component.reactClassInternal;
 }
 
 var dummyInteropComponent = basicComponent("interop");
@@ -33990,31 +33984,31 @@ function wrapJsForReason(reactClass, props, children) {
             ref: ref,
             key: key
           });
-      var varargs = /* array */[
+      var varargs = [
           reactClass$1,
           props$2
         ].concat(children$1);
       return React.createElement.apply(null, varargs);
     });
-  return /* record */[
-          /* debugName */dummyInteropComponent[/* debugName */0],
-          /* reactClassInternal */dummyInteropComponent[/* reactClassInternal */1],
-          /* handedOffState */dummyInteropComponent[/* handedOffState */2],
-          /* willReceiveProps */dummyInteropComponent[/* willReceiveProps */3],
-          /* didMount */dummyInteropComponent[/* didMount */4],
-          /* didUpdate */dummyInteropComponent[/* didUpdate */5],
-          /* willUnmount */dummyInteropComponent[/* willUnmount */6],
-          /* willUpdate */dummyInteropComponent[/* willUpdate */7],
-          /* shouldUpdate */dummyInteropComponent[/* shouldUpdate */8],
-          /* render */dummyInteropComponent[/* render */9],
-          /* initialState */dummyInteropComponent[/* initialState */10],
-          /* retainedProps */dummyInteropComponent[/* retainedProps */11],
-          /* reducer */dummyInteropComponent[/* reducer */12],
-          /* jsElementWrapped */jsElementWrapped
-        ];
+  return {
+          debugName: dummyInteropComponent.debugName,
+          reactClassInternal: dummyInteropComponent.reactClassInternal,
+          handedOffState: dummyInteropComponent.handedOffState,
+          willReceiveProps: dummyInteropComponent.willReceiveProps,
+          didMount: dummyInteropComponent.didMount,
+          didUpdate: dummyInteropComponent.didUpdate,
+          willUnmount: dummyInteropComponent.willUnmount,
+          willUpdate: dummyInteropComponent.willUpdate,
+          shouldUpdate: dummyInteropComponent.shouldUpdate,
+          render: dummyInteropComponent.render,
+          initialState: dummyInteropComponent.initialState,
+          retainedProps: dummyInteropComponent.retainedProps,
+          reducer: dummyInteropComponent.reducer,
+          jsElementWrapped: jsElementWrapped
+        };
 }
 
-var Router = 0;
+var Router = /* alias */0;
 
 exports.statelessComponent = statelessComponent;
 exports.statelessComponentWithRetainedProps = statelessComponentWithRetainedProps;
@@ -34036,163 +34030,153 @@ function __(tag, block) {
   return block;
 }
 
-function record(meta, xs) {
-  return Object.defineProperty(xs, Symbol.for("BsRecord"), {
-              value: meta
-            });
-}
-
-function variant(meta, tag, xs) {
-  xs.tag = tag;
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
-              value: meta
-            });
-}
-
-function simpleVariant(meta, xs) {
-  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
-              value: meta
-            });
-}
-
-function localModule(meta, xs) {
-  return Object.defineProperty(xs, Symbol.for("BsLocalModule"), {
-              value: meta
-            });
-}
-
-function polyVar(meta, xs) {
-  return Object.defineProperty(xs, Symbol.for("BsPolyVar"), {
-              value: meta
-            });
-}
-
 exports.__ = __;
-exports.record = record;
-exports.variant = variant;
-exports.simpleVariant = simpleVariant;
-exports.localModule = localModule;
-exports.polyVar = polyVar;
 /* No side effect */
 
-},{}],"../node_modules/@emotion/memoize/dist/memoize.esm.js":[function(require,module,exports) {
+},{}],"../node_modules/@emotion/sheet/dist/sheet.browser.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.StyleSheet = void 0;
 
-function memoize(fn) {
-  var cache = {};
-  return function (arg) {
-    if (cache[arg] === undefined) cache[arg] = fn(arg);
-    return cache[arg];
+/*
+
+Based off glamor's StyleSheet, thanks Sunil ❤️
+
+high performance StyleSheet for css-in-js systems
+
+- uses multiple style tags behind the scenes for millions of rules
+- uses `insertRule` for appending in production for *much* faster performance
+
+// usage
+
+import { StyleSheet } from '@emotion/sheet'
+
+let styleSheet = new StyleSheet({ key: '', container: document.head })
+
+styleSheet.insert('#box { border: 1px solid red; }')
+- appends a css rule into the stylesheet
+
+styleSheet.flush()
+- empties the stylesheet of all its contents
+
+*/
+// $FlowFixMe
+function sheetForTag(tag) {
+  if (tag.sheet) {
+    // $FlowFixMe
+    return tag.sheet;
+  } // this weirdness brought to you by firefox
+
+  /* istanbul ignore next */
+
+
+  for (var i = 0; i < document.styleSheets.length; i++) {
+    if (document.styleSheets[i].ownerNode === tag) {
+      // $FlowFixMe
+      return document.styleSheets[i];
+    }
+  }
+}
+
+function createStyleElement(options) {
+  var tag = document.createElement('style');
+  tag.setAttribute('data-emotion', options.key);
+
+  if (options.nonce !== undefined) {
+    tag.setAttribute('nonce', options.nonce);
+  }
+
+  tag.appendChild(document.createTextNode(''));
+  return tag;
+}
+
+var StyleSheet =
+/*#__PURE__*/
+function () {
+  function StyleSheet(options) {
+    this.isSpeedy = options.speedy === undefined ? "development" === 'production' : options.speedy;
+    this.tags = [];
+    this.ctr = 0;
+    this.nonce = options.nonce; // key is the value of the data-emotion attribute, it's used to identify different sheets
+
+    this.key = options.key;
+    this.container = options.container;
+    this.before = null;
+  }
+
+  var _proto = StyleSheet.prototype;
+
+  _proto.insert = function insert(rule) {
+    // the max length is how many rules we have per style tag, it's 65000 in speedy mode
+    // it's 1 in dev because we insert source maps that map a single rule to a location
+    // and you can only have one source map per style tag
+    if (this.ctr % (this.isSpeedy ? 65000 : 1) === 0) {
+      var _tag = createStyleElement(this);
+
+      var before;
+
+      if (this.tags.length === 0) {
+        before = this.before;
+      } else {
+        before = this.tags[this.tags.length - 1].nextSibling;
+      }
+
+      this.container.insertBefore(_tag, before);
+      this.tags.push(_tag);
+    }
+
+    var tag = this.tags[this.tags.length - 1];
+
+    if (this.isSpeedy) {
+      var sheet = sheetForTag(tag);
+
+      try {
+        // this is a really hot path
+        // we check the second character first because having "i"
+        // as the second character will happen less often than
+        // having "@" as the first character
+        var isImportRule = rule.charCodeAt(1) === 105 && rule.charCodeAt(0) === 64; // this is the ultrafast version, works across browsers
+        // the big drawback is that the css won't be editable in devtools
+
+        sheet.insertRule(rule, // we need to insert @import rules before anything else
+        // otherwise there will be an error
+        // technically this means that the @import rules will
+        // _usually_(not always since there could be multiple style tags)
+        // be the first ones in prod and generally later in dev
+        // this shouldn't really matter in the real world though
+        // @import is generally only used for font faces from google fonts and etc.
+        // so while this could be technically correct then it would be slower and larger
+        // for a tiny bit of correctness that won't matter in the real world
+        isImportRule ? 0 : sheet.cssRules.length);
+      } catch (e) {
+        if ("development" !== 'production') {
+          console.warn("There was a problem inserting the following rule: \"" + rule + "\"", e);
+        }
+      }
+    } else {
+      tag.appendChild(document.createTextNode(rule));
+    }
+
+    this.ctr++;
   };
-}
 
-var _default = memoize;
-exports.default = _default;
-},{}],"../node_modules/@emotion/unitless/dist/unitless.esm.js":[function(require,module,exports) {
-"use strict";
+  _proto.flush = function flush() {
+    // $FlowFixMe
+    this.tags.forEach(function (tag) {
+      return tag.parentNode.removeChild(tag);
+    });
+    this.tags = [];
+    this.ctr = 0;
+  };
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var unitlessKeys = {
-  animationIterationCount: 1,
-  borderImageOutset: 1,
-  borderImageSlice: 1,
-  borderImageWidth: 1,
-  boxFlex: 1,
-  boxFlexGroup: 1,
-  boxOrdinalGroup: 1,
-  columnCount: 1,
-  columns: 1,
-  flex: 1,
-  flexGrow: 1,
-  flexPositive: 1,
-  flexShrink: 1,
-  flexNegative: 1,
-  flexOrder: 1,
-  gridRow: 1,
-  gridRowEnd: 1,
-  gridRowSpan: 1,
-  gridRowStart: 1,
-  gridColumn: 1,
-  gridColumnEnd: 1,
-  gridColumnSpan: 1,
-  gridColumnStart: 1,
-  fontWeight: 1,
-  lineHeight: 1,
-  opacity: 1,
-  order: 1,
-  orphans: 1,
-  tabSize: 1,
-  widows: 1,
-  zIndex: 1,
-  zoom: 1,
-  WebkitLineClamp: 1,
-  // SVG-related properties
-  fillOpacity: 1,
-  floodOpacity: 1,
-  stopOpacity: 1,
-  strokeDasharray: 1,
-  strokeDashoffset: 1,
-  strokeMiterlimit: 1,
-  strokeOpacity: 1,
-  strokeWidth: 1
-};
-var _default = unitlessKeys;
-exports.default = _default;
-},{}],"../node_modules/@emotion/hash/dist/hash.esm.js":[function(require,module,exports) {
-"use strict";
+  return StyleSheet;
+}();
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-/* eslint-disable */
-// murmurhash2 via https://github.com/garycourt/murmurhash-js/blob/master/murmurhash2_gc.js
-function murmurhash2_32_gc(str) {
-  var l = str.length,
-      h = l ^ l,
-      i = 0,
-      k;
-
-  while (l >= 4) {
-    k = str.charCodeAt(i) & 0xff | (str.charCodeAt(++i) & 0xff) << 8 | (str.charCodeAt(++i) & 0xff) << 16 | (str.charCodeAt(++i) & 0xff) << 24;
-    k = (k & 0xffff) * 0x5bd1e995 + (((k >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-    k ^= k >>> 24;
-    k = (k & 0xffff) * 0x5bd1e995 + (((k >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-    h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16) ^ k;
-    l -= 4;
-    ++i;
-  }
-
-  switch (l) {
-    case 3:
-      h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
-
-    case 2:
-      h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
-
-    case 1:
-      h ^= str.charCodeAt(i) & 0xff;
-      h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-  }
-
-  h ^= h >>> 13;
-  h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-  h ^= h >>> 15;
-  return (h >>> 0).toString(36);
-}
-
-var _default = murmurhash2_32_gc;
-exports.default = _default;
-},{}],"../node_modules/@emotion/stylis/dist/stylis.esm.js":[function(require,module,exports) {
+exports.StyleSheet = StyleSheet;
+},{}],"../node_modules/@emotion/stylis/dist/stylis.browser.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34533,7 +34517,7 @@ function stylis_min(W) {
         var b = 0;
 
         for (d = 0 === m ? '' : d[0] + ' '; b < a; ++b) {
-          c[b] = Z(d, c[b], e, m).trim();
+          c[b] = Z(d, c[b], e).trim();
         }
 
         break;
@@ -34543,7 +34527,7 @@ function stylis_min(W) {
 
         for (c = []; b < a; ++b) {
           for (var n = 0; n < m; ++n) {
-            c[v++] = Z(d[n] + ' ', h[b], e, m).trim();
+            c[v++] = Z(d[n] + ' ', h[b], e).trim();
           }
         }
 
@@ -34747,22 +34731,9 @@ function stylis_min(W) {
         break;
 
       default:
-        switch (d.constructor) {
-          case Array:
-            for (var c = 0, e = d.length; c < e; ++c) {
-              T(d[c]);
-            }
-
-            break;
-
-          case Function:
-            S[A++] = d;
-            break;
-
-          case Boolean:
-            Y = !!d | 0;
-        }
-
+        if ('function' === typeof d) S[A++] = d;else if ('object' === typeof d) for (var c = 0, e = d.length; c < e; ++c) {
+          T(d[c]);
+        } else Y = !!d | 0;
     }
 
     return T;
@@ -34828,58 +34799,7 @@ function stylis_min(W) {
 
 var _default = stylis_min;
 exports.default = _default;
-},{}],"../node_modules/stylis-rule-sheet/index.js":[function(require,module,exports) {
-var define;
-(function (factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? (module['exports'] = factory()) :
-		typeof define === 'function' && define['amd'] ? define(factory()) :
-			(window['stylisRuleSheet'] = factory())
-}(function () {
-
-	'use strict'
-
-	return function (insertRule) {
-		var delimiter = '/*|*/'
-		var needle = delimiter+'}'
-
-		function toSheet (block) {
-			if (block)
-				try {
-					insertRule(block + '}')
-				} catch (e) {}
-		}
-
-		return function ruleSheet (context, content, selectors, parents, line, column, length, ns, depth, at) {
-			switch (context) {
-				// property
-				case 1:
-					// @import
-					if (depth === 0 && content.charCodeAt(0) === 64)
-						return insertRule(content+';'), ''
-					break
-				// selector
-				case 2:
-					if (ns === 0)
-						return content + delimiter
-					break
-				// at-rule
-				case 3:
-					switch (ns) {
-						// @font-face, @page
-						case 102:
-						case 112:
-							return insertRule(selectors[0]+content), ''
-						default:
-							return content + (at === 0 ? delimiter : '')
-					}
-				case -2:
-					content.split(needle).forEach(toSheet)
-			}
-		}
-	}
-}))
-
-},{}],"../node_modules/create-emotion/dist/index.esm.js":[function(require,module,exports) {
+},{}],"../node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34887,30 +34807,419 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _memoize = _interopRequireDefault(require("@emotion/memoize"));
+var weakMemoize = function weakMemoize(func) {
+  // $FlowFixMe flow doesn't include all non-primitive types as allowed for weakmaps
+  var cache = new WeakMap();
+  return function (arg) {
+    if (cache.has(arg)) {
+      // $FlowFixMe
+      return cache.get(arg);
+    }
 
-var _unitless = _interopRequireDefault(require("@emotion/unitless"));
+    var ret = func(arg);
+    cache.set(arg, ret);
+    return ret;
+  };
+};
 
-var _hash = _interopRequireDefault(require("@emotion/hash"));
+var _default = weakMemoize;
+exports.default = _default;
+},{}],"../node_modules/@emotion/cache/dist/cache.browser.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _sheet = require("@emotion/sheet");
 
 var _stylis = _interopRequireDefault(require("@emotion/stylis"));
 
-var _stylisRuleSheet = _interopRequireDefault(require("stylis-rule-sheet"));
+require("@emotion/weak-memoize");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// https://github.com/thysultan/stylis.js/tree/master/plugins/rule-sheet
+// inlined to avoid umd wrapper and peerDep warnings/installing stylis
+// since we use stylis after closure compiler
+var delimiter = '/*|*/';
+var needle = delimiter + '}';
+
+function toSheet(block) {
+  if (block) {
+    Sheet.current.insert(block + '}');
+  }
+}
+
+var Sheet = {
+  current: null
+};
+
+var ruleSheet = function ruleSheet(context, content, selectors, parents, line, column, length, ns, depth, at) {
+  switch (context) {
+    // property
+    case 1:
+      {
+        switch (content.charCodeAt(0)) {
+          case 64:
+            {
+              // @import
+              Sheet.current.insert(content + ';');
+              return '';
+            }
+          // charcode for l
+
+          case 108:
+            {
+              // charcode for b
+              // this ignores label
+              if (content.charCodeAt(2) === 98) {
+                return '';
+              }
+            }
+        }
+
+        break;
+      }
+    // selector
+
+    case 2:
+      {
+        if (ns === 0) return content + delimiter;
+        break;
+      }
+    // at-rule
+
+    case 3:
+      {
+        switch (ns) {
+          // @font-face, @page
+          case 102:
+          case 112:
+            {
+              Sheet.current.insert(selectors[0] + content);
+              return '';
+            }
+
+          default:
+            {
+              return content + (at === 0 ? delimiter : '');
+            }
+        }
+      }
+
+    case -2:
+      {
+        content.split(needle).forEach(toSheet);
+      }
+  }
+};
+
+var createCache = function createCache(options) {
+  if (options === undefined) options = {};
+  var key = options.key || 'css';
+  var stylisOptions;
+
+  if (options.prefix !== undefined) {
+    stylisOptions = {
+      prefix: options.prefix
+    };
+  }
+
+  var stylis = new _stylis.default(stylisOptions);
+
+  if ("development" !== 'production') {
+    // $FlowFixMe
+    if (/[^a-z-]/.test(key)) {
+      throw new Error("Emotion key must only contain lower case alphabetical characters and - but \"" + key + "\" was passed");
+    }
+  }
+
+  var inserted = {}; // $FlowFixMe
+
+  var container;
+  {
+    container = options.container || document.head;
+    var nodes = document.querySelectorAll("style[data-emotion-" + key + "]");
+    Array.prototype.forEach.call(nodes, function (node) {
+      var attrib = node.getAttribute("data-emotion-" + key); // $FlowFixMe
+
+      attrib.split(' ').forEach(function (id) {
+        inserted[id] = true;
+      });
+
+      if (node.parentNode !== container) {
+        container.appendChild(node);
+      }
+    });
+  }
+
+  var _insert;
+
+  {
+    stylis.use(options.stylisPlugins)(ruleSheet);
+
+    _insert = function insert(selector, serialized, sheet, shouldCache) {
+      var name = serialized.name;
+      Sheet.current = sheet;
+
+      if ("development" !== 'production' && serialized.map !== undefined) {
+        var map = serialized.map;
+        Sheet.current = {
+          insert: function insert(rule) {
+            sheet.insert(rule + map);
+          }
+        };
+      }
+
+      stylis(selector, serialized.styles);
+
+      if (shouldCache) {
+        cache.inserted[name] = true;
+      }
+    };
+  }
+
+  if ("development" !== 'production') {
+    // https://esbench.com/bench/5bf7371a4cd7e6009ef61d0a
+    var commentStart = /\/\*/g;
+    var commentEnd = /\*\//g;
+    stylis.use(function (context, content) {
+      switch (context) {
+        case -1:
+          {
+            while (commentStart.test(content)) {
+              commentEnd.lastIndex = commentStart.lastIndex;
+
+              if (commentEnd.test(content)) {
+                commentStart.lastIndex = commentEnd.lastIndex;
+                continue;
+              }
+
+              throw new Error('Your styles have an unterminated comment ("/*" without corresponding "*/").');
+            }
+
+            commentStart.lastIndex = 0;
+            break;
+          }
+      }
+    });
+    stylis.use(function (context, content, selectors) {
+      switch (context) {
+        case -1:
+          {
+            var flag = 'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason';
+            var unsafePseudoClasses = content.match(/(:first|:nth|:nth-last)-child/g);
+
+            if (unsafePseudoClasses && cache.compat !== true) {
+              unsafePseudoClasses.forEach(function (unsafePseudoClass) {
+                var ignoreRegExp = new RegExp(unsafePseudoClass + ".*\\/\\* " + flag + " \\*\\/");
+                var ignore = ignoreRegExp.test(content);
+
+                if (unsafePseudoClass && !ignore) {
+                  console.error("The pseudo class \"" + unsafePseudoClass + "\" is potentially unsafe when doing server-side rendering. Try changing it to \"" + unsafePseudoClass.split('-child')[0] + "-of-type\".");
+                }
+              });
+            }
+
+            break;
+          }
+      }
+    });
+  }
+
+  var cache = {
+    key: key,
+    sheet: new _sheet.StyleSheet({
+      key: key,
+      container: container,
+      nonce: options.nonce,
+      speedy: options.speedy
+    }),
+    nonce: options.nonce,
+    inserted: inserted,
+    registered: {},
+    insert: _insert
+  };
+  return cache;
+};
+
+var _default = createCache;
+exports.default = _default;
+},{"@emotion/sheet":"../node_modules/@emotion/sheet/dist/sheet.browser.esm.js","@emotion/stylis":"../node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/weak-memoize":"../node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js"}],"../node_modules/@emotion/hash/dist/hash.browser.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+/* eslint-disable */
+// murmurhash2 via https://github.com/garycourt/murmurhash-js/blob/master/murmurhash2_gc.js
+function murmurhash2_32_gc(str) {
+  var l = str.length,
+      h = l ^ l,
+      i = 0,
+      k;
+
+  while (l >= 4) {
+    k = str.charCodeAt(i) & 0xff | (str.charCodeAt(++i) & 0xff) << 8 | (str.charCodeAt(++i) & 0xff) << 16 | (str.charCodeAt(++i) & 0xff) << 24;
+    k = (k & 0xffff) * 0x5bd1e995 + (((k >>> 16) * 0x5bd1e995 & 0xffff) << 16);
+    k ^= k >>> 24;
+    k = (k & 0xffff) * 0x5bd1e995 + (((k >>> 16) * 0x5bd1e995 & 0xffff) << 16);
+    h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16) ^ k;
+    l -= 4;
+    ++i;
+  }
+
+  switch (l) {
+    case 3:
+      h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
+
+    case 2:
+      h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
+
+    case 1:
+      h ^= str.charCodeAt(i) & 0xff;
+      h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16);
+  }
+
+  h ^= h >>> 13;
+  h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16);
+  h ^= h >>> 15;
+  return (h >>> 0).toString(36);
+}
+
+var _default = murmurhash2_32_gc;
+exports.default = _default;
+},{}],"../node_modules/@emotion/unitless/dist/unitless.browser.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var unitlessKeys = {
+  animationIterationCount: 1,
+  borderImageOutset: 1,
+  borderImageSlice: 1,
+  borderImageWidth: 1,
+  boxFlex: 1,
+  boxFlexGroup: 1,
+  boxOrdinalGroup: 1,
+  columnCount: 1,
+  columns: 1,
+  flex: 1,
+  flexGrow: 1,
+  flexPositive: 1,
+  flexShrink: 1,
+  flexNegative: 1,
+  flexOrder: 1,
+  gridRow: 1,
+  gridRowEnd: 1,
+  gridRowSpan: 1,
+  gridRowStart: 1,
+  gridColumn: 1,
+  gridColumnEnd: 1,
+  gridColumnSpan: 1,
+  gridColumnStart: 1,
+  msGridRow: 1,
+  msGridRowSpan: 1,
+  msGridColumn: 1,
+  msGridColumnSpan: 1,
+  fontWeight: 1,
+  lineHeight: 1,
+  opacity: 1,
+  order: 1,
+  orphans: 1,
+  tabSize: 1,
+  widows: 1,
+  zIndex: 1,
+  zoom: 1,
+  WebkitLineClamp: 1,
+  // SVG-related properties
+  fillOpacity: 1,
+  floodOpacity: 1,
+  stopOpacity: 1,
+  strokeDasharray: 1,
+  strokeDashoffset: 1,
+  strokeMiterlimit: 1,
+  strokeOpacity: 1,
+  strokeWidth: 1
+};
+var _default = unitlessKeys;
+exports.default = _default;
+},{}],"../node_modules/@emotion/memoize/dist/memoize.browser.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function memoize(fn) {
+  var cache = {};
+  return function (arg) {
+    if (cache[arg] === undefined) cache[arg] = fn(arg);
+    return cache[arg];
+  };
+}
+
+var _default = memoize;
+exports.default = _default;
+},{}],"../node_modules/@emotion/serialize/dist/serialize.browser.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.serializeStyles = void 0;
+
+var _hash = _interopRequireDefault(require("@emotion/hash"));
+
+var _unitless = _interopRequireDefault(require("@emotion/unitless"));
+
+var _memoize = _interopRequireDefault(require("@emotion/memoize"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ILLEGAL_ESCAPE_SEQUENCE_ERROR = "You have illegal escape sequence in your template literal, most likely inside content's property value.\nBecause you write your CSS inside a JavaScript string you actually have to do double escaping, so for example \"content: '\\00d7';\" should become \"content: '\\\\00d7';\".\nYou can read more about this here:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences";
+var UNDEFINED_AS_OBJECT_KEY_ERROR = "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key).";
 var hyphenateRegex = /[A-Z]|^ms/g;
+var animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g;
+
+var isCustomProperty = function isCustomProperty(property) {
+  return property.charCodeAt(1) === 45;
+};
+
+var isProcessableValue = function isProcessableValue(value) {
+  return value != null && typeof value !== 'boolean';
+};
+
 var processStyleName = (0, _memoize.default)(function (styleName) {
-  return styleName.replace(hyphenateRegex, '-$&').toLowerCase();
+  return isCustomProperty(styleName) ? styleName : styleName.replace(hyphenateRegex, '-$&').toLowerCase();
 });
 
 var processStyleValue = function processStyleValue(key, value) {
-  if (value == null || typeof value === 'boolean') {
-    return '';
+  switch (key) {
+    case 'animation':
+    case 'animationName':
+      {
+        if (typeof value === 'string') {
+          return value.replace(animationRegex, function (match, p1, p2) {
+            cursor = {
+              name: p1,
+              styles: p2,
+              next: cursor
+            };
+            return p1;
+          });
+        }
+      }
   }
 
-  if (_unitless.default[key] !== 1 && key.charCodeAt(1) !== 45 && // custom properties
-  !isNaN(value) && value !== 0) {
+  if (_unitless.default[key] !== 1 && !isCustomProperty(key) && typeof value === 'number' && value !== 0) {
     return value + 'px';
   }
 
@@ -34921,6 +35230,9 @@ if ("development" !== 'production') {
   var contentValuePattern = /(attr|calc|counters?|url)\(/;
   var contentValues = ['normal', 'none', 'counter', 'open-quote', 'close-quote', 'no-open-quote', 'no-close-quote', 'initial', 'inherit', 'unset'];
   var oldProcessStyleValue = processStyleValue;
+  var msPattern = /^-ms-/;
+  var hyphenPattern = /-(.)/g;
+  var hyphenatedCache = {};
 
   processStyleValue = function processStyleValue(key, value) {
     if (key === 'content') {
@@ -34929,30 +35241,437 @@ if ("development" !== 'production') {
       }
     }
 
-    return oldProcessStyleValue(key, value);
+    var processed = oldProcessStyleValue(key, value);
+
+    if (processed !== '' && !isCustomProperty(key) && key.indexOf('-') !== -1 && hyphenatedCache[key] === undefined) {
+      hyphenatedCache[key] = true;
+      console.error("Using kebab-case for css properties in objects is not supported. Did you mean " + key.replace(msPattern, 'ms-').replace(hyphenPattern, function (str, _char) {
+        return _char.toUpperCase();
+      }) + "?");
+    }
+
+    return processed;
   };
 }
 
+var shouldWarnAboutInterpolatingClassNameFromCss = true;
+
+function handleInterpolation(mergedProps, registered, interpolation, couldBeSelectorInterpolation) {
+  if (interpolation == null) {
+    return '';
+  }
+
+  if (interpolation.__emotion_styles !== undefined) {
+    if ("development" !== 'production' && interpolation.toString() === 'NO_COMPONENT_SELECTOR') {
+      throw new Error('Component selectors can only be used in conjunction with babel-plugin-emotion.');
+    }
+
+    return interpolation;
+  }
+
+  switch (typeof interpolation) {
+    case 'boolean':
+      {
+        return '';
+      }
+
+    case 'object':
+      {
+        if (interpolation.anim === 1) {
+          cursor = {
+            name: interpolation.name,
+            styles: interpolation.styles,
+            next: cursor
+          };
+          return interpolation.name;
+        }
+
+        if (interpolation.styles !== undefined) {
+          var next = interpolation.next;
+
+          if (next !== undefined) {
+            // not the most efficient thing ever but this is a pretty rare case
+            // and there will be very few iterations of this generally
+            while (next !== undefined) {
+              cursor = {
+                name: next.name,
+                styles: next.styles,
+                next: cursor
+              };
+              next = next.next;
+            }
+          }
+
+          var styles = interpolation.styles + ";";
+
+          if ("development" !== 'production' && interpolation.map !== undefined) {
+            styles += interpolation.map;
+          }
+
+          return styles;
+        }
+
+        return createStringFromObject(mergedProps, registered, interpolation);
+      }
+
+    case 'function':
+      {
+        if (mergedProps !== undefined) {
+          var previousCursor = cursor;
+          var result = interpolation(mergedProps);
+          cursor = previousCursor;
+          return handleInterpolation(mergedProps, registered, result, couldBeSelectorInterpolation);
+        } else if ("development" !== 'production') {
+          console.error('Functions that are interpolated in css calls will be stringified.\n' + 'If you want to have a css call based on props, create a function that returns a css call like this\n' + 'let dynamicStyle = (props) => css`color: ${props.color}`\n' + 'It can be called directly with props or interpolated in a styled call like this\n' + "let SomeComponent = styled('div')`${dynamicStyle}`");
+        }
+
+        break;
+      }
+
+    case 'string':
+      if ("development" !== 'production') {
+        var matched = [];
+        var replaced = interpolation.replace(animationRegex, function (match, p1, p2) {
+          var fakeVarName = "animation" + matched.length;
+          matched.push("const " + fakeVarName + " = keyframes`" + p2.replace(/^@keyframes animation-\w+/, '') + "`");
+          return "${" + fakeVarName + "}";
+        });
+
+        if (matched.length) {
+          console.error('`keyframes` output got interpolated into plain string, please wrap it with `css`.\n\n' + 'Instead of doing this:\n\n' + [].concat(matched, ["`" + replaced + "`"]).join('\n') + '\n\nYou should wrap it with `css` like this:\n\n' + ("css`" + replaced + "`"));
+        }
+      }
+
+      break;
+  } // finalize string values (regular strings and functions interpolated into css calls)
+
+
+  if (registered == null) {
+    return interpolation;
+  }
+
+  var cached = registered[interpolation];
+
+  if ("development" !== 'production' && couldBeSelectorInterpolation && shouldWarnAboutInterpolatingClassNameFromCss && cached !== undefined) {
+    console.error('Interpolating a className from css`` is not recommended and will cause problems with composition.\n' + 'Interpolating a className from css`` will be completely unsupported in a future major version of Emotion');
+    shouldWarnAboutInterpolatingClassNameFromCss = false;
+  }
+
+  return cached !== undefined && !couldBeSelectorInterpolation ? cached : interpolation;
+}
+
+function createStringFromObject(mergedProps, registered, obj) {
+  var string = '';
+
+  if (Array.isArray(obj)) {
+    for (var i = 0; i < obj.length; i++) {
+      string += handleInterpolation(mergedProps, registered, obj[i], false);
+    }
+  } else {
+    for (var _key in obj) {
+      var value = obj[_key];
+
+      if (typeof value !== 'object') {
+        if (registered != null && registered[value] !== undefined) {
+          string += _key + "{" + registered[value] + "}";
+        } else if (isProcessableValue(value)) {
+          string += processStyleName(_key) + ":" + processStyleValue(_key, value) + ";";
+        }
+      } else {
+        if (_key === 'NO_COMPONENT_SELECTOR' && "development" !== 'production') {
+          throw new Error('Component selectors can only be used in conjunction with babel-plugin-emotion.');
+        }
+
+        if (Array.isArray(value) && typeof value[0] === 'string' && (registered == null || registered[value[0]] === undefined)) {
+          for (var _i = 0; _i < value.length; _i++) {
+            if (isProcessableValue(value[_i])) {
+              string += processStyleName(_key) + ":" + processStyleValue(_key, value[_i]) + ";";
+            }
+          }
+        } else {
+          var interpolated = handleInterpolation(mergedProps, registered, value, false);
+
+          switch (_key) {
+            case 'animation':
+            case 'animationName':
+              {
+                string += processStyleName(_key) + ":" + interpolated + ";";
+                break;
+              }
+
+            default:
+              {
+                if ("development" !== 'production' && _key === 'undefined') {
+                  console.error(UNDEFINED_AS_OBJECT_KEY_ERROR);
+                }
+
+                string += _key + "{" + interpolated + "}";
+              }
+          }
+        }
+      }
+    }
+  }
+
+  return string;
+}
+
+var labelPattern = /label:\s*([^\s;\n{]+)\s*;/g;
+var sourceMapPattern;
+
+if ("development" !== 'production') {
+  sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//;
+} // this is the cursor for keyframes
+// keyframes are stored on the SerializedStyles object as a linked list
+
+
+var cursor;
+
+var serializeStyles = function serializeStyles(args, registered, mergedProps) {
+  if (args.length === 1 && typeof args[0] === 'object' && args[0] !== null && args[0].styles !== undefined) {
+    return args[0];
+  }
+
+  var stringMode = true;
+  var styles = '';
+  cursor = undefined;
+  var strings = args[0];
+
+  if (strings == null || strings.raw === undefined) {
+    stringMode = false;
+    styles += handleInterpolation(mergedProps, registered, strings, false);
+  } else {
+    if ("development" !== 'production' && strings[0] === undefined) {
+      console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+    }
+
+    styles += strings[0];
+  } // we start at 1 since we've already handled the first arg
+
+
+  for (var i = 1; i < args.length; i++) {
+    styles += handleInterpolation(mergedProps, registered, args[i], styles.charCodeAt(styles.length - 1) === 46);
+
+    if (stringMode) {
+      if ("development" !== 'production' && strings[i] === undefined) {
+        console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+      }
+
+      styles += strings[i];
+    }
+  }
+
+  var sourceMap;
+
+  if ("development" !== 'production') {
+    styles = styles.replace(sourceMapPattern, function (match) {
+      sourceMap = match;
+      return '';
+    });
+  } // using a global regex with .exec is stateful so lastIndex has to be reset each time
+
+
+  labelPattern.lastIndex = 0;
+  var identifierName = '';
+  var match; // https://esbench.com/bench/5b809c2cf2949800a0f61fb5
+
+  while ((match = labelPattern.exec(styles)) !== null) {
+    identifierName += '-' + // $FlowFixMe we know it's not null
+    match[1];
+  }
+
+  var name = (0, _hash.default)(styles) + identifierName;
+
+  if ("development" !== 'production') {
+    // $FlowFixMe SerializedStyles type doesn't have toString property (and we don't want to add it)
+    return {
+      name: name,
+      styles: styles,
+      map: sourceMap,
+      next: cursor,
+      toString: function toString() {
+        return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop).";
+      }
+    };
+  }
+
+  return {
+    name: name,
+    styles: styles,
+    next: cursor
+  };
+};
+
+exports.serializeStyles = serializeStyles;
+},{"@emotion/hash":"../node_modules/@emotion/hash/dist/hash.browser.esm.js","@emotion/unitless":"../node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/memoize":"../node_modules/@emotion/memoize/dist/memoize.browser.esm.js"}],"../node_modules/@emotion/utils/dist/utils.browser.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getRegisteredStyles = getRegisteredStyles;
+exports.insertStyles = void 0;
+var isBrowser = "object" !== 'undefined';
+
+function getRegisteredStyles(registered, registeredStyles, classNames) {
+  var rawClassName = '';
+  classNames.split(' ').forEach(function (className) {
+    if (registered[className] !== undefined) {
+      registeredStyles.push(registered[className]);
+    } else {
+      rawClassName += className + " ";
+    }
+  });
+  return rawClassName;
+}
+
+var insertStyles = function insertStyles(cache, serialized, isStringTag) {
+  var className = cache.key + "-" + serialized.name;
+
+  if ( // we only need to add the styles to the registered cache if the
+  // class name could be used further down
+  // the tree but if it's a string tag, we know it won't
+  // so we don't have to add it to registered cache.
+  // this improves memory usage since we can avoid storing the whole style string
+  (isStringTag === false || // we need to always store it if we're in compat mode and
+  // in node since emotion-server relies on whether a style is in
+  // the registered cache to know whether a style is global or not
+  // also, note that this check will be dead code eliminated in the browser
+  isBrowser === false && cache.compat !== undefined) && cache.registered[className] === undefined) {
+    cache.registered[className] = serialized.styles;
+  }
+
+  if (cache.inserted[serialized.name] === undefined) {
+    var current = serialized;
+
+    do {
+      var maybeStyles = cache.insert("." + className, current, cache.sheet, true);
+      current = current.next;
+    } while (current !== undefined);
+  }
+};
+
+exports.insertStyles = insertStyles;
+},{}],"../node_modules/create-emotion/dist/create-emotion.browser.esm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _cache = _interopRequireDefault(require("@emotion/cache"));
+
+var _serialize = require("@emotion/serialize");
+
+var _utils = require("@emotion/utils");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function insertWithoutScoping(cache, serialized) {
+  if (cache.inserted[serialized.name] === undefined) {
+    return cache.insert('', serialized, cache.sheet, true);
+  }
+}
+
+function merge(registered, css, className) {
+  var registeredStyles = [];
+  var rawClassName = (0, _utils.getRegisteredStyles)(registered, registeredStyles, className);
+
+  if (registeredStyles.length < 2) {
+    return className;
+  }
+
+  return rawClassName + css(registeredStyles);
+}
+
+var createEmotion = function createEmotion(options) {
+  var cache = (0, _cache.default)(options); // $FlowFixMe
+
+  cache.sheet.speedy = function (value) {
+    if ("development" !== 'production' && this.ctr !== 0) {
+      throw new Error('speedy must be changed before any rules are inserted');
+    }
+
+    this.isSpeedy = value;
+  };
+
+  cache.compat = true;
+
+  var css = function css() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var serialized = (0, _serialize.serializeStyles)(args, cache.registered, undefined);
+    (0, _utils.insertStyles)(cache, serialized, false);
+    return cache.key + "-" + serialized.name;
+  };
+
+  var keyframes = function keyframes() {
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    var serialized = (0, _serialize.serializeStyles)(args, cache.registered);
+    var animation = "animation-" + serialized.name;
+    insertWithoutScoping(cache, {
+      name: serialized.name,
+      styles: "@keyframes " + animation + "{" + serialized.styles + "}"
+    });
+    return animation;
+  };
+
+  var injectGlobal = function injectGlobal() {
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    var serialized = (0, _serialize.serializeStyles)(args, cache.registered);
+    insertWithoutScoping(cache, serialized);
+  };
+
+  var cx = function cx() {
+    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      args[_key4] = arguments[_key4];
+    }
+
+    return merge(cache.registered, css, classnames(args));
+  };
+
+  return {
+    css: css,
+    cx: cx,
+    injectGlobal: injectGlobal,
+    keyframes: keyframes,
+    hydrate: function hydrate(ids) {
+      ids.forEach(function (key) {
+        cache.inserted[key] = true;
+      });
+    },
+    flush: function flush() {
+      cache.registered = {};
+      cache.inserted = {};
+      cache.sheet.flush();
+    },
+    // $FlowFixMe
+    sheet: cache.sheet,
+    cache: cache,
+    getRegisteredStyles: _utils.getRegisteredStyles.bind(null, cache.registered),
+    merge: merge.bind(null, cache.registered, css)
+  };
+};
+
 var classnames = function classnames(args) {
-  var len = args.length;
-  var i = 0;
   var cls = '';
 
-  for (; i < len; i++) {
+  for (var i = 0; i < args.length; i++) {
     var arg = args[i];
     if (arg == null) continue;
     var toAdd = void 0;
 
     switch (typeof arg) {
       case 'boolean':
-        break;
-
-      case 'function':
-        if ("development" !== 'production') {
-          console.error('Passing functions to cx is deprecated and will be removed in the next major version of Emotion.\n' + 'Please call the function before passing it to cx.');
-        }
-
-        toAdd = classnames([arg()]);
         break;
 
       case 'object':
@@ -34988,449 +35707,21 @@ var classnames = function classnames(args) {
   return cls;
 };
 
-var isBrowser = typeof document !== 'undefined';
-/*
-
-high performance StyleSheet for css-in-js systems
-
-- uses multiple style tags behind the scenes for millions of rules
-- uses `insertRule` for appending in production for *much* faster performance
-- 'polyfills' on server side
-
-// usage
-
-import StyleSheet from 'glamor/lib/sheet'
-let styleSheet = new StyleSheet()
-
-styleSheet.inject()
-- 'injects' the stylesheet into the page (or into memory if on server)
-
-styleSheet.insert('#box { border: 1px solid red; }')
-- appends a css rule into the stylesheet
-
-styleSheet.flush()
-- empties the stylesheet of all its contents
-
-*/
-// $FlowFixMe
-
-function sheetForTag(tag) {
-  if (tag.sheet) {
-    // $FlowFixMe
-    return tag.sheet;
-  } // this weirdness brought to you by firefox
-
-
-  for (var i = 0; i < document.styleSheets.length; i++) {
-    if (document.styleSheets[i].ownerNode === tag) {
-      // $FlowFixMe
-      return document.styleSheets[i];
-    }
-  }
-}
-
-function makeStyleTag(opts) {
-  var tag = document.createElement('style');
-  tag.setAttribute('data-emotion', opts.key || '');
-
-  if (opts.nonce !== undefined) {
-    tag.setAttribute('nonce', opts.nonce);
-  }
-
-  tag.appendChild(document.createTextNode('')) // $FlowFixMe
-  ;
-  (opts.container !== undefined ? opts.container : document.head).appendChild(tag);
-  return tag;
-}
-
-var StyleSheet =
-/*#__PURE__*/
-function () {
-  function StyleSheet(options) {
-    this.isSpeedy = "development" === 'production'; // the big drawback here is that the css won't be editable in devtools
-
-    this.tags = [];
-    this.ctr = 0;
-    this.opts = options;
-  }
-
-  var _proto = StyleSheet.prototype;
-
-  _proto.inject = function inject() {
-    if (this.injected) {
-      throw new Error('already injected!');
-    }
-
-    this.tags[0] = makeStyleTag(this.opts);
-    this.injected = true;
-  };
-
-  _proto.speedy = function speedy(bool) {
-    if (this.ctr !== 0) {
-      // cannot change speedy mode after inserting any rule to sheet. Either call speedy(${bool}) earlier in your app, or call flush() before speedy(${bool})
-      throw new Error("cannot change speedy now");
-    }
-
-    this.isSpeedy = !!bool;
-  };
-
-  _proto.insert = function insert(rule, sourceMap) {
-    // this is the ultrafast version, works across browsers
-    if (this.isSpeedy) {
-      var tag = this.tags[this.tags.length - 1];
-      var sheet = sheetForTag(tag);
-
-      try {
-        sheet.insertRule(rule, sheet.cssRules.length);
-      } catch (e) {
-        if ("development" !== 'production') {
-          console.warn('illegal rule', rule); // eslint-disable-line no-console
-        }
-      }
-    } else {
-      var _tag = makeStyleTag(this.opts);
-
-      this.tags.push(_tag);
-
-      _tag.appendChild(document.createTextNode(rule + (sourceMap || '')));
-    }
-
-    this.ctr++;
-
-    if (this.ctr % 65000 === 0) {
-      this.tags.push(makeStyleTag(this.opts));
-    }
-  };
-
-  _proto.flush = function flush() {
-    // $FlowFixMe
-    this.tags.forEach(function (tag) {
-      return tag.parentNode.removeChild(tag);
-    });
-    this.tags = [];
-    this.ctr = 0; // todo - look for remnants in document.styleSheets
-
-    this.injected = false;
-  };
-
-  return StyleSheet;
-}();
-
-function createEmotion(context, options) {
-  if (context.__SECRET_EMOTION__ !== undefined) {
-    return context.__SECRET_EMOTION__;
-  }
-
-  if (options === undefined) options = {};
-  var key = options.key || 'css';
-
-  if ("development" !== 'production') {
-    if (/[^a-z-]/.test(key)) {
-      throw new Error("Emotion key must only contain lower case alphabetical characters and - but \"" + key + "\" was passed");
-    }
-  }
-
-  var current;
-
-  function insertRule(rule) {
-    current += rule;
-
-    if (isBrowser) {
-      sheet.insert(rule, currentSourceMap);
-    }
-  }
-
-  var insertionPlugin = (0, _stylisRuleSheet.default)(insertRule);
-  var stylisOptions;
-
-  if (options.prefix !== undefined) {
-    stylisOptions = {
-      prefix: options.prefix
-    };
-  }
-
-  var caches = {
-    registered: {},
-    inserted: {},
-    nonce: options.nonce,
-    key: key
-  };
-  var sheet = new StyleSheet(options);
-
-  if (isBrowser) {
-    // 🚀
-    sheet.inject();
-  }
-
-  var stylis = new _stylis.default(stylisOptions);
-  stylis.use(options.stylisPlugins)(insertionPlugin);
-  var currentSourceMap = '';
-
-  function handleInterpolation(interpolation, couldBeSelectorInterpolation) {
-    if (interpolation == null) {
-      return '';
-    }
-
-    switch (typeof interpolation) {
-      case 'boolean':
-        return '';
-
-      case 'function':
-        if (interpolation.__emotion_styles !== undefined) {
-          var selector = interpolation.toString();
-
-          if (selector === 'NO_COMPONENT_SELECTOR' && "development" !== 'production') {
-            throw new Error('Component selectors can only be used in conjunction with babel-plugin-emotion.');
-          }
-
-          return selector;
-        }
-
-        if (this === undefined && "development" !== 'production') {
-          console.error('Interpolating functions in css calls is deprecated and will be removed in the next major version of Emotion.\n' + 'If you want to have a css call based on props, create a function that returns a css call like this\n' + 'let dynamicStyle = (props) => css`color: ${props.color}`\n' + 'It can be called directly with props or interpolated in a styled call like this\n' + "let SomeComponent = styled('div')`${dynamicStyle}`");
-        }
-
-        return handleInterpolation.call(this, this === undefined ? interpolation() : // $FlowFixMe
-        interpolation(this.mergedProps, this.context), couldBeSelectorInterpolation);
-
-      case 'object':
-        return createStringFromObject.call(this, interpolation);
-
-      default:
-        var cached = caches.registered[interpolation];
-        return couldBeSelectorInterpolation === false && cached !== undefined ? cached : interpolation;
-    }
-  }
-
-  var objectToStringCache = new WeakMap();
-
-  function createStringFromObject(obj) {
-    if (objectToStringCache.has(obj)) {
-      // $FlowFixMe
-      return objectToStringCache.get(obj);
-    }
-
-    var string = '';
-
-    if (Array.isArray(obj)) {
-      obj.forEach(function (interpolation) {
-        string += handleInterpolation.call(this, interpolation, false);
-      }, this);
-    } else {
-      Object.keys(obj).forEach(function (key) {
-        if (typeof obj[key] !== 'object') {
-          if (caches.registered[obj[key]] !== undefined) {
-            string += key + "{" + caches.registered[obj[key]] + "}";
-          } else {
-            string += processStyleName(key) + ":" + processStyleValue(key, obj[key]) + ";";
-          }
-        } else {
-          if (key === 'NO_COMPONENT_SELECTOR' && "development" !== 'production') {
-            throw new Error('Component selectors can only be used in conjunction with babel-plugin-emotion.');
-          }
-
-          if (Array.isArray(obj[key]) && typeof obj[key][0] === 'string' && caches.registered[obj[key][0]] === undefined) {
-            obj[key].forEach(function (value) {
-              string += processStyleName(key) + ":" + processStyleValue(key, value) + ";";
-            });
-          } else {
-            string += key + "{" + handleInterpolation.call(this, obj[key], false) + "}";
-          }
-        }
-      }, this);
-    }
-
-    objectToStringCache.set(obj, string);
-    return string;
-  }
-
-  var name;
-  var stylesWithLabel;
-  var labelPattern = /label:\s*([^\s;\n{]+)\s*;/g;
-
-  var createClassName = function createClassName(styles, identifierName) {
-    return (0, _hash.default)(styles + identifierName) + identifierName;
-  };
-
-  if ("development" !== 'production') {
-    var oldCreateClassName = createClassName;
-    var sourceMappingUrlPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g;
-
-    createClassName = function createClassName(styles, identifierName) {
-      return oldCreateClassName(styles.replace(sourceMappingUrlPattern, function (sourceMap) {
-        currentSourceMap = sourceMap;
-        return '';
-      }), identifierName);
-    };
-  }
-
-  var createStyles = function createStyles(strings) {
-    var stringMode = true;
-    var styles = '';
-    var identifierName = '';
-
-    if (strings == null || strings.raw === undefined) {
-      stringMode = false;
-      styles += handleInterpolation.call(this, strings, false);
-    } else {
-      styles += strings[0];
-    }
-
-    for (var _len = arguments.length, interpolations = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      interpolations[_key - 1] = arguments[_key];
-    }
-
-    interpolations.forEach(function (interpolation, i) {
-      styles += handleInterpolation.call(this, interpolation, styles.charCodeAt(styles.length - 1) === 46 // .
-      );
-
-      if (stringMode === true && strings[i + 1] !== undefined) {
-        styles += strings[i + 1];
-      }
-    }, this);
-    stylesWithLabel = styles;
-    styles = styles.replace(labelPattern, function (match, p1) {
-      identifierName += "-" + p1;
-      return '';
-    });
-    name = createClassName(styles, identifierName);
-    return styles;
-  };
-
-  if ("development" !== 'production') {
-    var oldStylis = stylis;
-
-    stylis = function stylis(selector, styles) {
-      oldStylis(selector, styles);
-      currentSourceMap = '';
-    };
-  }
-
-  function insert(scope, styles) {
-    if (caches.inserted[name] === undefined) {
-      current = '';
-      stylis(scope, styles);
-      caches.inserted[name] = current;
-    }
-  }
-
-  var css = function css() {
-    var styles = createStyles.apply(this, arguments);
-    var selector = key + "-" + name;
-
-    if (caches.registered[selector] === undefined) {
-      caches.registered[selector] = stylesWithLabel;
-    }
-
-    insert("." + selector, styles);
-    return selector;
-  };
-
-  var keyframes = function keyframes() {
-    var styles = createStyles.apply(this, arguments);
-    var animation = "animation-" + name;
-    insert('', "@keyframes " + animation + "{" + styles + "}");
-    return animation;
-  };
-
-  var injectGlobal = function injectGlobal() {
-    var styles = createStyles.apply(this, arguments);
-    insert('', styles);
-  };
-
-  function getRegisteredStyles(registeredStyles, classNames) {
-    var rawClassName = '';
-    classNames.split(' ').forEach(function (className) {
-      if (caches.registered[className] !== undefined) {
-        registeredStyles.push(className);
-      } else {
-        rawClassName += className + " ";
-      }
-    });
-    return rawClassName;
-  }
-
-  function merge(className, sourceMap) {
-    var registeredStyles = [];
-    var rawClassName = getRegisteredStyles(registeredStyles, className);
-
-    if (registeredStyles.length < 2) {
-      return className;
-    }
-
-    return rawClassName + css(registeredStyles, sourceMap);
-  }
-
-  function cx() {
-    for (var _len2 = arguments.length, classNames = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      classNames[_key2] = arguments[_key2];
-    }
-
-    return merge(classnames(classNames));
-  }
-
-  function hydrateSingleId(id) {
-    caches.inserted[id] = true;
-  }
-
-  function hydrate(ids) {
-    ids.forEach(hydrateSingleId);
-  }
-
-  function flush() {
-    if (isBrowser) {
-      sheet.flush();
-      sheet.inject();
-    }
-
-    caches.inserted = {};
-    caches.registered = {};
-  }
-
-  if (isBrowser) {
-    var chunks = document.querySelectorAll("[data-emotion-" + key + "]");
-    Array.prototype.forEach.call(chunks, function (node) {
-      // $FlowFixMe
-      sheet.tags[0].parentNode.insertBefore(node, sheet.tags[0]); // $FlowFixMe
-
-      node.getAttribute("data-emotion-" + key).split(' ').forEach(hydrateSingleId);
-    });
-  }
-
-  var emotion = {
-    flush: flush,
-    hydrate: hydrate,
-    cx: cx,
-    merge: merge,
-    getRegisteredStyles: getRegisteredStyles,
-    injectGlobal: injectGlobal,
-    keyframes: keyframes,
-    css: css,
-    sheet: sheet,
-    caches: caches
-  };
-  context.__SECRET_EMOTION__ = emotion;
-  return emotion;
-}
-
 var _default = createEmotion;
 exports.default = _default;
-},{"@emotion/memoize":"../node_modules/@emotion/memoize/dist/memoize.esm.js","@emotion/unitless":"../node_modules/@emotion/unitless/dist/unitless.esm.js","@emotion/hash":"../node_modules/@emotion/hash/dist/hash.esm.js","@emotion/stylis":"../node_modules/@emotion/stylis/dist/stylis.esm.js","stylis-rule-sheet":"../node_modules/stylis-rule-sheet/index.js"}],"../node_modules/emotion/dist/index.esm.js":[function(require,module,exports) {
-var global = arguments[3];
+},{"@emotion/cache":"../node_modules/@emotion/cache/dist/cache.browser.esm.js","@emotion/serialize":"../node_modules/@emotion/serialize/dist/serialize.browser.esm.js","@emotion/utils":"../node_modules/@emotion/utils/dist/utils.browser.esm.js"}],"../node_modules/emotion/dist/emotion.esm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.caches = exports.sheet = exports.css = exports.keyframes = exports.injectGlobal = exports.getRegisteredStyles = exports.merge = exports.cx = exports.hydrate = exports.flush = void 0;
+exports.sheet = exports.merge = exports.keyframes = exports.injectGlobal = exports.hydrate = exports.getRegisteredStyles = exports.flush = exports.cx = exports.css = exports.cache = void 0;
 
 var _createEmotion2 = _interopRequireDefault(require("create-emotion"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var context = typeof global !== 'undefined' ? global : {};
-
-var _createEmotion = (0, _createEmotion2.default)(context),
+var _createEmotion = (0, _createEmotion2.default)(),
     flush = _createEmotion.flush,
     hydrate = _createEmotion.hydrate,
     cx = _createEmotion.cx,
@@ -35440,9 +35731,9 @@ var _createEmotion = (0, _createEmotion2.default)(context),
     keyframes = _createEmotion.keyframes,
     css = _createEmotion.css,
     sheet = _createEmotion.sheet,
-    caches = _createEmotion.caches;
+    cache = _createEmotion.cache;
 
-exports.caches = caches;
+exports.cache = cache;
 exports.sheet = sheet;
 exports.css = css;
 exports.keyframes = keyframes;
@@ -35452,7 +35743,7 @@ exports.merge = merge;
 exports.cx = cx;
 exports.hydrate = hydrate;
 exports.flush = flush;
-},{"create-emotion":"../node_modules/create-emotion/dist/index.esm.js"}],"../node_modules/bs-platform/lib/js/caml_primitive.js":[function(require,module,exports) {
+},{"create-emotion":"../node_modules/create-emotion/dist/create-emotion.browser.esm.js"}],"../node_modules/bs-platform/lib/js/caml_primitive.js":[function(require,module,exports) {
 'use strict';
 
 
@@ -35693,6 +35984,9 @@ var Block = require("./block.js");
 var Caml_primitive = require("./caml_primitive.js");
 var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
 
+var for_in = (function(o,foo){
+        for (var x in o) { foo(x) }});
+
 function caml_obj_block(tag, size) {
   var v = new Array(size);
   v.tag = tag;
@@ -35700,13 +35994,17 @@ function caml_obj_block(tag, size) {
 }
 
 function caml_obj_dup(x) {
-  var len = x.length | 0;
-  var v = new Array(len);
-  for(var i = 0 ,i_finish = len - 1 | 0; i <= i_finish; ++i){
-    v[i] = x[i];
+  if (Array.isArray(x)) {
+    var len = x.length | 0;
+    var v = new Array(len);
+    for(var i = 0 ,i_finish = len - 1 | 0; i <= i_finish; ++i){
+      v[i] = x[i];
+    }
+    v.tag = x.tag | 0;
+    return v;
+  } else {
+    return Object.assign(({}), x);
   }
-  v.tag = x.tag | 0;
-  return v;
 }
 
 function caml_obj_truncate(x, new_size) {
@@ -35716,7 +36014,8 @@ function caml_obj_truncate(x, new_size) {
           Caml_builtin_exceptions.invalid_argument,
           "Obj.truncate"
         ];
-  } else if (len !== new_size) {
+  }
+  if (len !== new_size) {
     for(var i = new_size ,i_finish = len - 1 | 0; i <= i_finish; ++i){
       x[i] = 0;
     }
@@ -35731,23 +36030,18 @@ function caml_lazy_make_forward(x) {
   return Block.__(250, [x]);
 }
 
-function caml_update_dummy(x, y) {
-  var len = y.length | 0;
-  for(var i = 0 ,i_finish = len - 1 | 0; i <= i_finish; ++i){
-    x[i] = y[i];
-  }
-  var y_tag = y.tag | 0;
-  if (y_tag !== 0) {
-    x.tag = y_tag;
-    return /* () */0;
-  } else {
-    return 0;
-  }
+function caml_lazy_make(fn) {
+  var block = [fn];
+  block.tag = 246;
+  return block;
 }
 
-function for_in (o,foo){
-        for (var x in o) { foo(x) }
-      };
+var caml_update_dummy = (function(x,y){
+  for (var k in y){
+    x[k] = y[k]
+  }
+  return 0;
+  });
 
 function caml_compare(_a, _b) {
   while(true) {
@@ -35758,105 +36052,99 @@ function caml_compare(_a, _b) {
     } else {
       var a_type = typeof a;
       var b_type = typeof b;
-      var exit = 0;
       switch (a_type) {
-        case "boolean" : 
+        case "boolean" :
             if (b_type === "boolean") {
               return Caml_primitive.caml_bool_compare(a, b);
-            } else {
-              exit = 1;
             }
             break;
-        case "function" : 
+        case "function" :
             if (b_type === "function") {
               throw [
                     Caml_builtin_exceptions.invalid_argument,
                     "compare: functional value"
                   ];
-            } else {
-              exit = 1;
             }
             break;
-        case "number" : 
+        case "number" :
             if (b_type === "number") {
               return Caml_primitive.caml_int_compare(a, b);
-            } else {
-              exit = 1;
             }
             break;
-        case "string" : 
+        case "string" :
             if (b_type === "string") {
               return Caml_primitive.caml_string_compare(a, b);
             } else {
               return 1;
             }
-        case "undefined" : 
+        case "undefined" :
             return -1;
         default:
-          exit = 1;
+          
       }
-      if (exit === 1) {
-        switch (b_type) {
-          case "string" : 
-              return -1;
-          case "undefined" : 
+      switch (b_type) {
+        case "string" :
+            return -1;
+        case "undefined" :
+            return 1;
+        default:
+          if (a_type === "boolean") {
+            return 1;
+          } else if (b_type === "boolean") {
+            return -1;
+          } else if (a_type === "function") {
+            return 1;
+          } else if (b_type === "function") {
+            return -1;
+          } else if (a_type === "number") {
+            if (b === null || b.tag === 256) {
               return 1;
-          default:
-            if (a_type === "boolean") {
-              return 1;
-            } else if (b_type === "boolean") {
-              return -1;
-            } else if (a_type === "function") {
-              return 1;
-            } else if (b_type === "function") {
-              return -1;
-            } else if (a_type === "number") {
-              if (b === null || b.tag === 256) {
-                return 1;
-              } else {
-                return -1;
-              }
-            } else if (b_type === "number") {
-              if (a === null || a.tag === 256) {
-                return -1;
-              } else {
-                return 1;
-              }
-            } else if (a === null) {
-              if (b.tag === 256) {
-                return 1;
-              } else {
-                return -1;
-              }
-            } else if (b === null) {
-              if (a.tag === 256) {
-                return -1;
-              } else {
-                return 1;
-              }
             } else {
-              var tag_a = a.tag | 0;
-              var tag_b = b.tag | 0;
-              if (tag_a === 250) {
-                _a = a[0];
-                continue ;
-              } else if (tag_b === 250) {
-                _b = b[0];
-                continue ;
-              } else if (tag_a === 256) {
-                if (tag_b === 256) {
-                  return Caml_primitive.caml_int_compare(a[1], b[1]);
-                } else {
-                  return -1;
-                }
-              } else if (tag_a === 248) {
+              return -1;
+            }
+          } else if (b_type === "number") {
+            if (a === null || a.tag === 256) {
+              return -1;
+            } else {
+              return 1;
+            }
+          } else if (a === null) {
+            if (b.tag === 256) {
+              return 1;
+            } else {
+              return -1;
+            }
+          } else if (b === null) {
+            if (a.tag === 256) {
+              return -1;
+            } else {
+              return 1;
+            }
+          } else {
+            var tag_a = a.tag | 0;
+            var tag_b = b.tag | 0;
+            if (tag_a === 250) {
+              _a = a[0];
+              continue ;
+            } else if (tag_b === 250) {
+              _b = b[0];
+              continue ;
+            } else if (tag_a === 256) {
+              if (tag_b === 256) {
                 return Caml_primitive.caml_int_compare(a[1], b[1]);
-              } else if (tag_a === 251) {
+              } else {
+                return -1;
+              }
+            } else if (tag_a === 248) {
+              return Caml_primitive.caml_int_compare(a[1], b[1]);
+            } else {
+              if (tag_a === 251) {
                 throw [
                       Caml_builtin_exceptions.invalid_argument,
                       "equal: abstract value"
                     ];
-              } else if (tag_a !== tag_b) {
+              }
+              if (tag_a !== tag_b) {
                 if (tag_a < tag_b) {
                   return -1;
                 } else {
@@ -35885,20 +36173,26 @@ function caml_compare(_a, _b) {
                         }
                       }
                     };
+                  } else if ((a instanceof Date && b instanceof Date)) {
+                    return (a - b);
                   } else {
                     var a$2 = a;
                     var b$2 = b;
-                    var min_key_lhs = /* record */[/* contents */undefined];
-                    var min_key_rhs = /* record */[/* contents */undefined];
+                    var min_key_lhs = {
+                      contents: undefined
+                    };
+                    var min_key_rhs = {
+                      contents: undefined
+                    };
                     var do_key = function (param, key) {
                       var min_key = param[2];
                       var b = param[1];
                       if (!b.hasOwnProperty(key) || caml_compare(param[0][key], b[key]) > 0) {
-                        var match = min_key[0];
+                        var match = min_key.contents;
                         if (match !== undefined && key >= match) {
                           return 0;
                         } else {
-                          min_key[0] = key;
+                          min_key.contents = key;
                           return /* () */0;
                         }
                       } else {
@@ -35927,8 +36221,8 @@ function caml_compare(_a, _b) {
                     }(partial_arg$1));
                     for_in(a$2, do_key_a);
                     for_in(b$2, do_key_b);
-                    var match = min_key_lhs[0];
-                    var match$1 = min_key_rhs[0];
+                    var match = min_key_lhs.contents;
+                    var match$1 = min_key_rhs.contents;
                     if (match !== undefined) {
                       if (match$1 !== undefined) {
                         return Caml_primitive.caml_string_compare(match, match$1);
@@ -35982,9 +36276,8 @@ function caml_compare(_a, _b) {
                 }
               }
             }
-        }
+          }
       }
-      
     }
   };
 }
@@ -36006,7 +36299,8 @@ function caml_equal(_a, _b) {
                 Caml_builtin_exceptions.invalid_argument,
                 "equal: functional value"
               ];
-        } else if (b_type === "number" || b_type === "undefined" || b === null) {
+        }
+        if (b_type === "number" || b_type === "undefined" || b === null) {
           return false;
         } else {
           var tag_a = a.tag | 0;
@@ -36019,67 +36313,74 @@ function caml_equal(_a, _b) {
             continue ;
           } else if (tag_a === 248) {
             return a[1] === b[1];
-          } else if (tag_a === 251) {
-            throw [
-                  Caml_builtin_exceptions.invalid_argument,
-                  "equal: abstract value"
-                ];
-          } else if (tag_a !== tag_b) {
-            return false;
-          } else if (tag_a === 256) {
-            return a[1] === b[1];
           } else {
-            var len_a = a.length | 0;
-            var len_b = b.length | 0;
-            if (len_a === len_b) {
-              if (Array.isArray(a)) {
-                var a$1 = a;
-                var b$1 = b;
-                var _i = 0;
-                var same_length = len_a;
-                while(true) {
-                  var i = _i;
-                  if (i === same_length) {
-                    return true;
-                  } else if (caml_equal(a$1[i], b$1[i])) {
-                    _i = i + 1 | 0;
-                    continue ;
-                  } else {
-                    return false;
-                  }
-                };
-              } else {
-                var a$2 = a;
-                var b$2 = b;
-                var result = /* record */[/* contents */true];
-                var do_key_a = (function(b$2,result){
-                return function do_key_a(key) {
-                  if (b$2.hasOwnProperty(key)) {
-                    return 0;
-                  } else {
-                    result[0] = false;
-                    return /* () */0;
-                  }
-                }
-                }(b$2,result));
-                var do_key_b = (function(a$2,b$2,result){
-                return function do_key_b(key) {
-                  if (!a$2.hasOwnProperty(key) || !caml_equal(b$2[key], a$2[key])) {
-                    result[0] = false;
-                    return /* () */0;
-                  } else {
-                    return 0;
-                  }
-                }
-                }(a$2,b$2,result));
-                for_in(a$2, do_key_a);
-                if (result[0]) {
-                  for_in(b$2, do_key_b);
-                }
-                return result[0];
-              }
-            } else {
+            if (tag_a === 251) {
+              throw [
+                    Caml_builtin_exceptions.invalid_argument,
+                    "equal: abstract value"
+                  ];
+            }
+            if (tag_a !== tag_b) {
               return false;
+            } else if (tag_a === 256) {
+              return a[1] === b[1];
+            } else {
+              var len_a = a.length | 0;
+              var len_b = b.length | 0;
+              if (len_a === len_b) {
+                if (Array.isArray(a)) {
+                  var a$1 = a;
+                  var b$1 = b;
+                  var _i = 0;
+                  var same_length = len_a;
+                  while(true) {
+                    var i = _i;
+                    if (i === same_length) {
+                      return true;
+                    } else if (caml_equal(a$1[i], b$1[i])) {
+                      _i = i + 1 | 0;
+                      continue ;
+                    } else {
+                      return false;
+                    }
+                  };
+                } else if ((a instanceof Date && b instanceof Date)) {
+                  return !(a > b || a < b);
+                } else {
+                  var a$2 = a;
+                  var b$2 = b;
+                  var result = {
+                    contents: true
+                  };
+                  var do_key_a = (function(b$2,result){
+                  return function do_key_a(key) {
+                    if (b$2.hasOwnProperty(key)) {
+                      return 0;
+                    } else {
+                      result.contents = false;
+                      return /* () */0;
+                    }
+                  }
+                  }(b$2,result));
+                  var do_key_b = (function(a$2,b$2,result){
+                  return function do_key_b(key) {
+                    if (!a$2.hasOwnProperty(key) || !caml_equal(b$2[key], a$2[key])) {
+                      result.contents = false;
+                      return /* () */0;
+                    } else {
+                      return 0;
+                    }
+                  }
+                  }(a$2,b$2,result));
+                  for_in(a$2, do_key_a);
+                  if (result.contents) {
+                    for_in(b$2, do_key_b);
+                  }
+                  return result.contents;
+                }
+              } else {
+                return false;
+              }
             }
           }
         }
@@ -36157,6 +36458,7 @@ exports.caml_obj_block = caml_obj_block;
 exports.caml_obj_dup = caml_obj_dup;
 exports.caml_obj_truncate = caml_obj_truncate;
 exports.caml_lazy_make_forward = caml_lazy_make_forward;
+exports.caml_lazy_make = caml_lazy_make;
 exports.caml_update_dummy = caml_update_dummy;
 exports.caml_compare = caml_compare;
 exports.caml_equal = caml_equal;
@@ -36388,12 +36690,12 @@ var process = require("process");
 
 var Curry = require("./curry.js");
 
-var stdout = /* record */[
-  /* buffer */"",
-  /* output */(function (param, s) {
+var stdout = {
+  buffer: "",
+  output: (function (param, s) {
       var v = s.length - 1 | 0;
-      if (( (typeof process !== "undefined") && process.stdout && process.stdout.write)) {
-        return ( process.stdout.write )(s);
+      if (((typeof process !== "undefined") && process.stdout && process.stdout.write)) {
+        return process.stdout.write(s);
       } else if (s[v] === "\n") {
         console.log(s.slice(0, v));
         return /* () */0;
@@ -36402,11 +36704,11 @@ var stdout = /* record */[
         return /* () */0;
       }
     })
-];
+};
 
-var stderr = /* record */[
-  /* buffer */"",
-  /* output */(function (param, s) {
+var stderr = {
+  buffer: "",
+  output: (function (param, s) {
       var v = s.length - 1 | 0;
       if (s[v] === "\n") {
         console.log(s.slice(0, v));
@@ -36416,12 +36718,12 @@ var stderr = /* record */[
         return /* () */0;
       }
     })
-];
+};
 
 function caml_ml_flush(oc) {
-  if (oc[/* buffer */0] !== "") {
-    Curry._2(oc[/* output */1], oc, oc[/* buffer */0]);
-    oc[/* buffer */0] = "";
+  if (oc.buffer !== "") {
+    Curry._2(oc.output, oc, oc.buffer);
+    oc.buffer = "";
     return /* () */0;
   } else {
     return 0;
@@ -36430,17 +36732,17 @@ function caml_ml_flush(oc) {
 
 function caml_ml_output(oc, str, offset, len) {
   var str$1 = offset === 0 && len === str.length ? str : str.slice(offset, len);
-  if (( (typeof process !== "undefined") && process.stdout && process.stdout.write ) && oc === stdout) {
-    return ( process.stdout.write )(str$1);
+  if (((typeof process !== "undefined") && process.stdout && process.stdout.write) && oc === stdout) {
+    return process.stdout.write(str$1);
   } else {
     var id = str$1.lastIndexOf("\n");
     if (id < 0) {
-      oc[/* buffer */0] = oc[/* buffer */0] + str$1;
+      oc.buffer = oc.buffer + str$1;
       return /* () */0;
     } else {
-      oc[/* buffer */0] = oc[/* buffer */0] + str$1.slice(0, id + 1 | 0);
+      oc.buffer = oc.buffer + str$1.slice(0, id + 1 | 0);
       caml_ml_flush(oc);
-      oc[/* buffer */0] = oc[/* buffer */0] + str$1.slice(id + 1 | 0);
+      oc.buffer = oc.buffer + str$1.slice(id + 1 | 0);
       return /* () */0;
     }
   }
@@ -36478,20 +36780,19 @@ var process = require("process");
 var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
 
 function caml_sys_getenv(s) {
-  if (typeof process === "undefined" || (process.env) === undefined) {
+  if (typeof process === "undefined" || process.env === undefined) {
     throw Caml_builtin_exceptions.not_found;
+  }
+  var match = process.env[s];
+  if (match !== undefined) {
+    return match;
   } else {
-    var match = (process.env)[s];
-    if (match !== undefined) {
-      return match;
-    } else {
-      throw Caml_builtin_exceptions.not_found;
-    }
+    throw Caml_builtin_exceptions.not_found;
   }
 }
 
 function caml_sys_time(param) {
-  if (typeof process === "undefined" || (process.uptime) === undefined) {
+  if (typeof process === "undefined" || process.uptime === undefined) {
     return -1;
   } else {
     return process.uptime();
@@ -36499,33 +36800,32 @@ function caml_sys_time(param) {
 }
 
 function caml_sys_random_seed(param) {
-  return /* array */[((Date.now() | 0) ^ 4294967295) * Math.random() | 0];
+  return [((Date.now() | 0) ^ 4294967295) * Math.random() | 0];
 }
 
 function caml_sys_system_command(_cmd) {
   return 127;
 }
 
-function caml_sys_getcwd(param) {
-  if (typeof process === "undefined") {
-    return "/";
-  } else {
-    return process.cwd();
-  }
-}
+var caml_sys_getcwd = (function(param){
+    if (typeof process === "undefined" || process.cwd === undefined){
+      return "/"  
+    }
+    return process.cwd()
+  });
 
 function caml_sys_get_argv(param) {
   if (typeof process === "undefined") {
     return /* tuple */[
             "",
-            /* array */[""]
+            [""]
           ];
   } else {
-    var argv = (process.argv);
+    var argv = process.argv;
     if (argv == null) {
       return /* tuple */[
               "",
-              /* array */[""]
+              [""]
             ];
     } else {
       return /* tuple */[
@@ -36580,9 +36880,8 @@ function get(s, i) {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
         ];
-  } else {
-    return s[i];
   }
+  return s[i];
 }
 
 function caml_fill_bytes(s, i, l, c) {
@@ -36602,13 +36901,12 @@ function caml_create_bytes(len) {
           Caml_builtin_exceptions.invalid_argument,
           "String.create"
         ];
-  } else {
-    var result = new Array(len);
-    for(var i = 0 ,i_finish = len - 1 | 0; i <= i_finish; ++i){
-      result[i] = /* "\000" */0;
-    }
-    return result;
   }
+  var result = new Array(len);
+  for(var i = 0 ,i_finish = len - 1 | 0; i <= i_finish; ++i){
+    result[i] = /* "\000" */0;
+  }
+  return result;
 }
 
 function caml_blit_bytes(s1, i1, s2, i2, len) {
@@ -36729,17 +37027,15 @@ var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
 function div(x, y) {
   if (y === 0) {
     throw Caml_builtin_exceptions.division_by_zero;
-  } else {
-    return x / y | 0;
   }
+  return x / y | 0;
 }
 
 function mod_(x, y) {
   if (y === 0) {
     throw Caml_builtin_exceptions.division_by_zero;
-  } else {
-    return x % y;
   }
+  return x % y;
 }
 
 function caml_bswap16(x) {
@@ -36750,10 +37046,9 @@ function caml_int32_bswap(x) {
   return ((x & 255) << 24) | ((x & 65280) << 8) | ((x & 16711680) >>> 8) | ((x & 4278190080) >>> 24);
 }
 
-var imul = ( Math.imul || function (x,y) {
+var imul = (Math.imul || function (x,y) {
   y |= 0; return ((((x >> 16) * y) << 16) + (x & 0xffff) * y)|0; 
-}
-);
+});
 
 var caml_nativeint_bswap = caml_int32_bswap;
 
@@ -36769,7 +37064,7 @@ exports.imul = imul;
 'use strict';
 
 
-function repeat (count,self){
+var repeat = (function(count,self){
     if (self.repeat){
         return self.repeat(count)
     }
@@ -36794,8 +37089,7 @@ function repeat (count,self){
             self += self;
     }
     return rpt;
-
-};
+});
 
 exports.repeat = repeat;
 /* No side effect */
@@ -36808,27 +37102,27 @@ var Caml_utils = require("./caml_utils.js");
 var Caml_primitive = require("./caml_primitive.js");
 var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
 
-var min_int = /* record */[
+var min_int = /* Int64 */[
   /* hi */-2147483648,
   /* lo */0
 ];
 
-var max_int = /* record */[
+var max_int = /* Int64 */[
   /* hi */2147483647,
   /* lo */1
 ];
 
-var one = /* record */[
+var one = /* Int64 */[
   /* hi */0,
   /* lo */1
 ];
 
-var zero = /* record */[
+var zero = /* Int64 */[
   /* hi */0,
   /* lo */0
 ];
 
-var neg_one = /* record */[
+var neg_one = /* Int64 */[
   /* hi */-1,
   /* lo */4294967295
 ];
@@ -36843,7 +37137,7 @@ function add(param, param$1) {
   var lo = this_low_ + other_low_ & 4294967295;
   var overflow = neg_signed(this_low_) && (neg_signed(other_low_) || !neg_signed(lo)) || neg_signed(other_low_) && !neg_signed(lo) ? 1 : 0;
   var hi = param[/* hi */0] + param$1[/* hi */0] + overflow & 4294967295;
-  return /* record */[
+  return /* Int64 */[
           /* hi */hi,
           /* lo */(lo >>> 0)
         ];
@@ -36852,15 +37146,15 @@ function add(param, param$1) {
 function not(param) {
   var hi = param[/* hi */0] ^ -1;
   var lo = param[/* lo */1] ^ -1;
-  return /* record */[
+  return /* Int64 */[
           /* hi */hi,
           /* lo */(lo >>> 0)
         ];
 }
 
-function eq(x, y) {
-  if (x[/* hi */0] === y[/* hi */0]) {
-    return x[/* lo */1] === y[/* lo */1];
+function eq(param, param$1) {
+  if (param[/* hi */0] === param$1[/* hi */0]) {
+    return param[/* lo */1] === param$1[/* lo */1];
   } else {
     return false;
   }
@@ -36908,13 +37202,13 @@ function lsl_(x, numBits) {
   } else {
     var lo = x[/* lo */1];
     if (numBits >= 32) {
-      return /* record */[
+      return /* Int64 */[
               /* hi */(lo << (numBits - 32 | 0)),
               /* lo */0
             ];
     } else {
       var hi = (lo >>> (32 - numBits | 0)) | (x[/* hi */0] << numBits);
-      return /* record */[
+      return /* Int64 */[
               /* hi */hi,
               /* lo */((lo << numBits) >>> 0)
             ];
@@ -36929,20 +37223,20 @@ function lsr_(x, numBits) {
     var hi = x[/* hi */0];
     var offset = numBits - 32 | 0;
     if (offset === 0) {
-      return /* record */[
+      return /* Int64 */[
               /* hi */0,
               /* lo */(hi >>> 0)
             ];
     } else if (offset > 0) {
       var lo = (hi >>> offset);
-      return /* record */[
+      return /* Int64 */[
               /* hi */0,
               /* lo */(lo >>> 0)
             ];
     } else {
       var hi$1 = (hi >>> numBits);
       var lo$1 = (hi << (-offset | 0)) | (x[/* lo */1] >>> numBits);
-      return /* record */[
+      return /* Int64 */[
               /* hi */hi$1,
               /* lo */(lo$1 >>> 0)
             ];
@@ -36958,13 +37252,13 @@ function asr_(x, numBits) {
     if (numBits < 32) {
       var hi$1 = (hi >> numBits);
       var lo = (hi << (32 - numBits | 0)) | (x[/* lo */1] >>> numBits);
-      return /* record */[
+      return /* Int64 */[
               /* hi */hi$1,
               /* lo */(lo >>> 0)
             ];
     } else {
       var lo$1 = (hi >> (numBits - 32 | 0));
-      return /* record */[
+      return /* Int64 */[
               /* hi */hi >= 0 ? 0 : -1,
               /* lo */(lo$1 >>> 0)
             ];
@@ -36984,124 +37278,119 @@ function mul(_this, _other) {
   while(true) {
     var other = _other;
     var $$this = _this;
-    var exit = 0;
     var lo;
-    var this_hi = $$this[/* hi */0];
+    var exit = 0;
     var exit$1 = 0;
-    var exit$2 = 0;
-    var exit$3 = 0;
-    if (this_hi !== 0 || $$this[/* lo */1] !== 0) {
-      exit$3 = 4;
+    if ($$this[/* hi */0] !== 0 || $$this[/* lo */1] !== 0) {
+      exit$1 = 3;
     } else {
       return zero;
     }
-    if (exit$3 === 4) {
+    if (exit$1 === 3) {
       if (other[/* hi */0] !== 0 || other[/* lo */1] !== 0) {
-        exit$2 = 3;
+        exit = 2;
       } else {
         return zero;
       }
     }
-    if (exit$2 === 3) {
+    if (exit === 2) {
+      var this_hi = $$this[/* hi */0];
+      var exit$2 = 0;
       if (this_hi !== -2147483648 || $$this[/* lo */1] !== 0) {
-        exit$1 = 2;
+        exit$2 = 3;
       } else {
         lo = other[/* lo */1];
-        exit = 1;
       }
-    }
-    if (exit$1 === 2) {
-      var other_hi = other[/* hi */0];
-      var lo$1 = $$this[/* lo */1];
-      var exit$4 = 0;
-      if (other_hi !== -2147483648 || other[/* lo */1] !== 0) {
-        exit$4 = 3;
-      } else {
-        lo = lo$1;
-        exit = 1;
-      }
-      if (exit$4 === 3) {
-        var other_lo = other[/* lo */1];
-        if (this_hi < 0) {
-          if (other_hi < 0) {
-            _other = neg(other);
-            _this = neg($$this);
-            continue ;
-          } else {
-            return neg(mul(neg($$this), other));
-          }
-        } else if (other_hi < 0) {
-          return neg(mul($$this, neg(other)));
+      if (exit$2 === 3) {
+        var other_hi = other[/* hi */0];
+        var lo$1 = $$this[/* lo */1];
+        var exit$3 = 0;
+        if (other_hi !== -2147483648 || other[/* lo */1] !== 0) {
+          exit$3 = 4;
         } else {
-          var a48 = (this_hi >>> 16);
-          var a32 = this_hi & 65535;
-          var a16 = (lo$1 >>> 16);
-          var a00 = lo$1 & 65535;
-          var b48 = (other_hi >>> 16);
-          var b32 = other_hi & 65535;
-          var b16 = (other_lo >>> 16);
-          var b00 = other_lo & 65535;
-          var c48 = 0;
-          var c32 = 0;
-          var c16 = 0;
-          var c00 = a00 * b00;
-          c16 = (c00 >>> 16) + a16 * b00;
-          c32 = (c16 >>> 16);
-          c16 = (c16 & 65535) + a00 * b16;
-          c32 = c32 + (c16 >>> 16) + a32 * b00;
-          c48 = (c32 >>> 16);
-          c32 = (c32 & 65535) + a16 * b16;
-          c48 += (c32 >>> 16);
-          c32 = (c32 & 65535) + a00 * b32;
-          c48 += (c32 >>> 16);
-          c32 = c32 & 65535;
-          c48 = c48 + (a48 * b00 + a32 * b16 + a16 * b32 + a00 * b48) & 65535;
-          var hi = c32 | (c48 << 16);
-          var lo$2 = c00 & 65535 | ((c16 & 65535) << 16);
-          return /* record */[
-                  /* hi */hi,
-                  /* lo */(lo$2 >>> 0)
-                ];
+          lo = lo$1;
         }
+        if (exit$3 === 4) {
+          var other_lo = other[/* lo */1];
+          if (this_hi < 0) {
+            if (other_hi < 0) {
+              _other = neg(other);
+              _this = neg($$this);
+              continue ;
+            } else {
+              return neg(mul(neg($$this), other));
+            }
+          } else if (other_hi < 0) {
+            return neg(mul($$this, neg(other)));
+          } else {
+            var a48 = (this_hi >>> 16);
+            var a32 = this_hi & 65535;
+            var a16 = (lo$1 >>> 16);
+            var a00 = lo$1 & 65535;
+            var b48 = (other_hi >>> 16);
+            var b32 = other_hi & 65535;
+            var b16 = (other_lo >>> 16);
+            var b00 = other_lo & 65535;
+            var c48 = 0;
+            var c32 = 0;
+            var c16 = 0;
+            var c00 = a00 * b00;
+            c16 = (c00 >>> 16) + a16 * b00;
+            c32 = (c16 >>> 16);
+            c16 = (c16 & 65535) + a00 * b16;
+            c32 = c32 + (c16 >>> 16) + a32 * b00;
+            c48 = (c32 >>> 16);
+            c32 = (c32 & 65535) + a16 * b16;
+            c48 = c48 + (c32 >>> 16);
+            c32 = (c32 & 65535) + a00 * b32;
+            c48 = c48 + (c32 >>> 16);
+            c32 = c32 & 65535;
+            c48 = c48 + (a48 * b00 + a32 * b16 + a16 * b32 + a00 * b48) & 65535;
+            var hi = c32 | (c48 << 16);
+            var lo$2 = c00 & 65535 | ((c16 & 65535) << 16);
+            return /* Int64 */[
+                    /* hi */hi,
+                    /* lo */(lo$2 >>> 0)
+                  ];
+          }
+        }
+        
       }
       
     }
-    if (exit === 1) {
-      if ((lo & 1) === 0) {
-        return zero;
-      } else {
-        return min_int;
-      }
+    if ((lo & 1) === 0) {
+      return zero;
+    } else {
+      return min_int;
     }
-    
   };
 }
 
 function swap(param) {
   var hi = Caml_int32.caml_int32_bswap(param[/* lo */1]);
   var lo = Caml_int32.caml_int32_bswap(param[/* hi */0]);
-  return /* record */[
+  return /* Int64 */[
           /* hi */hi,
           /* lo */(lo >>> 0)
         ];
 }
 
 function xor(param, param$1) {
-  return /* record */[
+  return /* Int64 */[
           /* hi */param[/* hi */0] ^ param$1[/* hi */0],
           /* lo */((param[/* lo */1] ^ param$1[/* lo */1]) >>> 0)
         ];
 }
 
 function or_(param, param$1) {
-  return /* record */[
+  return /* Int64 */[
           /* hi */param[/* hi */0] | param$1[/* hi */0],
           /* lo */((param[/* lo */1] | param$1[/* lo */1]) >>> 0)
         ];
 }
 
 function and_(param, param$1) {
-  return /* record */[
+  return /* Int64 */[
           /* hi */param[/* hi */0] & param$1[/* hi */0],
           /* lo */((param[/* lo */1] & param$1[/* lo */1]) >>> 0)
         ];
@@ -37127,13 +37416,13 @@ function lt(x, y) {
   return !ge(x, y);
 }
 
-function gt(x, y) {
-  if (x[/* hi */0] > y[/* hi */0]) {
+function gt(param, param$1) {
+  if (param[/* hi */0] > param$1[/* hi */0]) {
     return true;
-  } else if (x[/* hi */0] < y[/* hi */0]) {
+  } else if (param[/* hi */0] < param$1[/* hi */0]) {
     return false;
   } else {
-    return x[/* lo */1] > y[/* lo */1];
+    return param[/* lo */1] > param$1[/* lo */1];
   }
 }
 
@@ -37158,7 +37447,7 @@ function max(x, y) {
 }
 
 function to_float(param) {
-  return param[/* hi */0] * (0x100000000) + param[/* lo */1];
+  return param[/* hi */0] * 0x100000000 + param[/* lo */1];
 }
 
 function of_float(x) {
@@ -37173,7 +37462,7 @@ function of_float(x) {
   } else {
     var hi = x / 4294967296 | 0;
     var lo = x % 4294967296 | 0;
-    return /* record */[
+    return /* Int64 */[
             /* hi */hi,
             /* lo */(lo >>> 0)
           ];
@@ -37184,40 +37473,39 @@ function div(_self, _other) {
   while(true) {
     var other = _other;
     var self = _self;
-    var self_hi = self[/* hi */0];
     var exit = 0;
     var exit$1 = 0;
     if (other[/* hi */0] !== 0 || other[/* lo */1] !== 0) {
-      exit$1 = 2;
+      exit$1 = 3;
     } else {
       throw Caml_builtin_exceptions.division_by_zero;
     }
-    if (exit$1 === 2) {
-      if (self_hi !== -2147483648) {
-        if (self_hi !== 0 || self[/* lo */1] !== 0) {
-          exit = 1;
+    if (exit$1 === 3) {
+      var match = self[/* hi */0];
+      if (match !== -2147483648) {
+        if (match !== 0 || self[/* lo */1] !== 0) {
+          exit = 2;
         } else {
           return zero;
         }
       } else if (self[/* lo */1] !== 0) {
-        exit = 1;
+        exit = 2;
       } else if (eq(other, one) || eq(other, neg_one)) {
         return self;
       } else if (eq(other, min_int)) {
         return one;
       } else {
-        var other_hi = other[/* hi */0];
         var half_this = asr_(self, 1);
         var approx = lsl_(div(half_this, other), 1);
         var exit$2 = 0;
         if (approx[/* hi */0] !== 0 || approx[/* lo */1] !== 0) {
-          exit$2 = 3;
-        } else if (other_hi < 0) {
+          exit$2 = 4;
+        } else if (other[/* hi */0] < 0) {
           return one;
         } else {
           return neg(one);
         }
-        if (exit$2 === 3) {
+        if (exit$2 === 4) {
           var y = mul(other, approx);
           var rem = add(self, neg(y));
           return add(approx, div(rem, other));
@@ -37225,51 +37513,42 @@ function div(_self, _other) {
         
       }
     }
-    if (exit === 1) {
-      var other_hi$1 = other[/* hi */0];
-      var exit$3 = 0;
-      if (other_hi$1 !== -2147483648 || other[/* lo */1] !== 0) {
-        exit$3 = 2;
-      } else {
-        return zero;
-      }
-      if (exit$3 === 2) {
-        if (self_hi < 0) {
-          if (other_hi$1 < 0) {
-            _other = neg(other);
-            _self = neg(self);
-            continue ;
-          } else {
-            return neg(div(neg(self), other));
-          }
-        } else if (other_hi$1 < 0) {
-          return neg(div(self, neg(other)));
-        } else {
-          var res = zero;
-          var rem$1 = self;
-          while(ge(rem$1, other)) {
-            var approx$1 = Caml_primitive.caml_float_max(1, Math.floor(to_float(rem$1) / to_float(other)));
-            var log2 = Math.ceil(Math.log(approx$1) / Math.LN2);
-            var delta = log2 <= 48 ? 1 : Math.pow(2, log2 - 48);
-            var approxRes = of_float(approx$1);
-            var approxRem = mul(approxRes, other);
-            while(approxRem[/* hi */0] < 0 || gt(approxRem, rem$1)) {
-              approx$1 -= delta;
-              approxRes = of_float(approx$1);
-              approxRem = mul(approxRes, other);
-            };
-            if (is_zero(approxRes)) {
-              approxRes = one;
-            }
-            res = add(res, approxRes);
-            rem$1 = add(rem$1, neg(approxRem));
-          };
-          return res;
-        }
-      }
-      
+    if (exit === 2 && other[/* hi */0] === -2147483648 && other[/* lo */1] === 0) {
+      return zero;
     }
-    
+    var other_hi = other[/* hi */0];
+    if (self[/* hi */0] < 0) {
+      if (other_hi < 0) {
+        _other = neg(other);
+        _self = neg(self);
+        continue ;
+      } else {
+        return neg(div(neg(self), other));
+      }
+    } else if (other_hi < 0) {
+      return neg(div(self, neg(other)));
+    } else {
+      var res = zero;
+      var rem$1 = self;
+      while(ge(rem$1, other)) {
+        var approx$1 = Caml_primitive.caml_float_max(1, Math.floor(to_float(rem$1) / to_float(other)));
+        var log2 = Math.ceil(Math.log(approx$1) / Math.LN2);
+        var delta = log2 <= 48 ? 1 : Math.pow(2, log2 - 48);
+        var approxRes = of_float(approx$1);
+        var approxRem = mul(approxRes, other);
+        while(approxRem[/* hi */0] < 0 || gt(approxRem, rem$1)) {
+          approx$1 = approx$1 - delta;
+          approxRes = of_float(approx$1);
+          approxRem = mul(approxRes, other);
+        };
+        if (is_zero(approxRes)) {
+          approxRes = one;
+        }
+        res = add(res, approxRes);
+        rem$1 = add(rem$1, neg(approxRem));
+      };
+      return res;
+    }
   };
 }
 
@@ -37287,24 +37566,24 @@ function div_mod(self, other) {
         ];
 }
 
-function compare(self, other) {
-  var v = Caml_primitive.caml_nativeint_compare(self[/* hi */0], other[/* hi */0]);
+function compare(param, param$1) {
+  var v = Caml_primitive.caml_nativeint_compare(param[/* hi */0], param$1[/* hi */0]);
   if (v === 0) {
-    return Caml_primitive.caml_nativeint_compare(self[/* lo */1], other[/* lo */1]);
+    return Caml_primitive.caml_nativeint_compare(param[/* lo */1], param$1[/* lo */1]);
   } else {
     return v;
   }
 }
 
 function of_int32(lo) {
-  return /* record */[
+  return /* Int64 */[
           /* hi */lo < 0 ? -1 : 0,
           /* lo */(lo >>> 0)
         ];
 }
 
-function to_int32(x) {
-  return x[/* lo */1] | 0;
+function to_int32(param) {
+  return param[/* lo */1] | 0;
 }
 
 function to_hex(x) {
@@ -37313,46 +37592,40 @@ function to_hex(x) {
   var aux = function (v) {
     return (v >>> 0).toString(16);
   };
-  var exit = 0;
-  if (x_hi !== 0 || x_lo !== 0) {
-    exit = 1;
-  } else {
+  if (x_hi === 0 && x_lo === 0) {
     return "0";
   }
-  if (exit === 1) {
-    if (x_lo !== 0) {
-      if (x_hi !== 0) {
-        var lo = aux(x_lo);
-        var pad = 8 - lo.length | 0;
-        if (pad <= 0) {
-          return aux(x_hi) + lo;
-        } else {
-          return aux(x_hi) + (Caml_utils.repeat(pad, "0") + lo);
-        }
+  if (x_lo !== 0) {
+    if (x_hi !== 0) {
+      var lo = aux(x_lo);
+      var pad = 8 - lo.length | 0;
+      if (pad <= 0) {
+        return aux(x_hi) + lo;
       } else {
-        return aux(x_lo);
+        return aux(x_hi) + (Caml_utils.repeat(pad, "0") + lo);
       }
     } else {
-      return aux(x_hi) + "00000000";
+      return aux(x_lo);
     }
+  } else {
+    return aux(x_hi) + "00000000";
   }
-  
 }
 
 function discard_sign(x) {
-  return /* record */[
+  return /* Int64 */[
           /* hi */2147483647 & x[/* hi */0],
           /* lo */x[/* lo */1]
         ];
 }
 
-function float_of_bits (x){ 
-  return new Float64Array(new Int32Array([x[1],x[0]]).buffer)[0]
-};
+function float_of_bits(param) {
+  return (function(lo,hi){ return (new Float64Array(new Int32Array([lo,hi]).buffer))[0]})(param[/* lo */1], param[/* hi */0]);
+}
 
 function bits_of_float(x) {
-  var buf = (new Int32Array(new Float64Array([x]).buffer));
-  return /* record */[
+  var buf = (function(x){return new Int32Array(new Float64Array([x]).buffer)})(x);
+  return /* Int64 */[
           /* hi */buf[1],
           /* lo */(buf[0] >>> 0)
         ];
@@ -37361,7 +37634,7 @@ function bits_of_float(x) {
 function get64(s, i) {
   var hi = (s.charCodeAt(i + 4 | 0) << 32) | (s.charCodeAt(i + 5 | 0) << 40) | (s.charCodeAt(i + 6 | 0) << 48) | (s.charCodeAt(i + 7 | 0) << 56);
   var lo = s.charCodeAt(i) | (s.charCodeAt(i + 1 | 0) << 8) | (s.charCodeAt(i + 2 | 0) << 16) | (s.charCodeAt(i + 3 | 0) << 24);
-  return /* record */[
+  return /* Int64 */[
           /* hi */hi,
           /* lo */(lo >>> 0)
         ];
@@ -37440,13 +37713,13 @@ function parse_digit(c) {
 
 function int_of_string_base(param) {
   switch (param) {
-    case 0 : 
+    case /* Oct */0 :
         return 8;
-    case 1 : 
+    case /* Hex */1 :
         return 16;
-    case 2 : 
+    case /* Dec */2 :
         return 10;
-    case 3 : 
+    case /* Bin */3 :
         return 2;
     
   }
@@ -37458,12 +37731,12 @@ function parse_sign_and_base(s) {
   var i = 0;
   var match = s.charCodeAt(i);
   switch (match) {
-    case 43 : 
+    case 43 :
         i = i + 1 | 0;
         break;
-    case 44 : 
+    case 44 :
         break;
-    case 45 : 
+    case 45 :
         sign = -1;
         i = i + 1 | 0;
         break;
@@ -37476,22 +37749,22 @@ function parse_sign_and_base(s) {
       if (match$1 >= 111) {
         if (match$1 < 121) {
           switch (match$1 - 111 | 0) {
-            case 0 : 
+            case 0 :
                 base = /* Oct */0;
                 i = i + 2 | 0;
                 break;
-            case 6 : 
+            case 6 :
                 i = i + 2 | 0;
                 break;
-            case 1 : 
-            case 2 : 
-            case 3 : 
-            case 4 : 
-            case 5 : 
-            case 7 : 
-            case 8 : 
+            case 1 :
+            case 2 :
+            case 3 :
+            case 4 :
+            case 5 :
+            case 7 :
+            case 8 :
                 break;
-            case 9 : 
+            case 9 :
                 base = /* Hex */1;
                 i = i + 2 | 0;
                 break;
@@ -37507,22 +37780,22 @@ function parse_sign_and_base(s) {
     } else if (match$1 !== 66) {
       if (match$1 >= 79) {
         switch (match$1 - 79 | 0) {
-          case 0 : 
+          case 0 :
               base = /* Oct */0;
               i = i + 2 | 0;
               break;
-          case 6 : 
+          case 6 :
               i = i + 2 | 0;
               break;
-          case 1 : 
-          case 2 : 
-          case 3 : 
-          case 4 : 
-          case 5 : 
-          case 7 : 
-          case 8 : 
+          case 1 :
+          case 2 :
+          case 3 :
+          case 4 :
+          case 5 :
+          case 7 :
+          case 8 :
               break;
-          case 9 : 
+          case 9 :
               base = /* Hex */1;
               i = i + 2 | 0;
               break;
@@ -37574,19 +37847,17 @@ function caml_int_of_string(s) {
                   Caml_builtin_exceptions.failure,
                   "int_of_string"
                 ];
-          } else {
-            var acc$1 = base * acc + v;
-            if (acc$1 > threshold) {
-              throw [
-                    Caml_builtin_exceptions.failure,
-                    "int_of_string"
-                  ];
-            } else {
-              _k = k + 1 | 0;
-              _acc = acc$1;
-              continue ;
-            }
           }
+          var acc$1 = base * acc + v;
+          if (acc$1 > threshold) {
+            throw [
+                  Caml_builtin_exceptions.failure,
+                  "int_of_string"
+                ];
+          }
+          _k = k + 1 | 0;
+          _acc = acc$1;
+          continue ;
         }
       }
     };
@@ -37610,25 +37881,25 @@ function caml_int64_of_string(s) {
   var sign = Caml_int64.of_int32(match[1]);
   var threshold;
   switch (hbase) {
-    case 0 : 
+    case /* Oct */0 :
         threshold = /* int64 */[
           /* hi */536870911,
           /* lo */4294967295
         ];
         break;
-    case 1 : 
+    case /* Hex */1 :
         threshold = /* int64 */[
           /* hi */268435455,
           /* lo */4294967295
         ];
         break;
-    case 2 : 
+    case /* Dec */2 :
         threshold = /* int64 */[
           /* hi */429496729,
           /* lo */2576980377
         ];
         break;
-    case 3 : 
+    case /* Bin */3 :
         threshold = /* int64 */[
           /* hi */2147483647,
           /* lo */4294967295
@@ -37669,12 +37940,11 @@ function caml_int64_of_string(s) {
                   Caml_builtin_exceptions.failure,
                   "int64_of_string"
                 ];
-          } else {
-            var acc$1 = Caml_int64.add(Caml_int64.mul(base, acc), v);
-            _k = k + 1 | 0;
-            _acc = acc$1;
-            continue ;
           }
+          var acc$1 = Caml_int64.add(Caml_int64.mul(base, acc), v);
+          _k = k + 1 | 0;
+          _acc = acc$1;
+          continue ;
         }
       }
     };
@@ -37698,11 +37968,11 @@ function caml_int64_of_string(s) {
 
 function int_of_base(param) {
   switch (param) {
-    case 0 : 
+    case /* Oct */0 :
         return 8;
-    case 1 : 
+    case /* Hex */1 :
         return 16;
-    case 2 : 
+    case /* Dec */2 :
         return 10;
     
   }
@@ -37724,19 +37994,19 @@ function parse_format(fmt) {
           "format_int: format too long"
         ];
   }
-  var f = /* record */[
-    /* justify */"+",
-    /* signstyle */"-",
-    /* filter */" ",
-    /* alternate */false,
-    /* base : Dec */2,
-    /* signedconv */false,
-    /* width */0,
-    /* uppercase */false,
-    /* sign */1,
-    /* prec */-1,
-    /* conv */"f"
-  ];
+  var f = {
+    justify: "+",
+    signstyle: "-",
+    filter: " ",
+    alternate: false,
+    base: /* Dec */2,
+    signedconv: false,
+    width: 0,
+    uppercase: false,
+    sign: 1,
+    prec: -1,
+    conv: "f"
+  };
   var _i = 0;
   while(true) {
     var i = _i;
@@ -37751,56 +38021,56 @@ function parse_format(fmt) {
             exit = 1;
           } else {
             switch (c - 88 | 0) {
-              case 0 : 
-                  f[/* base */4] = /* Hex */1;
-                  f[/* uppercase */7] = true;
+              case 0 :
+                  f.base = /* Hex */1;
+                  f.uppercase = true;
                   _i = i + 1 | 0;
                   continue ;
-              case 13 : 
-              case 14 : 
-              case 15 : 
+              case 13 :
+              case 14 :
+              case 15 :
                   exit = 5;
                   break;
-              case 12 : 
-              case 17 : 
+              case 12 :
+              case 17 :
                   exit = 4;
                   break;
-              case 23 : 
-                  f[/* base */4] = /* Oct */0;
+              case 23 :
+                  f.base = /* Oct */0;
                   _i = i + 1 | 0;
                   continue ;
-              case 29 : 
-                  f[/* base */4] = /* Dec */2;
+              case 29 :
+                  f.base = /* Dec */2;
                   _i = i + 1 | 0;
                   continue ;
-              case 1 : 
-              case 2 : 
-              case 3 : 
-              case 4 : 
-              case 5 : 
-              case 6 : 
-              case 7 : 
-              case 8 : 
-              case 9 : 
-              case 10 : 
-              case 11 : 
-              case 16 : 
-              case 18 : 
-              case 19 : 
-              case 20 : 
-              case 21 : 
-              case 22 : 
-              case 24 : 
-              case 25 : 
-              case 26 : 
-              case 27 : 
-              case 28 : 
-              case 30 : 
-              case 31 : 
+              case 1 :
+              case 2 :
+              case 3 :
+              case 4 :
+              case 5 :
+              case 6 :
+              case 7 :
+              case 8 :
+              case 9 :
+              case 10 :
+              case 11 :
+              case 16 :
+              case 18 :
+              case 19 :
+              case 20 :
+              case 21 :
+              case 22 :
+              case 24 :
+              case 25 :
+              case 26 :
+              case 27 :
+              case 28 :
+              case 30 :
+              case 31 :
                   exit = 1;
                   break;
-              case 32 : 
-                  f[/* base */4] = /* Hex */1;
+              case 32 :
+                  f.base = /* Hex */1;
                   _i = i + 1 | 0;
                   continue ;
               
@@ -37809,28 +38079,28 @@ function parse_format(fmt) {
         } else if (c >= 72) {
           exit = 1;
         } else {
-          f[/* signedconv */5] = true;
-          f[/* uppercase */7] = true;
-          f[/* conv */10] = String.fromCharCode(lowercase(c));
+          f.signedconv = true;
+          f.uppercase = true;
+          f.conv = String.fromCharCode(lowercase(c));
           _i = i + 1 | 0;
           continue ;
         }
       } else {
         switch (c) {
-          case 35 : 
-              f[/* alternate */3] = true;
+          case 35 :
+              f.alternate = true;
               _i = i + 1 | 0;
               continue ;
-          case 32 : 
-          case 43 : 
+          case 32 :
+          case 43 :
               exit = 2;
               break;
-          case 45 : 
-              f[/* justify */0] = "-";
+          case 45 :
+              f.justify = "-";
               _i = i + 1 | 0;
               continue ;
-          case 46 : 
-              f[/* prec */9] = 0;
+          case 46 :
+              f.prec = 0;
               var j = i + 1 | 0;
               while((function(j){
                   return function () {
@@ -37838,37 +38108,37 @@ function parse_format(fmt) {
                     return w >= 0 && w <= 9;
                   }
                   }(j))()) {
-                f[/* prec */9] = (Caml_int32.imul(f[/* prec */9], 10) + fmt.charCodeAt(j) | 0) - /* "0" */48 | 0;
+                f.prec = (Caml_int32.imul(f.prec, 10) + fmt.charCodeAt(j) | 0) - /* "0" */48 | 0;
                 j = j + 1 | 0;
               };
               _i = j;
               continue ;
-          case 33 : 
-          case 34 : 
-          case 36 : 
-          case 37 : 
-          case 38 : 
-          case 39 : 
-          case 40 : 
-          case 41 : 
-          case 42 : 
-          case 44 : 
-          case 47 : 
+          case 33 :
+          case 34 :
+          case 36 :
+          case 37 :
+          case 38 :
+          case 39 :
+          case 40 :
+          case 41 :
+          case 42 :
+          case 44 :
+          case 47 :
               exit = 1;
               break;
-          case 48 : 
-              f[/* filter */2] = "0";
+          case 48 :
+              f.filter = "0";
               _i = i + 1 | 0;
               continue ;
-          case 49 : 
-          case 50 : 
-          case 51 : 
-          case 52 : 
-          case 53 : 
-          case 54 : 
-          case 55 : 
-          case 56 : 
-          case 57 : 
+          case 49 :
+          case 50 :
+          case 51 :
+          case 52 :
+          case 53 :
+          case 54 :
+          case 55 :
+          case 56 :
+          case 57 :
               exit = 3;
               break;
           default:
@@ -37876,15 +38146,15 @@ function parse_format(fmt) {
         }
       }
       switch (exit) {
-        case 1 : 
+        case 1 :
             _i = i + 1 | 0;
             continue ;
-        case 2 : 
-            f[/* signstyle */1] = String.fromCharCode(c);
+        case 2 :
+            f.signstyle = String.fromCharCode(c);
             _i = i + 1 | 0;
             continue ;
-        case 3 : 
-            f[/* width */6] = 0;
+        case 3 :
+            f.width = 0;
             var j$1 = i;
             while((function(j$1){
                 return function () {
@@ -37892,19 +38162,19 @@ function parse_format(fmt) {
                   return w >= 0 && w <= 9;
                 }
                 }(j$1))()) {
-              f[/* width */6] = (Caml_int32.imul(f[/* width */6], 10) + fmt.charCodeAt(j$1) | 0) - /* "0" */48 | 0;
+              f.width = (Caml_int32.imul(f.width, 10) + fmt.charCodeAt(j$1) | 0) - /* "0" */48 | 0;
               j$1 = j$1 + 1 | 0;
             };
             _i = j$1;
             continue ;
-        case 4 : 
-            f[/* signedconv */5] = true;
-            f[/* base */4] = /* Dec */2;
+        case 4 :
+            f.signedconv = true;
+            f.base = /* Dec */2;
             _i = i + 1 | 0;
             continue ;
-        case 5 : 
-            f[/* signedconv */5] = true;
-            f[/* conv */10] = String.fromCharCode(c);
+        case 5 :
+            f.signedconv = true;
+            f.conv = String.fromCharCode(c);
             _i = i + 1 | 0;
             continue ;
         
@@ -37914,15 +38184,15 @@ function parse_format(fmt) {
 }
 
 function finish_formatting(config, rawbuffer) {
-  var justify = config[/* justify */0];
-  var signstyle = config[/* signstyle */1];
-  var filter = config[/* filter */2];
-  var alternate = config[/* alternate */3];
-  var base = config[/* base */4];
-  var signedconv = config[/* signedconv */5];
-  var width = config[/* width */6];
-  var uppercase = config[/* uppercase */7];
-  var sign = config[/* sign */8];
+  var justify = config.justify;
+  var signstyle = config.signstyle;
+  var filter = config.filter;
+  var alternate = config.alternate;
+  var base = config.base;
+  var signedconv = config.signedconv;
+  var width = config.width;
+  var uppercase = config.uppercase;
+  var sign = config.sign;
   var len = rawbuffer.length;
   if (signedconv && (sign < 0 || signstyle !== "-")) {
     len = len + 1 | 0;
@@ -37937,7 +38207,7 @@ function finish_formatting(config, rawbuffer) {
   }
   var buffer = "";
   if (justify === "+" && filter === " ") {
-    for(var i = len ,i_finish = width - 1 | 0; i <= i_finish; ++i){
+    for(var _for = len ,_for_finish = width - 1 | 0; _for <= _for_finish; ++_for){
       buffer = buffer + filter;
     }
   }
@@ -37956,13 +38226,13 @@ function finish_formatting(config, rawbuffer) {
     buffer = buffer + "0x";
   }
   if (justify === "+" && filter === "0") {
-    for(var i$1 = len ,i_finish$1 = width - 1 | 0; i$1 <= i_finish$1; ++i$1){
+    for(var _for$1 = len ,_for_finish$1 = width - 1 | 0; _for$1 <= _for_finish$1; ++_for$1){
       buffer = buffer + filter;
     }
   }
   buffer = uppercase ? buffer + rawbuffer.toUpperCase() : buffer + rawbuffer;
   if (justify === "-") {
-    for(var i$2 = len ,i_finish$2 = width - 1 | 0; i$2 <= i_finish$2; ++i$2){
+    for(var _for$2 = len ,_for_finish$2 = width - 1 | 0; _for$2 <= _for_finish$2; ++_for$2){
       buffer = buffer + " ";
     }
   }
@@ -37977,12 +38247,12 @@ function caml_format_int(fmt, i) {
     var f$1 = f;
     var i$1 = i;
     var i$2 = i$1 < 0 ? (
-        f$1[/* signedconv */5] ? (f$1[/* sign */8] = -1, -i$1) : (i$1 >>> 0)
+        f$1.signedconv ? (f$1.sign = -1, -i$1) : (i$1 >>> 0)
       ) : i$1;
-    var s = i$2.toString(int_of_base(f$1[/* base */4]));
-    if (f$1[/* prec */9] >= 0) {
-      f$1[/* filter */2] = " ";
-      var n = f$1[/* prec */9] - s.length | 0;
+    var s = i$2.toString(int_of_base(f$1.base));
+    if (f$1.prec >= 0) {
+      f$1.filter = " ";
+      var n = f$1.prec - s.length | 0;
       if (n > 0) {
         s = Caml_utils.repeat(n, "0") + s;
       }
@@ -37994,14 +38264,14 @@ function caml_format_int(fmt, i) {
 
 function caml_int64_format(fmt, x) {
   var f = parse_format(fmt);
-  var x$1 = f[/* signedconv */5] && Caml_int64.lt(x, /* int64 */[
+  var x$1 = f.signedconv && Caml_int64.lt(x, /* int64 */[
         /* hi */0,
         /* lo */0
-      ]) ? (f[/* sign */8] = -1, Caml_int64.neg(x)) : x;
+      ]) ? (f.sign = -1, Caml_int64.neg(x)) : x;
   var s = "";
-  var match = f[/* base */4];
+  var match = f.base;
   switch (match) {
-    case 0 : 
+    case /* Oct */0 :
         var wbase = /* int64 */[
           /* hi */0,
           /* lo */8
@@ -38018,7 +38288,7 @@ function caml_int64_format(fmt, x) {
                 /* lo */0
               ], match$1[0]);
           var modulus = match$1[1];
-          s = String.fromCharCode(cvtbl.charCodeAt(modulus[1] | 0)) + s;
+          s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus))) + s;
           while(Caml_int64.neq(quotient, /* int64 */[
                   /* hi */0,
                   /* lo */0
@@ -38026,13 +38296,13 @@ function caml_int64_format(fmt, x) {
             var match$2 = Caml_int64.div_mod(quotient, wbase);
             quotient = match$2[0];
             modulus = match$2[1];
-            s = String.fromCharCode(cvtbl.charCodeAt(modulus[1] | 0)) + s;
+            s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus))) + s;
           };
         } else {
           var match$3 = Caml_int64.div_mod(x$1, wbase);
           var quotient$1 = match$3[0];
           var modulus$1 = match$3[1];
-          s = String.fromCharCode(cvtbl.charCodeAt(modulus$1[1] | 0)) + s;
+          s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus$1))) + s;
           while(Caml_int64.neq(quotient$1, /* int64 */[
                   /* hi */0,
                   /* lo */0
@@ -38040,14 +38310,14 @@ function caml_int64_format(fmt, x) {
             var match$4 = Caml_int64.div_mod(quotient$1, wbase);
             quotient$1 = match$4[0];
             modulus$1 = match$4[1];
-            s = String.fromCharCode(cvtbl.charCodeAt(modulus$1[1] | 0)) + s;
+            s = String.fromCharCode(cvtbl.charCodeAt(Caml_int64.to_int32(modulus$1))) + s;
           };
         }
         break;
-    case 1 : 
+    case /* Hex */1 :
         s = Caml_int64.to_hex(x$1) + s;
         break;
-    case 2 : 
+    case /* Dec */2 :
         var wbase$1 = /* int64 */[
           /* hi */0,
           /* lo */10
@@ -38068,7 +38338,7 @@ function caml_int64_format(fmt, x) {
                     /* lo */3435973836
                   ], match$5[0]), match$6[0]);
           var modulus$2 = match$6[1];
-          s = String.fromCharCode(cvtbl$1.charCodeAt(modulus$2[1] | 0)) + s;
+          s = String.fromCharCode(cvtbl$1.charCodeAt(Caml_int64.to_int32(modulus$2))) + s;
           while(Caml_int64.neq(quotient$2, /* int64 */[
                   /* hi */0,
                   /* lo */0
@@ -38076,13 +38346,13 @@ function caml_int64_format(fmt, x) {
             var match$7 = Caml_int64.div_mod(quotient$2, wbase$1);
             quotient$2 = match$7[0];
             modulus$2 = match$7[1];
-            s = String.fromCharCode(cvtbl$1.charCodeAt(modulus$2[1] | 0)) + s;
+            s = String.fromCharCode(cvtbl$1.charCodeAt(Caml_int64.to_int32(modulus$2))) + s;
           };
         } else {
           var match$8 = Caml_int64.div_mod(x$1, wbase$1);
           var quotient$3 = match$8[0];
           var modulus$3 = match$8[1];
-          s = String.fromCharCode(cvtbl$1.charCodeAt(modulus$3[1] | 0)) + s;
+          s = String.fromCharCode(cvtbl$1.charCodeAt(Caml_int64.to_int32(modulus$3))) + s;
           while(Caml_int64.neq(quotient$3, /* int64 */[
                   /* hi */0,
                   /* lo */0
@@ -38090,15 +38360,15 @@ function caml_int64_format(fmt, x) {
             var match$9 = Caml_int64.div_mod(quotient$3, wbase$1);
             quotient$3 = match$9[0];
             modulus$3 = match$9[1];
-            s = String.fromCharCode(cvtbl$1.charCodeAt(modulus$3[1] | 0)) + s;
+            s = String.fromCharCode(cvtbl$1.charCodeAt(Caml_int64.to_int32(modulus$3))) + s;
           };
         }
         break;
     
   }
-  if (f[/* prec */9] >= 0) {
-    f[/* filter */2] = " ";
-    var n = f[/* prec */9] - s.length | 0;
+  if (f.prec >= 0) {
+    f.filter = " ";
+    var n = f.prec - s.length | 0;
     if (n > 0) {
       s = Caml_utils.repeat(n, "0") + s;
     }
@@ -38109,26 +38379,26 @@ function caml_int64_format(fmt, x) {
 
 function caml_format_float(fmt, x) {
   var f = parse_format(fmt);
-  var prec = f[/* prec */9] < 0 ? 6 : f[/* prec */9];
-  var x$1 = x < 0 ? (f[/* sign */8] = -1, -x) : x;
+  var prec = f.prec < 0 ? 6 : f.prec;
+  var x$1 = x < 0 ? (f.sign = -1, -x) : x;
   var s = "";
   if (isNaN(x$1)) {
     s = "nan";
-    f[/* filter */2] = " ";
+    f.filter = " ";
   } else if (isFinite(x$1)) {
-    var match = f[/* conv */10];
+    var match = f.conv;
     switch (match) {
-      case "e" : 
+      case "e" :
           s = x$1.toExponential(prec);
           var i = s.length;
           if (s[i - 3 | 0] === "e") {
             s = s.slice(0, i - 1 | 0) + ("0" + s.slice(i - 1 | 0));
           }
           break;
-      case "f" : 
+      case "f" :
           s = x$1.toFixed(prec);
           break;
-      case "g" : 
+      case "g" :
           var prec$1 = prec !== 0 ? prec : 1;
           s = x$1.toExponential(prec$1 - 1 | 0);
           var j = s.indexOf("e");
@@ -38178,12 +38448,58 @@ function caml_format_float(fmt, x) {
     }
   } else {
     s = "inf";
-    f[/* filter */2] = " ";
+    f.filter = " ";
   }
   return finish_formatting(f, s);
 }
 
-function float_of_string (s,exn){ 
+var caml_hexstring_of_float = (function(x,prec,style){
+  if (!isFinite(x)) {
+    if (isNaN(x)) return "nan";
+    return x > 0 ? "infinity":"-infinity";
+  }
+  var sign = (x==0 && 1/x == -Infinity)?1:(x>=0)?0:1;
+  if(sign) x = -x;
+  var exp = 0;
+  if (x == 0) { }
+  else if (x < 1) {
+    while (x < 1 && exp > -1022)  { x *= 2; exp-- }
+  } else {
+    while (x >= 2) { x /= 2; exp++ }
+  }
+  var exp_sign = exp < 0 ? '' : '+';
+  var sign_str = '';
+  if (sign) sign_str = '-'
+  else {
+    switch(style){
+    case 43 /* '+' */: sign_str = '+'; break;
+    case 32 /* ' ' */: sign_str = ' '; break;
+    default: break;
+    }
+  }
+  if (prec >= 0 && prec < 13) {
+    /* If a precision is given, and is small, round mantissa accordingly */
+      var cst = Math.pow(2,prec * 4);
+      x = Math.round(x * cst) / cst;
+  }
+  var x_str = x.toString(16);
+  if(prec >= 0){
+      var idx = x_str.indexOf('.');
+    if(idx<0) {
+      x_str += '.' +  '0'.repeat(prec);
+    }
+    else {
+      var size = idx+1+prec;
+      if(x_str.length < size)
+        x_str += '0'.repeat(size - x_str.length);
+      else
+        x_str = x_str.substr(0,size);
+    }
+  }
+  return  (sign_str + '0x' + x_str + 'p' + exp_sign + exp.toString(10));
+});
+
+var float_of_string = (function(s,exn){
 
     var res = +s;
     if ((s.length > 0) && (res === res))
@@ -38193,13 +38509,21 @@ function float_of_string (s,exn){
     if (((s.length > 0) && (res === res)) || /^[+-]?nan$/i.test(s)) {
         return res;
     };
+    var m = /^ *([+-]?)0x([0-9a-f]+)\.?([0-9a-f]*)p([+-]?[0-9]+)/i.exec(s);
+    //            1        2             3           4
+    if(m){
+        var m3 = m[3].replace(/0+$/,'');
+        var mantissa = parseInt(m[1] + m[2] + m3, 16);
+        var exponent = (m[4]|0) - 4*m3.length;
+        res = mantissa * Math.pow(2, exponent);
+        return res;
+    }
     if (/^\+?inf(inity)?$/i.test(s))
         return Infinity;
     if (/^-inf(inity)?$/i.test(s))
         return -Infinity;
     throw exn;
-
-};
+});
 
 function caml_float_of_string(s) {
   return float_of_string(s, [
@@ -38217,6 +38541,7 @@ var caml_int32_of_string = caml_int_of_string;
 var caml_nativeint_of_string = caml_int_of_string;
 
 exports.caml_format_float = caml_format_float;
+exports.caml_hexstring_of_float = caml_hexstring_of_float;
 exports.caml_format_int = caml_format_int;
 exports.caml_nativeint_format = caml_nativeint_format;
 exports.caml_int32_format = caml_int32_format;
@@ -38239,9 +38564,8 @@ function caml_string_get(s, i) {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
         ];
-  } else {
-    return s.charCodeAt(i);
   }
+  return s.charCodeAt(i);
 }
 
 function caml_string_get16(s, i) {
@@ -38258,9 +38582,8 @@ function get(s, i) {
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
         ];
-  } else {
-    return s.charCodeAt(i);
   }
+  return s.charCodeAt(i);
 }
 
 exports.caml_string_get = caml_string_get;
@@ -38273,17 +38596,19 @@ exports.get = get;
 'use strict';
 
 
-var id = /* record */[/* contents */0];
+var id = {
+  contents: 0
+};
 
 function caml_set_oo_id(b) {
-  b[1] = id[0];
-  id[0] += 1;
+  b[1] = id.contents;
+  id.contents = id.contents + 1;
   return b;
 }
 
 function caml_fresh_oo_id(param) {
-  id[0] += 1;
-  return id[0];
+  id.contents = id.contents + 1;
+  return id.contents;
 }
 
 function create(str) {
@@ -38317,15 +38642,68 @@ exports.create = create;
 exports.caml_is_extension = caml_is_extension;
 /* No side effect */
 
-},{}],"../node_modules/bs-platform/lib/js/caml_missing_polyfill.js":[function(require,module,exports) {
+},{}],"../node_modules/bs-platform/lib/js/caml_js_exceptions.js":[function(require,module,exports) {
+'use strict';
+
+var Caml_option = require("./caml_option.js");
+var Caml_exceptions = require("./caml_exceptions.js");
+
+var $$Error = Caml_exceptions.create("Caml_js_exceptions.Error");
+
+function internalToOCamlException(e) {
+  if (Caml_exceptions.caml_is_extension(e)) {
+    return e;
+  } else {
+    return [
+            $$Error,
+            e
+          ];
+  }
+}
+
+function caml_as_js_exn(exn) {
+  if (exn[0] === $$Error) {
+    return Caml_option.some(exn[1]);
+  }
+  
+}
+
+exports.$$Error = $$Error;
+exports.internalToOCamlException = internalToOCamlException;
+exports.caml_as_js_exn = caml_as_js_exn;
+/* No side effect */
+
+},{"./caml_option.js":"../node_modules/bs-platform/lib/js/caml_option.js","./caml_exceptions.js":"../node_modules/bs-platform/lib/js/caml_exceptions.js"}],"../node_modules/bs-platform/lib/js/caml_external_polyfill.js":[function(require,module,exports) {
+var global = arguments[3];
 'use strict';
 
 
-function not_implemented (s){
-  throw new Error(s + " not implemented by BuckleScript yet\n")
-};
+var getGlobalThis = (function(){
+  if (typeof globalThis !== 'undefined') return globalThis;
+	if (typeof self !== 'undefined') return self;
+	if (typeof window !== 'undefined') return window;
+	if (typeof global !== 'undefined') return global;
+	if (typeof this !== 'undefined') return this;
+	throw new Error('Unable to locate global `this`');
+});
 
-exports.not_implemented = not_implemented;
+var resolve = (function(s){
+  var myGlobal = getGlobalThis();
+  if (myGlobal[s] === undefined){
+    throw new Error(s + " not polyfilled by BuckleScript yet\n")
+  }
+  return myGlobal[s]
+});
+
+var register = (function(s,fn){
+  var myGlobal = getGlobalThis();
+  myGlobal[s] = fn 
+  return 0
+});
+
+exports.getGlobalThis = getGlobalThis;
+exports.resolve = resolve;
+exports.register = register;
 /* No side effect */
 
 },{}],"../node_modules/bs-platform/lib/js/camlinternalFormatBasics.js":[function(require,module,exports) {
@@ -38338,43 +38716,43 @@ function erase_rel(param) {
     return /* End_of_fmtty */0;
   } else {
     switch (param.tag | 0) {
-      case 0 : 
+      case /* Char_ty */0 :
           return /* Char_ty */Block.__(0, [erase_rel(param[0])]);
-      case 1 : 
+      case /* String_ty */1 :
           return /* String_ty */Block.__(1, [erase_rel(param[0])]);
-      case 2 : 
+      case /* Int_ty */2 :
           return /* Int_ty */Block.__(2, [erase_rel(param[0])]);
-      case 3 : 
+      case /* Int32_ty */3 :
           return /* Int32_ty */Block.__(3, [erase_rel(param[0])]);
-      case 4 : 
+      case /* Nativeint_ty */4 :
           return /* Nativeint_ty */Block.__(4, [erase_rel(param[0])]);
-      case 5 : 
+      case /* Int64_ty */5 :
           return /* Int64_ty */Block.__(5, [erase_rel(param[0])]);
-      case 6 : 
+      case /* Float_ty */6 :
           return /* Float_ty */Block.__(6, [erase_rel(param[0])]);
-      case 7 : 
+      case /* Bool_ty */7 :
           return /* Bool_ty */Block.__(7, [erase_rel(param[0])]);
-      case 8 : 
+      case /* Format_arg_ty */8 :
           return /* Format_arg_ty */Block.__(8, [
                     param[0],
                     erase_rel(param[1])
                   ]);
-      case 9 : 
+      case /* Format_subst_ty */9 :
           var ty1 = param[0];
           return /* Format_subst_ty */Block.__(9, [
                     ty1,
                     ty1,
                     erase_rel(param[2])
                   ]);
-      case 10 : 
+      case /* Alpha_ty */10 :
           return /* Alpha_ty */Block.__(10, [erase_rel(param[0])]);
-      case 11 : 
+      case /* Theta_ty */11 :
           return /* Theta_ty */Block.__(11, [erase_rel(param[0])]);
-      case 12 : 
+      case /* Any_ty */12 :
           return /* Any_ty */Block.__(12, [erase_rel(param[0])]);
-      case 13 : 
+      case /* Reader_ty */13 :
           return /* Reader_ty */Block.__(13, [erase_rel(param[0])]);
-      case 14 : 
+      case /* Ignored_reader_ty */14 :
           return /* Ignored_reader_ty */Block.__(14, [erase_rel(param[0])]);
       
     }
@@ -38386,42 +38764,42 @@ function concat_fmtty(fmtty1, fmtty2) {
     return fmtty2;
   } else {
     switch (fmtty1.tag | 0) {
-      case 0 : 
+      case /* Char_ty */0 :
           return /* Char_ty */Block.__(0, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 1 : 
+      case /* String_ty */1 :
           return /* String_ty */Block.__(1, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 2 : 
+      case /* Int_ty */2 :
           return /* Int_ty */Block.__(2, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 3 : 
+      case /* Int32_ty */3 :
           return /* Int32_ty */Block.__(3, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 4 : 
+      case /* Nativeint_ty */4 :
           return /* Nativeint_ty */Block.__(4, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 5 : 
+      case /* Int64_ty */5 :
           return /* Int64_ty */Block.__(5, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 6 : 
+      case /* Float_ty */6 :
           return /* Float_ty */Block.__(6, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 7 : 
+      case /* Bool_ty */7 :
           return /* Bool_ty */Block.__(7, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 8 : 
+      case /* Format_arg_ty */8 :
           return /* Format_arg_ty */Block.__(8, [
                     fmtty1[0],
                     concat_fmtty(fmtty1[1], fmtty2)
                   ]);
-      case 9 : 
+      case /* Format_subst_ty */9 :
           return /* Format_subst_ty */Block.__(9, [
                     fmtty1[0],
                     fmtty1[1],
                     concat_fmtty(fmtty1[2], fmtty2)
                   ]);
-      case 10 : 
+      case /* Alpha_ty */10 :
           return /* Alpha_ty */Block.__(10, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 11 : 
+      case /* Theta_ty */11 :
           return /* Theta_ty */Block.__(11, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 12 : 
+      case /* Any_ty */12 :
           return /* Any_ty */Block.__(12, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 13 : 
+      case /* Reader_ty */13 :
           return /* Reader_ty */Block.__(13, [concat_fmtty(fmtty1[0], fmtty2)]);
-      case 14 : 
+      case /* Ignored_reader_ty */14 :
           return /* Ignored_reader_ty */Block.__(14, [concat_fmtty(fmtty1[0], fmtty2)]);
       
     }
@@ -38433,116 +38811,119 @@ function concat_fmt(fmt1, fmt2) {
     return fmt2;
   } else {
     switch (fmt1.tag | 0) {
-      case 0 : 
+      case /* Char */0 :
           return /* Char */Block.__(0, [concat_fmt(fmt1[0], fmt2)]);
-      case 1 : 
+      case /* Caml_char */1 :
           return /* Caml_char */Block.__(1, [concat_fmt(fmt1[0], fmt2)]);
-      case 2 : 
+      case /* String */2 :
           return /* String */Block.__(2, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 3 : 
+      case /* Caml_string */3 :
           return /* Caml_string */Block.__(3, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 4 : 
+      case /* Int */4 :
           return /* Int */Block.__(4, [
                     fmt1[0],
                     fmt1[1],
                     fmt1[2],
                     concat_fmt(fmt1[3], fmt2)
                   ]);
-      case 5 : 
+      case /* Int32 */5 :
           return /* Int32 */Block.__(5, [
                     fmt1[0],
                     fmt1[1],
                     fmt1[2],
                     concat_fmt(fmt1[3], fmt2)
                   ]);
-      case 6 : 
+      case /* Nativeint */6 :
           return /* Nativeint */Block.__(6, [
                     fmt1[0],
                     fmt1[1],
                     fmt1[2],
                     concat_fmt(fmt1[3], fmt2)
                   ]);
-      case 7 : 
+      case /* Int64 */7 :
           return /* Int64 */Block.__(7, [
                     fmt1[0],
                     fmt1[1],
                     fmt1[2],
                     concat_fmt(fmt1[3], fmt2)
                   ]);
-      case 8 : 
+      case /* Float */8 :
           return /* Float */Block.__(8, [
                     fmt1[0],
                     fmt1[1],
                     fmt1[2],
                     concat_fmt(fmt1[3], fmt2)
                   ]);
-      case 9 : 
-          return /* Bool */Block.__(9, [concat_fmt(fmt1[0], fmt2)]);
-      case 10 : 
+      case /* Bool */9 :
+          return /* Bool */Block.__(9, [
+                    fmt1[0],
+                    concat_fmt(fmt1[1], fmt2)
+                  ]);
+      case /* Flush */10 :
           return /* Flush */Block.__(10, [concat_fmt(fmt1[0], fmt2)]);
-      case 11 : 
+      case /* String_literal */11 :
           return /* String_literal */Block.__(11, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 12 : 
+      case /* Char_literal */12 :
           return /* Char_literal */Block.__(12, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 13 : 
+      case /* Format_arg */13 :
           return /* Format_arg */Block.__(13, [
                     fmt1[0],
                     fmt1[1],
                     concat_fmt(fmt1[2], fmt2)
                   ]);
-      case 14 : 
+      case /* Format_subst */14 :
           return /* Format_subst */Block.__(14, [
                     fmt1[0],
                     fmt1[1],
                     concat_fmt(fmt1[2], fmt2)
                   ]);
-      case 15 : 
+      case /* Alpha */15 :
           return /* Alpha */Block.__(15, [concat_fmt(fmt1[0], fmt2)]);
-      case 16 : 
+      case /* Theta */16 :
           return /* Theta */Block.__(16, [concat_fmt(fmt1[0], fmt2)]);
-      case 17 : 
+      case /* Formatting_lit */17 :
           return /* Formatting_lit */Block.__(17, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 18 : 
+      case /* Formatting_gen */18 :
           return /* Formatting_gen */Block.__(18, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 19 : 
+      case /* Reader */19 :
           return /* Reader */Block.__(19, [concat_fmt(fmt1[0], fmt2)]);
-      case 20 : 
+      case /* Scan_char_set */20 :
           return /* Scan_char_set */Block.__(20, [
                     fmt1[0],
                     fmt1[1],
                     concat_fmt(fmt1[2], fmt2)
                   ]);
-      case 21 : 
+      case /* Scan_get_counter */21 :
           return /* Scan_get_counter */Block.__(21, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 22 : 
+      case /* Scan_next_char */22 :
           return /* Scan_next_char */Block.__(22, [concat_fmt(fmt1[0], fmt2)]);
-      case 23 : 
+      case /* Ignored_param */23 :
           return /* Ignored_param */Block.__(23, [
                     fmt1[0],
                     concat_fmt(fmt1[1], fmt2)
                   ]);
-      case 24 : 
+      case /* Custom */24 :
           return /* Custom */Block.__(24, [
                     fmt1[0],
                     fmt1[1],
@@ -38568,7 +38949,8 @@ var Caml_bytes = require("./caml_bytes.js");
 var Caml_format = require("./caml_format.js");
 var Caml_string = require("./caml_string.js");
 var Caml_exceptions = require("./caml_exceptions.js");
-var Caml_missing_polyfill = require("./caml_missing_polyfill.js");
+var Caml_js_exceptions = require("./caml_js_exceptions.js");
+var Caml_external_polyfill = require("./caml_external_polyfill.js");
 var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
 var CamlinternalFormatBasics = require("./camlinternalFormatBasics.js");
 
@@ -38604,7 +38986,7 @@ var min_int = -2147483648;
 
 function classify_float(x) {
   if (isFinite(x)) {
-    if (Math.abs(x) >= 2.2250738585072014e-308) {
+    if (Math.abs(x) >= 2.22507385850720138e-308) {
       return /* FP_normal */0;
     } else if (x !== 0) {
       return /* FP_subnormal */1;
@@ -38624,9 +39006,8 @@ function char_of_int(n) {
           Caml_builtin_exceptions.invalid_argument,
           "char_of_int"
         ];
-  } else {
-    return n;
   }
+  return n;
 }
 
 function string_of_bool(b) {
@@ -38639,15 +39020,40 @@ function string_of_bool(b) {
 
 function bool_of_string(param) {
   switch (param) {
-    case "false" : 
+    case "false" :
         return false;
-    case "true" : 
+    case "true" :
         return true;
     default:
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "bool_of_string"
           ];
+  }
+}
+
+function bool_of_string_opt(param) {
+  switch (param) {
+    case "false" :
+        return false;
+    case "true" :
+        return true;
+    default:
+      return ;
+  }
+}
+
+function int_of_string_opt(s) {
+  try {
+    return Caml_format.caml_int_of_string(s);
+  }
+  catch (raw_exn){
+    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    if (exn[0] === Caml_builtin_exceptions.failure) {
+      return ;
+    } else {
+      throw exn;
+    }
   }
 }
 
@@ -38681,6 +39087,20 @@ function string_of_float(f) {
   return valid_float_lexem(Caml_format.caml_format_float("%.12g", f));
 }
 
+function float_of_string_opt(s) {
+  try {
+    return Caml_format.caml_float_of_string(s);
+  }
+  catch (raw_exn){
+    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    if (exn[0] === Caml_builtin_exceptions.failure) {
+      return ;
+    } else {
+      throw exn;
+    }
+  }
+}
+
 function $at(l1, l2) {
   if (l1) {
     return /* :: */[
@@ -38699,7 +39119,9 @@ var stdout = Caml_io.stdout;
 var stderr = Caml_io.stderr;
 
 function open_out_gen(mode, perm, name) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_open_descriptor_out");
+  var c = Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(Caml_external_polyfill.resolve("caml_sys_open")(name, mode, perm));
+  Caml_external_polyfill.resolve("caml_ml_set_channel_name")(c, name);
+  return c;
 }
 
 function open_out(name) {
@@ -38742,7 +39164,11 @@ function flush_all(param) {
       try {
         Caml_io.caml_ml_flush(param$1[0]);
       }
-      catch (exn){
+      catch (raw_exn){
+        var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+        if (exn[0] !== Caml_builtin_exceptions.sys_error) {
+          throw exn;
+        }
         
       }
       _param = param$1[1];
@@ -38754,7 +39180,7 @@ function flush_all(param) {
 }
 
 function output_bytes(oc, s) {
-  return Caml_io.caml_ml_output(oc, s, 0, s.length);
+  return Caml_external_polyfill.resolve("caml_ml_output_bytes")(oc, s, 0, s.length);
 }
 
 function output_string(oc, s) {
@@ -38767,9 +39193,8 @@ function output(oc, s, ofs, len) {
           Caml_builtin_exceptions.invalid_argument,
           "output"
         ];
-  } else {
-    return Caml_io.caml_ml_output(oc, s, ofs, len);
   }
+  return Caml_external_polyfill.resolve("caml_ml_output_bytes")(oc, s, ofs, len);
 }
 
 function output_substring(oc, s, ofs, len) {
@@ -38778,18 +39203,17 @@ function output_substring(oc, s, ofs, len) {
           Caml_builtin_exceptions.invalid_argument,
           "output_substring"
         ];
-  } else {
-    return Caml_io.caml_ml_output(oc, s, ofs, len);
   }
+  return Caml_io.caml_ml_output(oc, s, ofs, len);
 }
 
 function output_value(chan, v) {
-  return Caml_missing_polyfill.not_implemented("caml_output_value");
+  return Caml_external_polyfill.resolve("caml_output_value")(chan, v, /* [] */0);
 }
 
 function close_out(oc) {
   Caml_io.caml_ml_flush(oc);
-  return Caml_missing_polyfill.not_implemented("caml_ml_close_channel");
+  return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
 }
 
 function close_out_noerr(oc) {
@@ -38800,7 +39224,7 @@ function close_out_noerr(oc) {
     
   }
   try {
-    return Caml_missing_polyfill.not_implemented("caml_ml_close_channel");
+    return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
   }
   catch (exn$1){
     return /* () */0;
@@ -38808,7 +39232,9 @@ function close_out_noerr(oc) {
 }
 
 function open_in_gen(mode, perm, name) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_open_descriptor_in");
+  var c = Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(Caml_external_polyfill.resolve("caml_sys_open")(name, mode, perm));
+  Caml_external_polyfill.resolve("caml_ml_set_channel_name")(c, name);
+  return c;
 }
 
 function open_in(name) {
@@ -38837,9 +39263,8 @@ function input(ic, s, ofs, len) {
           Caml_builtin_exceptions.invalid_argument,
           "input"
         ];
-  } else {
-    return Caml_missing_polyfill.not_implemented("caml_ml_input");
   }
+  return Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
 }
 
 function unsafe_really_input(ic, s, _ofs, _len) {
@@ -38849,14 +39274,13 @@ function unsafe_really_input(ic, s, _ofs, _len) {
     if (len <= 0) {
       return /* () */0;
     } else {
-      var r = Caml_missing_polyfill.not_implemented("caml_ml_input");
+      var r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
       if (r === 0) {
         throw Caml_builtin_exceptions.end_of_file;
-      } else {
-        _len = len - r | 0;
-        _ofs = ofs + r | 0;
-        continue ;
       }
+      _len = len - r | 0;
+      _ofs = ofs + r | 0;
+      continue ;
     }
   };
 }
@@ -38867,9 +39291,8 @@ function really_input(ic, s, ofs, len) {
           Caml_builtin_exceptions.invalid_argument,
           "really_input"
         ];
-  } else {
-    return unsafe_really_input(ic, s, ofs, len);
   }
+  return unsafe_really_input(ic, s, ofs, len);
 }
 
 function really_input_string(ic, len) {
@@ -38899,7 +39322,7 @@ function input_line(chan) {
     while(true) {
       var len = _len;
       var accu = _accu;
-      var n = Caml_missing_polyfill.not_implemented("caml_ml_input_scan_line");
+      var n = Caml_external_polyfill.resolve("caml_ml_input_scan_line")(chan);
       if (n === 0) {
         if (accu) {
           return build_result(Caml_bytes.caml_create_bytes(len), len, accu);
@@ -38908,8 +39331,8 @@ function input_line(chan) {
         }
       } else if (n > 0) {
         var res = Caml_bytes.caml_create_bytes(n - 1 | 0);
-        Caml_missing_polyfill.not_implemented("caml_ml_input");
-        Caml_missing_polyfill.not_implemented("caml_ml_input_char");
+        Caml_external_polyfill.resolve("caml_ml_input")(chan, res, 0, n - 1 | 0);
+        Caml_external_polyfill.resolve("caml_ml_input_char")(chan);
         if (accu) {
           var len$1 = (len + n | 0) - 1 | 0;
           return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, /* :: */[
@@ -38921,7 +39344,7 @@ function input_line(chan) {
         }
       } else {
         var beg = Caml_bytes.caml_create_bytes(-n | 0);
-        Caml_missing_polyfill.not_implemented("caml_ml_input");
+        Caml_external_polyfill.resolve("caml_ml_input")(chan, beg, 0, -n | 0);
         _len = len - n | 0;
         _accu = /* :: */[
           beg,
@@ -38936,7 +39359,7 @@ function input_line(chan) {
 
 function close_in_noerr(ic) {
   try {
-    return Caml_missing_polyfill.not_implemented("caml_ml_close_channel");
+    return Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
   }
   catch (exn){
     return /* () */0;
@@ -39002,8 +39425,16 @@ function read_int(param) {
   return Caml_format.caml_int_of_string((Caml_io.caml_ml_flush(stdout), input_line(stdin)));
 }
 
+function read_int_opt(param) {
+  return int_of_string_opt((Caml_io.caml_ml_flush(stdout), input_line(stdin)));
+}
+
 function read_float(param) {
   return Caml_format.caml_float_of_string((Caml_io.caml_ml_flush(stdout), input_line(stdin)));
+}
+
+function read_float_opt(param) {
+  return float_of_string_opt((Caml_io.caml_ml_flush(stdout), input_line(stdin)));
 }
 
 function string_of_format(param) {
@@ -39017,11 +39448,13 @@ function $caret$caret(param, param$1) {
         ];
 }
 
-var exit_function = /* record */[/* contents */flush_all];
+var exit_function = {
+  contents: flush_all
+};
 
 function at_exit(f) {
-  var g = exit_function[0];
-  exit_function[0] = (function (param) {
+  var g = exit_function.contents;
+  exit_function.contents = (function (param) {
       Curry._1(f, /* () */0);
       return Curry._1(g, /* () */0);
     });
@@ -39029,7 +39462,7 @@ function at_exit(f) {
 }
 
 function do_at_exit(param) {
-  return Curry._1(exit_function[0], /* () */0);
+  return Curry._1(exit_function.contents, /* () */0);
 }
 
 function exit(retcode) {
@@ -39039,7 +39472,15 @@ function exit(retcode) {
 
 var max_int = 2147483647;
 
-var epsilon_float = 2.220446049250313e-16;
+var infinity = Infinity;
+
+var neg_infinity = -Infinity;
+
+var max_float = 1.79769313486231571e+308;
+
+var min_float = 2.22507385850720138e-308;
+
+var epsilon_float = 2.22044604925031308e-16;
 
 var flush = Caml_io.caml_ml_flush;
 
@@ -39048,93 +39489,93 @@ var output_char = Caml_io.caml_ml_output_char;
 var output_byte = Caml_io.caml_ml_output_char;
 
 function output_binary_int(prim, prim$1) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_output_int");
+  return Caml_external_polyfill.resolve("caml_ml_output_int")(prim, prim$1);
 }
 
 function seek_out(prim, prim$1) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_seek_out");
+  return Caml_external_polyfill.resolve("caml_ml_seek_out")(prim, prim$1);
 }
 
 function pos_out(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_pos_out");
+  return Caml_external_polyfill.resolve("caml_ml_pos_out")(prim);
 }
 
 function out_channel_length(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_channel_size");
+  return Caml_external_polyfill.resolve("caml_ml_channel_size")(prim);
 }
 
 function set_binary_mode_out(prim, prim$1) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_set_binary_mode");
+  return Caml_external_polyfill.resolve("caml_ml_set_binary_mode")(prim, prim$1);
 }
 
 function input_char(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_input_char");
+  return Caml_external_polyfill.resolve("caml_ml_input_char")(prim);
 }
 
 function input_byte(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_input_char");
+  return Caml_external_polyfill.resolve("caml_ml_input_char")(prim);
 }
 
 function input_binary_int(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_input_int");
+  return Caml_external_polyfill.resolve("caml_ml_input_int")(prim);
 }
 
 function input_value(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_input_value");
+  return Caml_external_polyfill.resolve("caml_input_value")(prim);
 }
 
 function seek_in(prim, prim$1) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_seek_in");
+  return Caml_external_polyfill.resolve("caml_ml_seek_in")(prim, prim$1);
 }
 
 function pos_in(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_pos_in");
+  return Caml_external_polyfill.resolve("caml_ml_pos_in")(prim);
 }
 
 function in_channel_length(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_channel_size");
+  return Caml_external_polyfill.resolve("caml_ml_channel_size")(prim);
 }
 
 function close_in(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_close_channel");
+  return Caml_external_polyfill.resolve("caml_ml_close_channel")(prim);
 }
 
 function set_binary_mode_in(prim, prim$1) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_set_binary_mode");
+  return Caml_external_polyfill.resolve("caml_ml_set_binary_mode")(prim, prim$1);
 }
 
-function LargeFile_000(prim, prim$1) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_seek_out_64");
+function LargeFile_seek_out(prim, prim$1) {
+  return Caml_external_polyfill.resolve("caml_ml_seek_out_64")(prim, prim$1);
 }
 
-function LargeFile_001(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_pos_out_64");
+function LargeFile_pos_out(prim) {
+  return Caml_external_polyfill.resolve("caml_ml_pos_out_64")(prim);
 }
 
-function LargeFile_002(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_channel_size_64");
+function LargeFile_out_channel_length(prim) {
+  return Caml_external_polyfill.resolve("caml_ml_channel_size_64")(prim);
 }
 
-function LargeFile_003(prim, prim$1) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_seek_in_64");
+function LargeFile_seek_in(prim, prim$1) {
+  return Caml_external_polyfill.resolve("caml_ml_seek_in_64")(prim, prim$1);
 }
 
-function LargeFile_004(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_pos_in_64");
+function LargeFile_pos_in(prim) {
+  return Caml_external_polyfill.resolve("caml_ml_pos_in_64")(prim);
 }
 
-function LargeFile_005(prim) {
-  return Caml_missing_polyfill.not_implemented("caml_ml_channel_size_64");
+function LargeFile_in_channel_length(prim) {
+  return Caml_external_polyfill.resolve("caml_ml_channel_size_64")(prim);
 }
 
-var LargeFile = [
-  LargeFile_000,
-  LargeFile_001,
-  LargeFile_002,
-  LargeFile_003,
-  LargeFile_004,
-  LargeFile_005
-];
+var LargeFile = {
+  seek_out: LargeFile_seek_out,
+  pos_out: LargeFile_pos_out,
+  out_channel_length: LargeFile_out_channel_length,
+  seek_in: LargeFile_seek_in,
+  pos_in: LargeFile_pos_in,
+  in_channel_length: LargeFile_in_channel_length
+};
 
 exports.invalid_arg = invalid_arg;
 exports.failwith = failwith;
@@ -39143,12 +39584,19 @@ exports.abs = abs;
 exports.max_int = max_int;
 exports.min_int = min_int;
 exports.lnot = lnot;
+exports.infinity = infinity;
+exports.neg_infinity = neg_infinity;
+exports.max_float = max_float;
+exports.min_float = min_float;
 exports.epsilon_float = epsilon_float;
 exports.classify_float = classify_float;
 exports.char_of_int = char_of_int;
 exports.string_of_bool = string_of_bool;
 exports.bool_of_string = bool_of_string;
+exports.bool_of_string_opt = bool_of_string_opt;
+exports.int_of_string_opt = int_of_string_opt;
 exports.string_of_float = string_of_float;
+exports.float_of_string_opt = float_of_string_opt;
 exports.$at = $at;
 exports.stdin = stdin;
 exports.stdout = stdout;
@@ -39167,7 +39615,9 @@ exports.prerr_float = prerr_float;
 exports.prerr_newline = prerr_newline;
 exports.read_line = read_line;
 exports.read_int = read_int;
+exports.read_int_opt = read_int_opt;
 exports.read_float = read_float;
+exports.read_float_opt = read_float_opt;
 exports.open_out = open_out;
 exports.open_out_bin = open_out_bin;
 exports.open_out_gen = open_out_gen;
@@ -39214,12 +39664,13 @@ exports.unsafe_really_input = unsafe_really_input;
 exports.do_at_exit = do_at_exit;
 /* No side effect */
 
-},{"./curry.js":"../node_modules/bs-platform/lib/js/curry.js","./caml_io.js":"../node_modules/bs-platform/lib/js/caml_io.js","./caml_sys.js":"../node_modules/bs-platform/lib/js/caml_sys.js","./caml_bytes.js":"../node_modules/bs-platform/lib/js/caml_bytes.js","./caml_format.js":"../node_modules/bs-platform/lib/js/caml_format.js","./caml_string.js":"../node_modules/bs-platform/lib/js/caml_string.js","./caml_exceptions.js":"../node_modules/bs-platform/lib/js/caml_exceptions.js","./caml_missing_polyfill.js":"../node_modules/bs-platform/lib/js/caml_missing_polyfill.js","./caml_builtin_exceptions.js":"../node_modules/bs-platform/lib/js/caml_builtin_exceptions.js","./camlinternalFormatBasics.js":"../node_modules/bs-platform/lib/js/camlinternalFormatBasics.js"}],"../node_modules/bs-platform/lib/js/list.js":[function(require,module,exports) {
+},{"./curry.js":"../node_modules/bs-platform/lib/js/curry.js","./caml_io.js":"../node_modules/bs-platform/lib/js/caml_io.js","./caml_sys.js":"../node_modules/bs-platform/lib/js/caml_sys.js","./caml_bytes.js":"../node_modules/bs-platform/lib/js/caml_bytes.js","./caml_format.js":"../node_modules/bs-platform/lib/js/caml_format.js","./caml_string.js":"../node_modules/bs-platform/lib/js/caml_string.js","./caml_exceptions.js":"../node_modules/bs-platform/lib/js/caml_exceptions.js","./caml_js_exceptions.js":"../node_modules/bs-platform/lib/js/caml_js_exceptions.js","./caml_external_polyfill.js":"../node_modules/bs-platform/lib/js/caml_external_polyfill.js","./caml_builtin_exceptions.js":"../node_modules/bs-platform/lib/js/caml_builtin_exceptions.js","./camlinternalFormatBasics.js":"../node_modules/bs-platform/lib/js/camlinternalFormatBasics.js"}],"../node_modules/bs-platform/lib/js/list.js":[function(require,module,exports) {
 'use strict';
 
 var Curry = require("./curry.js");
 var Caml_obj = require("./caml_obj.js");
 var Pervasives = require("./pervasives.js");
+var Caml_option = require("./caml_option.js");
 var Caml_builtin_exceptions = require("./caml_builtin_exceptions.js");
 
 function length(l) {
@@ -39236,6 +39687,13 @@ function length(l) {
       return len;
     }
   };
+}
+
+function cons(a, l) {
+  return /* :: */[
+          a,
+          l
+        ];
 }
 
 function hd(param) {
@@ -39266,28 +39724,53 @@ function nth(l, n) {
           Caml_builtin_exceptions.invalid_argument,
           "List.nth"
         ];
-  } else {
-    var _l = l;
-    var _n = n;
-    while(true) {
-      var n$1 = _n;
-      var l$1 = _l;
-      if (l$1) {
-        if (n$1 === 0) {
-          return l$1[0];
-        } else {
-          _n = n$1 - 1 | 0;
-          _l = l$1[1];
-          continue ;
-        }
-      } else {
-        throw [
-              Caml_builtin_exceptions.failure,
-              "nth"
-            ];
-      }
-    };
   }
+  var _l = l;
+  var _n = n;
+  while(true) {
+    var n$1 = _n;
+    var l$1 = _l;
+    if (l$1) {
+      if (n$1 === 0) {
+        return l$1[0];
+      } else {
+        _n = n$1 - 1 | 0;
+        _l = l$1[1];
+        continue ;
+      }
+    } else {
+      throw [
+            Caml_builtin_exceptions.failure,
+            "nth"
+          ];
+    }
+  };
+}
+
+function nth_opt(l, n) {
+  if (n < 0) {
+    throw [
+          Caml_builtin_exceptions.invalid_argument,
+          "List.nth"
+        ];
+  }
+  var _l = l;
+  var _n = n;
+  while(true) {
+    var n$1 = _n;
+    var l$1 = _l;
+    if (l$1) {
+      if (n$1 === 0) {
+        return Caml_option.some(l$1[0]);
+      } else {
+        _n = n$1 - 1 | 0;
+        _l = l$1[1];
+        continue ;
+      }
+    } else {
+      return ;
+    }
+  };
 }
 
 function rev_append(_l1, _l2) {
@@ -39309,6 +39792,49 @@ function rev_append(_l1, _l2) {
 
 function rev(l) {
   return rev_append(l, /* [] */0);
+}
+
+function init_tailrec_aux(_acc, _i, n, f) {
+  while(true) {
+    var i = _i;
+    var acc = _acc;
+    if (i >= n) {
+      return acc;
+    } else {
+      _i = i + 1 | 0;
+      _acc = /* :: */[
+        Curry._1(f, i),
+        acc
+      ];
+      continue ;
+    }
+  };
+}
+
+function init_aux(i, n, f) {
+  if (i >= n) {
+    return /* [] */0;
+  } else {
+    var r = Curry._1(f, i);
+    return /* :: */[
+            r,
+            init_aux(i + 1 | 0, n, f)
+          ];
+  }
+}
+
+function init(len, f) {
+  if (len < 0) {
+    throw [
+          Caml_builtin_exceptions.invalid_argument,
+          "List.init"
+        ];
+  }
+  if (len > 10000) {
+    return rev_append(init_tailrec_aux(/* [] */0, 0, len, f), /* [] */0);
+  } else {
+    return init_aux(0, len, f);
+  }
 }
 
 function flatten(param) {
@@ -39466,12 +39992,13 @@ function rev_map2(f, l1, l2) {
               "List.rev_map2"
             ];
       }
-    } else if (l2$1) {
-      throw [
-            Caml_builtin_exceptions.invalid_argument,
-            "List.rev_map2"
-          ];
     } else {
+      if (l2$1) {
+        throw [
+              Caml_builtin_exceptions.invalid_argument,
+              "List.rev_map2"
+            ];
+      }
       return accu;
     }
   };
@@ -39521,12 +40048,13 @@ function fold_left2(f, _accu, _l1, _l2) {
               "List.fold_left2"
             ];
       }
-    } else if (l2) {
-      throw [
-            Caml_builtin_exceptions.invalid_argument,
-            "List.fold_left2"
-          ];
     } else {
+      if (l2) {
+        throw [
+              Caml_builtin_exceptions.invalid_argument,
+              "List.fold_left2"
+            ];
+      }
       return accu;
     }
   };
@@ -39542,12 +40070,13 @@ function fold_right2(f, l1, l2, accu) {
             "List.fold_right2"
           ];
     }
-  } else if (l2) {
-    throw [
-          Caml_builtin_exceptions.invalid_argument,
-          "List.fold_right2"
-        ];
   } else {
+    if (l2) {
+      throw [
+            Caml_builtin_exceptions.invalid_argument,
+            "List.fold_right2"
+          ];
+    }
     return accu;
   }
 }
@@ -39693,6 +40222,23 @@ function assoc(x, _param) {
   };
 }
 
+function assoc_opt(x, _param) {
+  while(true) {
+    var param = _param;
+    if (param) {
+      var match = param[0];
+      if (Caml_obj.caml_equal(match[0], x)) {
+        return Caml_option.some(match[1]);
+      } else {
+        _param = param[1];
+        continue ;
+      }
+    } else {
+      return ;
+    }
+  };
+}
+
 function assq(x, _param) {
   while(true) {
     var param = _param;
@@ -39706,6 +40252,23 @@ function assq(x, _param) {
       }
     } else {
       throw Caml_builtin_exceptions.not_found;
+    }
+  };
+}
+
+function assq_opt(x, _param) {
+  while(true) {
+    var param = _param;
+    if (param) {
+      var match = param[0];
+      if (match[0] === x) {
+        return Caml_option.some(match[1]);
+      } else {
+        _param = param[1];
+        continue ;
+      }
+    } else {
+      return ;
     }
   };
 }
@@ -39789,6 +40352,23 @@ function find(p, _param) {
       }
     } else {
       throw Caml_builtin_exceptions.not_found;
+    }
+  };
+}
+
+function find_opt(p, _param) {
+  while(true) {
+    var param = _param;
+    if (param) {
+      var x = param[0];
+      if (Curry._1(p, x)) {
+        return Caml_option.some(x);
+      } else {
+        _param = param[1];
+        continue ;
+      }
+    } else {
+      return ;
     }
   };
 }
@@ -39943,7 +40523,7 @@ function chop(_k, _l) {
             Caml_builtin_exceptions.assert_failure,
             /* tuple */[
               "list.ml",
-              223,
+              262,
               11
             ]
           ];
@@ -39953,11 +40533,8 @@ function chop(_k, _l) {
 
 function stable_sort(cmp, l) {
   var sort = function (n, l) {
-    var exit = 0;
     if (n !== 2) {
-      if (n !== 3 || !l) {
-        exit = 1;
-      } else {
+      if (n === 3 && l) {
         var match = l[1];
         if (match) {
           var match$1 = match[1];
@@ -40034,13 +40611,12 @@ function stable_sort(cmp, l) {
                       ]
                     ];
             }
-          } else {
-            exit = 1;
           }
-        } else {
-          exit = 1;
+          
         }
+        
       }
+      
     } else if (l) {
       var match$2 = l[1];
       if (match$2) {
@@ -40063,60 +40639,51 @@ function stable_sort(cmp, l) {
                   ]
                 ];
         }
-      } else {
-        exit = 1;
       }
-    } else {
-      exit = 1;
+      
     }
-    if (exit === 1) {
-      var n1 = (n >> 1);
-      var n2 = n - n1 | 0;
-      var l2 = chop(n1, l);
-      var s1 = rev_sort(n1, l);
-      var s2 = rev_sort(n2, l2);
-      var _l1 = s1;
-      var _l2 = s2;
-      var _accu = /* [] */0;
-      while(true) {
-        var accu = _accu;
-        var l2$1 = _l2;
-        var l1 = _l1;
-        if (l1) {
-          if (l2$1) {
-            var h2 = l2$1[0];
-            var h1 = l1[0];
-            if (Curry._2(cmp, h1, h2) > 0) {
-              _accu = /* :: */[
-                h1,
-                accu
-              ];
-              _l1 = l1[1];
-              continue ;
-            } else {
-              _accu = /* :: */[
-                h2,
-                accu
-              ];
-              _l2 = l2$1[1];
-              continue ;
-            }
+    var n1 = (n >> 1);
+    var n2 = n - n1 | 0;
+    var l2 = chop(n1, l);
+    var s1 = rev_sort(n1, l);
+    var s2 = rev_sort(n2, l2);
+    var _l1 = s1;
+    var _l2 = s2;
+    var _accu = /* [] */0;
+    while(true) {
+      var accu = _accu;
+      var l2$1 = _l2;
+      var l1 = _l1;
+      if (l1) {
+        if (l2$1) {
+          var h2 = l2$1[0];
+          var h1 = l1[0];
+          if (Curry._2(cmp, h1, h2) > 0) {
+            _accu = /* :: */[
+              h1,
+              accu
+            ];
+            _l1 = l1[1];
+            continue ;
           } else {
-            return rev_append(l1, accu);
+            _accu = /* :: */[
+              h2,
+              accu
+            ];
+            _l2 = l2$1[1];
+            continue ;
           }
         } else {
-          return rev_append(l2$1, accu);
+          return rev_append(l1, accu);
         }
-      };
-    }
-    
+      } else {
+        return rev_append(l2$1, accu);
+      }
+    };
   };
   var rev_sort = function (n, l) {
-    var exit = 0;
     if (n !== 2) {
-      if (n !== 3 || !l) {
-        exit = 1;
-      } else {
+      if (n === 3 && l) {
         var match = l[1];
         if (match) {
           var match$1 = match[1];
@@ -40193,13 +40760,12 @@ function stable_sort(cmp, l) {
                       ]
                     ];
             }
-          } else {
-            exit = 1;
           }
-        } else {
-          exit = 1;
+          
         }
+        
       }
+      
     } else if (l) {
       var match$2 = l[1];
       if (match$2) {
@@ -40222,53 +40788,47 @@ function stable_sort(cmp, l) {
                   ]
                 ];
         }
-      } else {
-        exit = 1;
       }
-    } else {
-      exit = 1;
+      
     }
-    if (exit === 1) {
-      var n1 = (n >> 1);
-      var n2 = n - n1 | 0;
-      var l2 = chop(n1, l);
-      var s1 = sort(n1, l);
-      var s2 = sort(n2, l2);
-      var _l1 = s1;
-      var _l2 = s2;
-      var _accu = /* [] */0;
-      while(true) {
-        var accu = _accu;
-        var l2$1 = _l2;
-        var l1 = _l1;
-        if (l1) {
-          if (l2$1) {
-            var h2 = l2$1[0];
-            var h1 = l1[0];
-            if (Curry._2(cmp, h1, h2) <= 0) {
-              _accu = /* :: */[
-                h1,
-                accu
-              ];
-              _l1 = l1[1];
-              continue ;
-            } else {
-              _accu = /* :: */[
-                h2,
-                accu
-              ];
-              _l2 = l2$1[1];
-              continue ;
-            }
+    var n1 = (n >> 1);
+    var n2 = n - n1 | 0;
+    var l2 = chop(n1, l);
+    var s1 = sort(n1, l);
+    var s2 = sort(n2, l2);
+    var _l1 = s1;
+    var _l2 = s2;
+    var _accu = /* [] */0;
+    while(true) {
+      var accu = _accu;
+      var l2$1 = _l2;
+      var l1 = _l1;
+      if (l1) {
+        if (l2$1) {
+          var h2 = l2$1[0];
+          var h1 = l1[0];
+          if (Curry._2(cmp, h1, h2) <= 0) {
+            _accu = /* :: */[
+              h1,
+              accu
+            ];
+            _l1 = l1[1];
+            continue ;
           } else {
-            return rev_append(l1, accu);
+            _accu = /* :: */[
+              h2,
+              accu
+            ];
+            _l2 = l2$1[1];
+            continue ;
           }
         } else {
-          return rev_append(l2$1, accu);
+          return rev_append(l1, accu);
         }
-      };
-    }
-    
+      } else {
+        return rev_append(l2$1, accu);
+      }
+    };
   };
   var len = length(l);
   if (len < 2) {
@@ -40280,11 +40840,8 @@ function stable_sort(cmp, l) {
 
 function sort_uniq(cmp, l) {
   var sort = function (n, l) {
-    var exit = 0;
     if (n !== 2) {
-      if (n !== 3 || !l) {
-        exit = 1;
-      } else {
+      if (n === 3 && l) {
         var match = l[1];
         if (match) {
           var match$1 = match[1];
@@ -40428,13 +40985,12 @@ function sort_uniq(cmp, l) {
                 }
               }
             }
-          } else {
-            exit = 1;
           }
-        } else {
-          exit = 1;
+          
         }
+        
       }
+      
     } else if (l) {
       var match$2 = l[1];
       if (match$2) {
@@ -40463,71 +41019,62 @@ function sort_uniq(cmp, l) {
                   ]
                 ];
         }
-      } else {
-        exit = 1;
       }
-    } else {
-      exit = 1;
+      
     }
-    if (exit === 1) {
-      var n1 = (n >> 1);
-      var n2 = n - n1 | 0;
-      var l2 = chop(n1, l);
-      var s1 = rev_sort(n1, l);
-      var s2 = rev_sort(n2, l2);
-      var _l1 = s1;
-      var _l2 = s2;
-      var _accu = /* [] */0;
-      while(true) {
-        var accu = _accu;
-        var l2$1 = _l2;
-        var l1 = _l1;
-        if (l1) {
-          if (l2$1) {
-            var t2 = l2$1[1];
-            var h2 = l2$1[0];
-            var t1 = l1[1];
-            var h1 = l1[0];
-            var c$7 = Curry._2(cmp, h1, h2);
-            if (c$7 === 0) {
-              _accu = /* :: */[
-                h1,
-                accu
-              ];
-              _l2 = t2;
-              _l1 = t1;
-              continue ;
-            } else if (c$7 > 0) {
-              _accu = /* :: */[
-                h1,
-                accu
-              ];
-              _l1 = t1;
-              continue ;
-            } else {
-              _accu = /* :: */[
-                h2,
-                accu
-              ];
-              _l2 = t2;
-              continue ;
-            }
+    var n1 = (n >> 1);
+    var n2 = n - n1 | 0;
+    var l2 = chop(n1, l);
+    var s1 = rev_sort(n1, l);
+    var s2 = rev_sort(n2, l2);
+    var _l1 = s1;
+    var _l2 = s2;
+    var _accu = /* [] */0;
+    while(true) {
+      var accu = _accu;
+      var l2$1 = _l2;
+      var l1 = _l1;
+      if (l1) {
+        if (l2$1) {
+          var t2 = l2$1[1];
+          var h2 = l2$1[0];
+          var t1 = l1[1];
+          var h1 = l1[0];
+          var c$7 = Curry._2(cmp, h1, h2);
+          if (c$7 === 0) {
+            _accu = /* :: */[
+              h1,
+              accu
+            ];
+            _l2 = t2;
+            _l1 = t1;
+            continue ;
+          } else if (c$7 > 0) {
+            _accu = /* :: */[
+              h1,
+              accu
+            ];
+            _l1 = t1;
+            continue ;
           } else {
-            return rev_append(l1, accu);
+            _accu = /* :: */[
+              h2,
+              accu
+            ];
+            _l2 = t2;
+            continue ;
           }
         } else {
-          return rev_append(l2$1, accu);
+          return rev_append(l1, accu);
         }
-      };
-    }
-    
+      } else {
+        return rev_append(l2$1, accu);
+      }
+    };
   };
   var rev_sort = function (n, l) {
-    var exit = 0;
     if (n !== 2) {
-      if (n !== 3 || !l) {
-        exit = 1;
-      } else {
+      if (n === 3 && l) {
         var match = l[1];
         if (match) {
           var match$1 = match[1];
@@ -40671,13 +41218,12 @@ function sort_uniq(cmp, l) {
                 }
               }
             }
-          } else {
-            exit = 1;
           }
-        } else {
-          exit = 1;
+          
         }
+        
       }
+      
     } else if (l) {
       var match$2 = l[1];
       if (match$2) {
@@ -40706,64 +41252,58 @@ function sort_uniq(cmp, l) {
                   ]
                 ];
         }
-      } else {
-        exit = 1;
       }
-    } else {
-      exit = 1;
+      
     }
-    if (exit === 1) {
-      var n1 = (n >> 1);
-      var n2 = n - n1 | 0;
-      var l2 = chop(n1, l);
-      var s1 = sort(n1, l);
-      var s2 = sort(n2, l2);
-      var _l1 = s1;
-      var _l2 = s2;
-      var _accu = /* [] */0;
-      while(true) {
-        var accu = _accu;
-        var l2$1 = _l2;
-        var l1 = _l1;
-        if (l1) {
-          if (l2$1) {
-            var t2 = l2$1[1];
-            var h2 = l2$1[0];
-            var t1 = l1[1];
-            var h1 = l1[0];
-            var c$7 = Curry._2(cmp, h1, h2);
-            if (c$7 === 0) {
-              _accu = /* :: */[
-                h1,
-                accu
-              ];
-              _l2 = t2;
-              _l1 = t1;
-              continue ;
-            } else if (c$7 < 0) {
-              _accu = /* :: */[
-                h1,
-                accu
-              ];
-              _l1 = t1;
-              continue ;
-            } else {
-              _accu = /* :: */[
-                h2,
-                accu
-              ];
-              _l2 = t2;
-              continue ;
-            }
+    var n1 = (n >> 1);
+    var n2 = n - n1 | 0;
+    var l2 = chop(n1, l);
+    var s1 = sort(n1, l);
+    var s2 = sort(n2, l2);
+    var _l1 = s1;
+    var _l2 = s2;
+    var _accu = /* [] */0;
+    while(true) {
+      var accu = _accu;
+      var l2$1 = _l2;
+      var l1 = _l1;
+      if (l1) {
+        if (l2$1) {
+          var t2 = l2$1[1];
+          var h2 = l2$1[0];
+          var t1 = l1[1];
+          var h1 = l1[0];
+          var c$7 = Curry._2(cmp, h1, h2);
+          if (c$7 === 0) {
+            _accu = /* :: */[
+              h1,
+              accu
+            ];
+            _l2 = t2;
+            _l1 = t1;
+            continue ;
+          } else if (c$7 < 0) {
+            _accu = /* :: */[
+              h1,
+              accu
+            ];
+            _l1 = t1;
+            continue ;
           } else {
-            return rev_append(l1, accu);
+            _accu = /* :: */[
+              h2,
+              accu
+            ];
+            _l2 = t2;
+            continue ;
           }
         } else {
-          return rev_append(l2$1, accu);
+          return rev_append(l1, accu);
         }
-      };
-    }
-    
+      } else {
+        return rev_append(l2$1, accu);
+      }
+    };
   };
   var len = length(l);
   if (len < 2) {
@@ -40771,6 +41311,48 @@ function sort_uniq(cmp, l) {
   } else {
     return sort(len, l);
   }
+}
+
+function compare_lengths(_l1, _l2) {
+  while(true) {
+    var l2 = _l2;
+    var l1 = _l1;
+    if (l1) {
+      if (l2) {
+        _l2 = l2[1];
+        _l1 = l1[1];
+        continue ;
+      } else {
+        return 1;
+      }
+    } else if (l2) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+}
+
+function compare_length_with(_l, _n) {
+  while(true) {
+    var n = _n;
+    var l = _l;
+    if (l) {
+      if (n <= 0) {
+        return 1;
+      } else {
+        _n = n - 1 | 0;
+        _l = l[1];
+        continue ;
+      }
+    } else if (n === 0) {
+      return 0;
+    } else if (n > 0) {
+      return -1;
+    } else {
+      return 1;
+    }
+  };
 }
 
 var append = Pervasives.$at;
@@ -40784,10 +41366,15 @@ var sort = stable_sort;
 var fast_sort = stable_sort;
 
 exports.length = length;
+exports.compare_lengths = compare_lengths;
+exports.compare_length_with = compare_length_with;
+exports.cons = cons;
 exports.hd = hd;
 exports.tl = tl;
 exports.nth = nth;
+exports.nth_opt = nth_opt;
 exports.rev = rev;
+exports.init = init;
 exports.append = append;
 exports.rev_append = rev_append;
 exports.concat = concat;
@@ -40811,11 +41398,14 @@ exports.exists2 = exists2;
 exports.mem = mem;
 exports.memq = memq;
 exports.find = find;
+exports.find_opt = find_opt;
 exports.filter = filter;
 exports.find_all = find_all;
 exports.partition = partition;
 exports.assoc = assoc;
+exports.assoc_opt = assoc_opt;
 exports.assq = assq;
+exports.assq_opt = assq_opt;
 exports.mem_assoc = mem_assoc;
 exports.mem_assq = mem_assq;
 exports.remove_assoc = remove_assoc;
@@ -40829,8 +41419,8 @@ exports.sort_uniq = sort_uniq;
 exports.merge = merge;
 /* No side effect */
 
-},{"./curry.js":"../node_modules/bs-platform/lib/js/curry.js","./caml_obj.js":"../node_modules/bs-platform/lib/js/caml_obj.js","./pervasives.js":"../node_modules/bs-platform/lib/js/pervasives.js","./caml_builtin_exceptions.js":"../node_modules/bs-platform/lib/js/caml_builtin_exceptions.js"}],"imandra_prelude.bs.js":[function(require,module,exports) {
-// Generated by BUCKLESCRIPT VERSION 4.0.18, PLEASE EDIT WITH CARE
+},{"./curry.js":"../node_modules/bs-platform/lib/js/curry.js","./caml_obj.js":"../node_modules/bs-platform/lib/js/caml_obj.js","./pervasives.js":"../node_modules/bs-platform/lib/js/pervasives.js","./caml_option.js":"../node_modules/bs-platform/lib/js/caml_option.js","./caml_builtin_exceptions.js":"../node_modules/bs-platform/lib/js/caml_builtin_exceptions.js"}],"imandra_prelude.bs.js":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT, PLEASE EDIT WITH CARE
 'use strict';
 
 var List = require("bs-platform/lib/js/list.js");
@@ -40861,17 +41451,12 @@ function of_int(s) {
   return s;
 }
 
-var Z =
-/* module */
-[
-/* of_string */
-of_string,
-/* to_string */
-to_string,
-/* pp_print */
-pp_print,
-/* of_int */
-of_int];
+var Z = {
+  of_string: of_string,
+  to_string: to_string,
+  pp_print: pp_print,
+  of_int: of_int
+};
 
 function is_empty(param) {
   if (param) {
@@ -41148,7 +41733,7 @@ function nth(_n, _param) {
         continue;
       }
     } else {
-      return undefined;
+      return;
     }
   }
 
@@ -41169,7 +41754,7 @@ function assoc(x, _param) {
         continue;
       }
     } else {
-      return undefined;
+      return;
     }
   }
 
@@ -41286,69 +41871,40 @@ function is_sorted(leq, _param) {
   ;
 }
 
-var List$1 =
-/* module */
-[
-/* empty : [] */
-0,
-/* is_empty */
-is_empty,
-/* cons */
-cons,
-/* return */
-$$return,
-/* hd */
-List.hd,
-/* tl */
-List.tl,
-/* append */
-append,
-/* rev */
-rev,
-/* length */
-length,
-/* len_nonnegative */
-len_nonnegative,
-/* len_zero_is_empty */
-len_zero_is_empty,
-/* split */
-split,
-/* map */
-map,
-/* for_all */
-for_all,
-/* exists */
-exists,
-/* fold_left */
-fold_left,
-/* fold_right */
-fold_right,
-/* filter */
-filter,
-/* filter_map */
-filter_map,
-/* flat_map */
-flat_map,
-/* mem */
-mem,
-/* mem_assoc */
-mem_assoc,
-/* nth */
-nth,
-/* assoc */
-assoc,
-/* take */
-take,
-/* drop */
-drop,
-/* -- */
-$neg$neg,
-/* insert_sorted */
-insert_sorted,
-/* sort */
-sort,
-/* is_sorted */
-is_sorted];
+var List$1 = {
+  empty:
+  /* [] */
+  0,
+  is_empty: is_empty,
+  cons: cons,
+  $$return: $$return,
+  hd: List.hd,
+  tl: List.tl,
+  append: append,
+  rev: rev,
+  length: length,
+  len_nonnegative: len_nonnegative,
+  len_zero_is_empty: len_zero_is_empty,
+  split: split,
+  map: map,
+  for_all: for_all,
+  exists: exists,
+  fold_left: fold_left,
+  fold_right: fold_right,
+  filter: filter,
+  filter_map: filter_map,
+  flat_map: flat_map,
+  mem: mem,
+  mem_assoc: mem_assoc,
+  nth: nth,
+  assoc: assoc,
+  take: take,
+  drop: drop,
+  $neg$neg: $neg$neg,
+  insert_sorted: insert_sorted,
+  sort: sort,
+  is_sorted: is_sorted
+};
 
 function $plus(prim, prim$1) {
   return prim + prim$1 | 0;
@@ -41373,43 +41929,25 @@ var min = Caml_obj.caml_min;
 var max = Caml_obj.caml_max;
 var equal = Caml_obj.caml_equal;
 var compare = Caml_obj.caml_compare;
-var Int =
-/* module */
-[
-/* + */
-$plus,
-/* - */
-$neg,
-/* ~- */
-$tilde$neg,
-/* * */
-$star,
-/* / */
-$slash,
-/* mod */
-mod,
-/* < */
-$less,
-/* <= */
-$less$eq,
-/* > */
-$great,
-/* >= */
-$great$eq,
-/* min */
-min,
-/* max */
-max,
-/* to_string */
-to_string,
-/* equal */
-equal,
-/* compare */
-compare,
-/* pp */
-pp_print,
-/* of_caml_int */
-of_int];
+var Int = {
+  $plus: $plus,
+  $neg: $neg,
+  $tilde$neg: $tilde$neg,
+  $star: $star,
+  $slash: $slash,
+  mod: mod,
+  $less: $less,
+  $less$eq: $less$eq,
+  $great: $great,
+  $great$eq: $great$eq,
+  min: min,
+  max: max,
+  to_string: to_string,
+  equal: equal,
+  compare: compare,
+  pp: pp_print,
+  of_caml_int: of_int
+};
 
 function map$1(f, param) {
   if (param !== undefined) {
@@ -41491,35 +42029,21 @@ function fold(f, acc, o) {
   }
 }
 
-var Option =
-/* module */
-[
-/* map */
-map$1,
-/* map_or */
-map_or,
-/* is_some */
-is_some,
-/* is_none */
-is_none,
-/* return */
-$$return$1,
-/* >|= */
-$great$pipe$eq,
-/* >>= */
-$great$great$eq,
-/* or_ */
-or_,
-/* <+> */
-$less$plus$great,
-/* exists */
-exists$1,
-/* for_all */
-for_all$1,
-/* get_or */
-get_or,
-/* fold */
-fold];
+var $$Option = {
+  map: map$1,
+  map_or: map_or,
+  is_some: is_some,
+  is_none: is_none,
+  $$return: $$return$1,
+  $great$pipe$eq: $great$pipe$eq,
+  $great$great$eq: $great$great$eq,
+  or_: or_,
+  $less$plus$great: $less$plus$great,
+  exists: exists$1,
+  for_all: for_all$1,
+  get_or: get_or,
+  fold: fold
+};
 
 function $$return$2(x) {
   return (
@@ -41619,33 +42143,20 @@ function is_error(param) {
   }
 }
 
-var Result =
-/* module */
-[
-/* return */
-$$return$2,
-/* fail */
-fail,
-/* map */
-map$2,
-/* map_err */
-map_err,
-/* get_or */
-get_or$1,
-/* map_or */
-map_or$1,
-/* >|= */
-$great$pipe$eq$1,
-/* flat_map */
-flat_map$1,
-/* >>= */
-$great$great$eq$1,
-/* fold */
-fold$1,
-/* is_ok */
-is_ok,
-/* is_error */
-is_error];
+var Result = {
+  $$return: $$return$2,
+  fail: fail,
+  map: map$2,
+  map_err: map_err,
+  get_or: get_or$1,
+  map_or: map_or$1,
+  $great$pipe$eq: $great$pipe$eq$1,
+  flat_map: flat_map$1,
+  $great$great$eq: $great$great$eq$1,
+  fold: fold$1,
+  is_ok: is_ok,
+  is_error: is_error
+};
 
 function succ(x) {
   return x + Caml_format.caml_int_of_string("1") | 0;
@@ -41673,7 +42184,7 @@ exports.List = List$1;
 exports.$at = $at;
 exports.$neg$neg = $neg$neg;
 exports.Int = Int;
-exports.Option = Option;
+exports.$$Option = $$Option;
 exports.Result = Result;
 exports.succ = succ;
 exports.pred = pred;
@@ -41682,7 +42193,7 @@ exports.snd = snd;
 exports.$percent$great = $percent$great;
 /* No side effect */
 },{"bs-platform/lib/js/list.js":"../node_modules/bs-platform/lib/js/list.js","bs-platform/lib/js/block.js":"../node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"../node_modules/bs-platform/lib/js/curry.js","bs-platform/lib/js/caml_obj.js":"../node_modules/bs-platform/lib/js/caml_obj.js","bs-platform/lib/js/caml_int32.js":"../node_modules/bs-platform/lib/js/caml_int32.js","bs-platform/lib/js/caml_format.js":"../node_modules/bs-platform/lib/js/caml_format.js","bs-platform/lib/js/caml_option.js":"../node_modules/bs-platform/lib/js/caml_option.js"}],"TicTacToeLogic.bs.js":[function(require,module,exports) {
-// Generated by BUCKLESCRIPT VERSION 4.0.18, PLEASE EDIT WITH CARE
+// Generated by BUCKLESCRIPT, PLEASE EDIT WITH CARE
 'use strict';
 
 var Block = require("bs-platform/lib/js/block.js");
@@ -41694,89 +42205,67 @@ var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var Imandra_prelude$ReactTemplate = require("./imandra_prelude.bs.js");
 
 function value(param, param$1) {
-  var match = param[
-  /* grid */
-  0];
+  var match = param.grid;
 
   switch (param$1) {
-    case 0:
-      return match[
-      /* a */
-      0];
+    case
+    /* A */
+    0:
+      return match.a;
 
-    case 1:
-      return match[
-      /* b */
-      1];
+    case
+    /* B */
+    1:
+      return match.b;
 
-    case 2:
-      return match[
-      /* c */
-      2];
+    case
+    /* C */
+    2:
+      return match.c;
 
-    case 3:
-      return match[
-      /* d */
-      3];
+    case
+    /* D */
+    3:
+      return match.d;
 
-    case 4:
-      return match[
-      /* e */
-      4];
+    case
+    /* E */
+    4:
+      return match.e;
 
-    case 5:
-      return match[
-      /* f */
-      5];
+    case
+    /* F */
+    5:
+      return match.f;
 
-    case 6:
-      return match[
-      /* g */
-      6];
+    case
+    /* G */
+    6:
+      return match.g;
 
-    case 7:
-      return match[
-      /* h */
-      7];
+    case
+    /* H */
+    7:
+      return match.h;
 
-    case 8:
-      return match[
-      /* i */
-      8];
+    case
+    /* I */
+    8:
+      return match.i;
   }
 }
 
 function is_winning(param, player) {
-  var match = param[
-  /* grid */
-  0];
-  var i = match[
-  /* i */
-  8];
-  var h = match[
-  /* h */
-  7];
-  var g = match[
-  /* g */
-  6];
-  var f = match[
-  /* f */
-  5];
-  var e = match[
-  /* e */
-  4];
-  var d = match[
-  /* d */
-  3];
-  var c = match[
-  /* c */
-  2];
-  var b = match[
-  /* b */
-  1];
-  var a = match[
-  /* a */
-  0];
+  var match = param.grid;
+  var i = match.i;
+  var h = match.h;
+  var g = match.g;
+  var f = match.f;
+  var e = match.e;
+  var d = match.d;
+  var c = match.c;
+  var b = match.b;
+  var a = match.a;
   var winning_state_000 = player;
   var winning_state_001 = player;
   var winning_state_002 = player;
@@ -41822,9 +42311,7 @@ function other_player(param) {
 }
 
 function move_counts(param) {
-  return Imandra_prelude$ReactTemplate.List[
-  /* fold_right */
-  16](function (el, param) {
+  return Imandra_prelude$ReactTemplate.List.fold_right(function (el, param) {
     var o = param[1];
     var x = param[0];
 
@@ -41850,41 +42337,23 @@ function move_counts(param) {
   /* tuple */
   [0, 0],
   /* :: */
-  [param[
-  /* a */
-  0],
+  [param.a,
   /* :: */
-  [param[
-  /* b */
-  1],
+  [param.b,
   /* :: */
-  [param[
-  /* c */
-  2],
+  [param.c,
   /* :: */
-  [param[
-  /* d */
-  3],
+  [param.d,
   /* :: */
-  [param[
-  /* e */
-  4],
+  [param.e,
   /* :: */
-  [param[
-  /* f */
-  5],
+  [param.f,
   /* :: */
-  [param[
-  /* g */
-  6],
+  [param.g,
   /* :: */
-  [param[
-  /* h */
-  7],
+  [param.h,
   /* :: */
-  [param[
-  /* i */
-  8],
+  [param.i,
   /* [] */
   0]]]]]]]]]);
 }
@@ -41908,50 +42377,28 @@ function is_valid_grid(grid, last_player) {
 }
 
 function is_tie(param) {
-  var match = param[
-  /* grid */
-  0];
-  return Imandra_prelude$ReactTemplate.List[
-  /* for_all */
-  13](function (param) {
+  var match = param.grid;
+  return Imandra_prelude$ReactTemplate.List.for_all(function (param) {
     return undefined !== param;
   },
   /* :: */
-  [match[
-  /* a */
-  0],
+  [match.a,
   /* :: */
-  [match[
-  /* b */
-  1],
+  [match.b,
   /* :: */
-  [match[
-  /* c */
-  2],
+  [match.c,
   /* :: */
-  [match[
-  /* d */
-  3],
+  [match.d,
   /* :: */
-  [match[
-  /* e */
-  4],
+  [match.e,
   /* :: */
-  [match[
-  /* f */
-  5],
+  [match.f,
   /* :: */
-  [match[
-  /* g */
-  6],
+  [match.g,
   /* :: */
-  [match[
-  /* h */
-  7],
+  [match.h,
   /* :: */
-  [match[
-  /* i */
-  8],
+  [match.i,
   /* [] */
   0]]]]]]]]]);
 }
@@ -41964,11 +42411,7 @@ function is_valid_game(game) {
   /* O */
   1);
 
-  if (is_valid_grid(game[
-  /* grid */
-  0], game[
-  /* last_player */
-  1])) {
+  if (is_valid_grid(game.grid, game.last_player)) {
     if (!winning_X && !winning_O) {
       return true;
     } else {
@@ -41979,22 +42422,18 @@ function is_valid_game(game) {
   }
 }
 
-function is_valid_move_broken(game, player, move) {
+function is_valid_move_broken(game, player, _move) {
   if (!(is_winning(game,
   /* X */
   0) || is_winning(game,
   /* O */
   1) || is_tie(game)) && is_valid_game(game)) {
-    if (game[
-    /* last_player */
-    1] === undefined && player ===
+    if (game.last_player === undefined && player ===
     /* X */
     0) {
       return true;
     } else {
-      return Caml_obj.caml_equal(game[
-      /* last_player */
-      1], player ?
+      return Caml_obj.caml_equal(game.last_player, player ?
       /* X */
       0 :
       /* O */
@@ -42010,13 +42449,9 @@ function is_valid_move(game, player, move) {
   /* X */
   0) || is_winning(game,
   /* O */
-  1) || is_tie(game)) && is_valid_game(game) && (game[
-  /* last_player */
-  1] === undefined && player ===
+  1) || is_tie(game)) && is_valid_game(game) && (game.last_player === undefined && player ===
   /* X */
-  0 || Caml_obj.caml_equal(game[
-  /* last_player */
-  1], player ?
+  0 || Caml_obj.caml_equal(game.last_player, player ?
   /* X */
   0 :
   /* O */
@@ -42028,382 +42463,160 @@ function is_valid_move(game, player, move) {
 }
 
 function play_move(param, player, move) {
-  var grid = param[
-  /* grid */
-  0];
+  var grid = param.grid;
   var play = player;
   var grid$1;
 
   switch (move) {
-    case 0:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      play,
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* A */
+    0:
+      grid$1 = {
+        a: play,
+        b: grid.b,
+        c: grid.c,
+        d: grid.d,
+        e: grid.e,
+        f: grid.f,
+        g: grid.g,
+        h: grid.h,
+        i: grid.i
+      };
       break;
 
-    case 1:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      play,
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* B */
+    1:
+      grid$1 = {
+        a: grid.a,
+        b: play,
+        c: grid.c,
+        d: grid.d,
+        e: grid.e,
+        f: grid.f,
+        g: grid.g,
+        h: grid.h,
+        i: grid.i
+      };
       break;
 
-    case 2:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      play,
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* C */
+    2:
+      grid$1 = {
+        a: grid.a,
+        b: grid.b,
+        c: play,
+        d: grid.d,
+        e: grid.e,
+        f: grid.f,
+        g: grid.g,
+        h: grid.h,
+        i: grid.i
+      };
       break;
 
-    case 3:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      play,
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* D */
+    3:
+      grid$1 = {
+        a: grid.a,
+        b: grid.b,
+        c: grid.c,
+        d: play,
+        e: grid.e,
+        f: grid.f,
+        g: grid.g,
+        h: grid.h,
+        i: grid.i
+      };
       break;
 
-    case 4:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      play,
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* E */
+    4:
+      grid$1 = {
+        a: grid.a,
+        b: grid.b,
+        c: grid.c,
+        d: grid.d,
+        e: play,
+        f: grid.f,
+        g: grid.g,
+        h: grid.h,
+        i: grid.i
+      };
       break;
 
-    case 5:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      play,
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* F */
+    5:
+      grid$1 = {
+        a: grid.a,
+        b: grid.b,
+        c: grid.c,
+        d: grid.d,
+        e: grid.e,
+        f: play,
+        g: grid.g,
+        h: grid.h,
+        i: grid.i
+      };
       break;
 
-    case 6:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      play,
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* G */
+    6:
+      grid$1 = {
+        a: grid.a,
+        b: grid.b,
+        c: grid.c,
+        d: grid.d,
+        e: grid.e,
+        f: grid.f,
+        g: play,
+        h: grid.h,
+        i: grid.i
+      };
       break;
 
-    case 7:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      play,
-      /* i */
-      grid[
-      /* i */
-      8]];
+    case
+    /* H */
+    7:
+      grid$1 = {
+        a: grid.a,
+        b: grid.b,
+        c: grid.c,
+        d: grid.d,
+        e: grid.e,
+        f: grid.f,
+        g: grid.g,
+        h: play,
+        i: grid.i
+      };
       break;
 
-    case 8:
-      grid$1 =
-      /* record */
-      [
-      /* a */
-      grid[
-      /* a */
-      0],
-      /* b */
-      grid[
-      /* b */
-      1],
-      /* c */
-      grid[
-      /* c */
-      2],
-      /* d */
-      grid[
-      /* d */
-      3],
-      /* e */
-      grid[
-      /* e */
-      4],
-      /* f */
-      grid[
-      /* f */
-      5],
-      /* g */
-      grid[
-      /* g */
-      6],
-      /* h */
-      grid[
-      /* h */
-      7],
-      /* i */
-      play];
+    case
+    /* I */
+    8:
+      grid$1 = {
+        a: grid.a,
+        b: grid.b,
+        c: grid.c,
+        d: grid.d,
+        e: grid.e,
+        f: grid.f,
+        g: grid.g,
+        h: grid.h,
+        i: play
+      };
       break;
   }
 
-  return (
-    /* record */
-    [
-    /* grid */
-    grid$1,
-    /* last_player */
-    play]
-  );
+  return {
+    grid: grid$1,
+    last_player: play
+  };
 }
 
 function status(game) {
@@ -42439,9 +42652,7 @@ function status(game) {
 }
 
 function play(is_valid_fn, game, move) {
-  var last_player = game[
-  /* last_player */
-  1];
+  var last_player = game.last_player;
   var player = last_player !== undefined && !last_player ?
   /* O */
   1 :
@@ -42464,60 +42675,39 @@ function play(is_valid_fn, game, move) {
   }
 }
 
-var a_grid =
-/* record */
-[
-/* a */
-
-/* O */
-1,
-/* b */
-
-/* X */
-0,
-/* c */
-
-/* O */
-1,
-/* d */
-undefined,
-/* e */
-undefined,
-/* f */
-
-/* X */
-0,
-/* g */
-undefined,
-/* h */
-undefined,
-/* i */
-undefined];
-var initial_game =
-/* record */
-[
-/* grid : record */
-[
-/* a */
-undefined,
-/* b */
-undefined,
-/* c */
-undefined,
-/* d */
-undefined,
-/* e */
-undefined,
-/* f */
-undefined,
-/* g */
-undefined,
-/* h */
-undefined,
-/* i */
-undefined],
-/* last_player */
-undefined];
+var a_grid = {
+  a:
+  /* O */
+  1,
+  b:
+  /* X */
+  0,
+  c:
+  /* O */
+  1,
+  d: undefined,
+  e: undefined,
+  f:
+  /* X */
+  0,
+  g: undefined,
+  h: undefined,
+  i: undefined
+};
+var initial_game = {
+  grid: {
+    a: undefined,
+    b: undefined,
+    c: undefined,
+    d: undefined,
+    e: undefined,
+    f: undefined,
+    g: undefined,
+    h: undefined,
+    i: undefined
+  },
+  last_player: undefined
+};
 var initial_player =
 /* X */
 0;
@@ -42538,7 +42728,7 @@ exports.status = status;
 exports.play = play;
 /* No side effect */
 },{"bs-platform/lib/js/block.js":"../node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"../node_modules/bs-platform/lib/js/curry.js","bs-platform/lib/js/caml_obj.js":"../node_modules/bs-platform/lib/js/caml_obj.js","./imandra_prelude.bs.js":"imandra_prelude.bs.js"}],"TicTacToe.bs.js":[function(require,module,exports) {
-// Generated by BUCKLESCRIPT VERSION 4.0.18, PLEASE EDIT WITH CARE
+// Generated by BUCKLESCRIPT, PLEASE EDIT WITH CARE
 'use strict';
 
 var Block = require("bs-platform/lib/js/block.js");
@@ -42556,57 +42746,24 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 var TicTacToeLogic$ReactTemplate = require("./TicTacToeLogic.bs.js");
 
 var component = ReasonReact.reducerComponent("Example");
-var initialState_001 =
-/* status */
-TicTacToeLogic$ReactTemplate.status(TicTacToeLogic$ReactTemplate.initial_game);
-var initialState =
-/* record */
-[
-/* game */
-TicTacToeLogic$ReactTemplate.initial_game, initialState_001];
+var initialState_status = TicTacToeLogic$ReactTemplate.status(TicTacToeLogic$ReactTemplate.initial_game);
+var _initialState = {
+  game: TicTacToeLogic$ReactTemplate.initial_game,
+  status: initialState_status
+};
 
 function make(useBrokenLogic, onGameFinished, _children) {
-  return (
-    /* record */
-    [
-    /* debugName */
-    component[
-    /* debugName */
-    0],
-    /* reactClassInternal */
-    component[
-    /* reactClassInternal */
-    1],
-    /* handedOffState */
-    component[
-    /* handedOffState */
-    2],
-    /* willReceiveProps */
-    component[
-    /* willReceiveProps */
-    3],
-    /* didMount */
-    component[
-    /* didMount */
-    4],
-    /* didUpdate */
-    component[
-    /* didUpdate */
-    5],
-    /* willUnmount */
-    component[
-    /* willUnmount */
-    6],
-    /* willUpdate */
-    component[
-    /* willUpdate */
-    7],
-    /* shouldUpdate */
-    component[
-    /* shouldUpdate */
-    8],
-    /* render */
-    function (self) {
+  return {
+    debugName: component.debugName,
+    reactClassInternal: component.reactClassInternal,
+    handedOffState: component.handedOffState,
+    willReceiveProps: component.willReceiveProps,
+    didMount: component.didMount,
+    didUpdate: component.didUpdate,
+    willUnmount: component.willUnmount,
+    willUpdate: component.willUpdate,
+    shouldUpdate: component.shouldUpdate,
+    render: function render(self) {
       var label = function label(s) {
         if (s !== undefined) {
           if (s) {
@@ -42619,36 +42776,30 @@ function make(useBrokenLogic, onGameFinished, _children) {
         }
       };
 
-      var match = self[
-      /* state */
-      1][
-      /* status */
-      1];
+      var match = self.state.status;
       var disabled;
-      disabled = typeof match === "number" ? match === 0 ? false : true : match.tag ? false : true;
+      disabled = typeof match === "number" ? match ===
+      /* InProgress */
+      0 ? false : true : match.tag ? false : true;
 
       var buttonCss = function buttonCss(b) {
         var base = Emotion.css("display: block; width: 78px; height: 78px; margin: 3px;");
-        var match = self[
-        /* state */
-        1][
-        /* status */
-        1];
+        var match = self.state.status;
 
-        if (typeof match === "number" || !(match.tag === 1 && b === match[0])) {
+        if (typeof match === "number" || !(match.tag ===
+        /* InvalidMove */
+        1 && b === match[0])) {
           return base;
         } else {
           return base + (" " + Emotion.css("border: solid 1px red !important"));
         }
       };
 
-      var match$1 = self[
-      /* state */
-      1][
-      /* status */
-      1];
+      var match$1 = self.state.status;
       var overlay;
-      overlay = typeof match$1 === "number" ? match$1 === 0 ? undefined : "=" : match$1.tag ? undefined : match$1[0] ? "O" : "X";
+      overlay = typeof match$1 === "number" ? match$1 ===
+      /* InProgress */
+      0 ? undefined : "=" : match$1.tag ? undefined : match$1[0] ? "O" : "X";
       var rowCss = Emotion.css("display: flex; flex-direction: row");
       var elems = React.createElement("div", undefined, React.createElement("div", {
         className: rowCss
@@ -42658,67 +42809,37 @@ function make(useBrokenLogic, onGameFinished, _children) {
         0),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* A */
           0]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* a */
-      0])), React.createElement("button", {
+      }, label(self.state.game.grid.a)), React.createElement("button", {
         className: buttonCss(
         /* B */
         1),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* B */
           1]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* b */
-      1])), React.createElement("button", {
+      }, label(self.state.game.grid.b)), React.createElement("button", {
         className: buttonCss(
         /* C */
         2),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* C */
           2]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* c */
-      2]))), React.createElement("div", {
+      }, label(self.state.game.grid.c))), React.createElement("div", {
         className: rowCss
       }, React.createElement("button", {
         className: buttonCss(
@@ -42726,67 +42847,37 @@ function make(useBrokenLogic, onGameFinished, _children) {
         3),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* D */
           3]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* d */
-      3])), React.createElement("button", {
+      }, label(self.state.game.grid.d)), React.createElement("button", {
         className: buttonCss(
         /* E */
         4),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* E */
           4]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* e */
-      4])), React.createElement("button", {
+      }, label(self.state.game.grid.e)), React.createElement("button", {
         className: buttonCss(
         /* F */
         5),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* F */
           5]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* f */
-      5]))), React.createElement("div", {
+      }, label(self.state.game.grid.f))), React.createElement("div", {
         className: rowCss
       }, React.createElement("button", {
         className: buttonCss(
@@ -42794,97 +42885,56 @@ function make(useBrokenLogic, onGameFinished, _children) {
         6),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* G */
           6]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* g */
-      6])), React.createElement("button", {
+      }, label(self.state.game.grid.g)), React.createElement("button", {
         className: buttonCss(
         /* H */
         7),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* H */
           7]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* h */
-      7])), React.createElement("button", {
+      }, label(self.state.game.grid.h)), React.createElement("button", {
         className: buttonCss(
         /* I */
         8),
         disabled: disabled,
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Move */
           [
           /* I */
           8]);
         }
-      }, label(self[
-      /* state */
-      1][
-      /* game */
-      0][
-      /* grid */
-      0][
-      /* i */
-      8]))));
-      var sub = overlay !== undefined ?
-      /* array */
-      [elems, React.createElement("div", {
+      }, label(self.state.game.grid.i))));
+      var sub = overlay !== undefined ? [elems, React.createElement("div", {
         className: Emotion.css("position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; font-size: 150px; display: flex; flex-direction: row; justify-content: space-around; background: #FBFBFB; color: #3276B5; user-select: none; cursor: pointer;"),
         onClick: function onClick(_event) {
-          return Curry._1(self[
-          /* send */
-          3],
+          return Curry._1(self.send,
           /* Restart */
           0);
         }
       }, React.createElement("div", {
         className: Emotion.css("display: flex; flex-direction: column; justify-content: space-around;")
-      }, overlay))] :
-      /* array */
-      [elems];
+      }, overlay))] : [elems];
       return ReactDOMRe.createElementVariadic("div", {
         className: Emotion.css("position: relative; display: flex;")
       }, sub);
     },
-    /* initialState */
-    function (param) {
-      return initialState;
+    initialState: function initialState(param) {
+      return _initialState;
     },
-    /* retainedProps */
-    component[
-    /* retainedProps */
-    11],
-    /* reducer */
-    function (action, state) {
+    retainedProps: component.retainedProps,
+    reducer: function reducer(action, state) {
       if (action) {
         var partial_arg = useBrokenLogic ? TicTacToeLogic$ReactTemplate.is_valid_move_broken : TicTacToeLogic$ReactTemplate.is_valid_move;
 
@@ -42892,69 +42942,56 @@ function make(useBrokenLogic, onGameFinished, _children) {
           return TicTacToeLogic$ReactTemplate.play(partial_arg, param, param$1);
         };
 
-        var match = Curry._2(play, state[
-        /* game */
-        0], action[0]);
+        var match = Curry._2(play, state.game, action[0]);
 
         var status = match[1];
-        var newState_000 =
-        /* game */
-        match[0];
-        var newState =
-        /* record */
-        [newState_000,
-        /* status */
-        status];
-        var exit = 0;
+        var newState_game = match[0];
+        var newState = {
+          game: newState_game,
+          status: status
+        };
 
         if (typeof status === "number") {
-          if (status === 0) {
+          if (status ===
+          /* InProgress */
+          0) {
             return (
               /* Update */
               Block.__(0, [newState])
             );
-          } else {
-            exit = 1;
           }
         } else if (status.tag) {
           return (
             /* Update */
             Block.__(0, [newState])
           );
-        } else {
-          exit = 1;
         }
 
-        if (exit === 1) {
-          return (
-            /* UpdateWithSideEffects */
-            Block.__(2, [newState, function (_self) {
-              return Curry._1(onGameFinished,
-              /* () */
-              0);
-            }])
-          );
-        }
+        return (
+          /* UpdateWithSideEffects */
+          Block.__(2, [newState, function (_self) {
+            return Curry._1(onGameFinished,
+            /* () */
+            0);
+          }])
+        );
       } else {
         return (
           /* Update */
-          Block.__(0, [initialState])
+          Block.__(0, [_initialState])
         );
       }
     },
-    /* jsElementWrapped */
-    component[
-    /* jsElementWrapped */
-    13]]
-  );
+    jsElementWrapped: component.jsElementWrapped
+  };
 }
 
 exports.component = component;
-exports.initialState = initialState;
+exports.initialState = _initialState;
 exports.make = make;
 /* component Not a pure module */
-},{"bs-platform/lib/js/block.js":"../node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"../node_modules/bs-platform/lib/js/curry.js","react":"../node_modules/react/index.js","emotion":"../node_modules/emotion/dist/index.esm.js","reason-react/src/ReactDOMRe.js":"../node_modules/reason-react/src/ReactDOMRe.js","reason-react/src/ReasonReact.js":"../node_modules/reason-react/src/ReasonReact.js","./TicTacToeLogic.bs.js":"TicTacToeLogic.bs.js"}],"App.bs.js":[function(require,module,exports) {
-// Generated by BUCKLESCRIPT VERSION 4.0.18, PLEASE EDIT WITH CARE
+},{"bs-platform/lib/js/block.js":"../node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"../node_modules/bs-platform/lib/js/curry.js","react":"../node_modules/react/index.js","emotion":"../node_modules/emotion/dist/emotion.esm.js","reason-react/src/ReactDOMRe.js":"../node_modules/reason-react/src/ReactDOMRe.js","reason-react/src/ReasonReact.js":"../node_modules/reason-react/src/ReasonReact.js","./TicTacToeLogic.bs.js":"TicTacToeLogic.bs.js"}],"App.bs.js":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT, PLEASE EDIT WITH CARE
 'use strict';
 
 var Block = require("bs-platform/lib/js/block.js");
@@ -42972,106 +43009,63 @@ var TicTacToe$ReactTemplate = require("./TicTacToe.bs.js");
 var component = ReasonReact.reducerComponent("App");
 
 function make(useBrokenLogic, _children) {
-  return (
-    /* record */
-    [
-    /* debugName */
-    component[
-    /* debugName */
-    0],
-    /* reactClassInternal */
-    component[
-    /* reactClassInternal */
-    1],
-    /* handedOffState */
-    component[
-    /* handedOffState */
-    2],
-    /* willReceiveProps */
-    component[
-    /* willReceiveProps */
-    3],
-    /* didMount */
-    component[
-    /* didMount */
-    4],
-    /* didUpdate */
-    component[
-    /* didUpdate */
-    5],
-    /* willUnmount */
-    component[
-    /* willUnmount */
-    6],
-    /* willUpdate */
-    component[
-    /* willUpdate */
-    7],
-    /* shouldUpdate */
-    component[
-    /* shouldUpdate */
-    8],
-    /* render */
-    function (self) {
+  return {
+    debugName: component.debugName,
+    reactClassInternal: component.reactClassInternal,
+    handedOffState: component.handedOffState,
+    willReceiveProps: component.willReceiveProps,
+    didMount: component.didMount,
+    didUpdate: component.didUpdate,
+    willUnmount: component.willUnmount,
+    willUpdate: component.willUpdate,
+    shouldUpdate: component.shouldUpdate,
+    render: function render(self) {
       return React.createElement("div", {
         className: Emotion.css("display: flex; flex-direction: column; align-items: center;")
       }, React.createElement("h1", undefined, "Tic Tac Toe"), ReasonReact.element(undefined, undefined, TicTacToe$ReactTemplate.make(useBrokenLogic, function (param) {
-        return Curry._1(self[
-        /* send */
-        3],
+        return Curry._1(self.send,
         /* Finish */
         0);
-      },
-      /* array */
-      [])));
+      }, [])));
     },
-    /* initialState */
-    function (param) {
-      return (
-        /* record */
-        [
-        /* status : InProgress */
-        0]
-      );
+    initialState: function initialState(param) {
+      return {
+        status:
+        /* InProgress */
+        0
+      };
     },
-    /* retainedProps */
-    component[
-    /* retainedProps */
-    11],
-    /* reducer */
-    function (action, _state) {
+    retainedProps: component.retainedProps,
+    reducer: function reducer(action, _state) {
       if (action) {
         return (
           /* Update */
-          Block.__(0, [
-          /* record */
-          [
-          /* status : InProgress */
-          0]])
+          Block.__(0, [{
+            status:
+            /* InProgress */
+            0
+          }])
         );
       } else {
         return (
           /* Update */
-          Block.__(0, [
-          /* record */
-          [
-          /* status : Finished */
-          1]])
+          Block.__(0, [{
+            status:
+            /* Finished */
+            1
+          }])
         );
       }
     },
-    /* jsElementWrapped */
-    component[
-    /* jsElementWrapped */
-    13]]
-  );
+    jsElementWrapped: component.jsElementWrapped
+  };
 }
 
 exports.component = component;
 exports.make = make;
 /* component Not a pure module */
-},{"bs-platform/lib/js/block.js":"../node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"../node_modules/bs-platform/lib/js/curry.js","react":"../node_modules/react/index.js","emotion":"../node_modules/emotion/dist/index.esm.js","reason-react/src/ReasonReact.js":"../node_modules/reason-react/src/ReasonReact.js","./TicTacToe.bs.js":"TicTacToe.bs.js"}],"IndexInitial.bs.js":[function(require,module,exports) {
-// Generated by BUCKLESCRIPT VERSION 4.0.18, PLEASE EDIT WITH CARE
+},{"bs-platform/lib/js/block.js":"../node_modules/bs-platform/lib/js/block.js","bs-platform/lib/js/curry.js":"../node_modules/bs-platform/lib/js/curry.js","react":"../node_modules/react/index.js","emotion":"../node_modules/emotion/dist/emotion.esm.js","reason-react/src/ReasonReact.js":"../node_modules/reason-react/src/ReasonReact.js","./TicTacToe.bs.js":"TicTacToe.bs.js"}],"IndexInitial.bs.js":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT, PLEASE EDIT WITH CARE
 'use strict';
 
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
@@ -43080,9 +43074,7 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var App$ReactTemplate = require("./App.bs.js");
 
-ReactDOMRe.renderToElementWithId(ReasonReact.element(undefined, undefined, App$ReactTemplate.make(true,
-/* array */
-[])), "app");
+ReactDOMRe.renderToElementWithId(ReasonReact.element(undefined, undefined, App$ReactTemplate.make(true, [])), "app");
 /*  Not a pure module */
 },{"reason-react/src/ReactDOMRe.js":"../node_modules/reason-react/src/ReactDOMRe.js","reason-react/src/ReasonReact.js":"../node_modules/reason-react/src/ReasonReact.js","./App.bs.js":"App.bs.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -43112,7 +43104,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55315" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55437" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
