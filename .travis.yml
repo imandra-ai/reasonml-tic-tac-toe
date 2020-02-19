@@ -6,6 +6,7 @@ script:
 - docker pull imandra/imandra-client-switch
 - npm run build
 - npm run parcel:production
+- git remote set-url origin https://imandraci:$GITHUB_TOKEN@github.com/aestheticintegration/reasonml-tic-tac-toe.git
 - npm run deploy
 env:
   global:
