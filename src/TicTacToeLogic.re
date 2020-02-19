@@ -153,6 +153,8 @@ let is_valid_grid = (grid, last_player) => {
     last_player == Some(X) && x - o == 1;
   } else if (x < o) {
     last_player == Some(O) && o - x == 1;
+  } else if (x + o == 0) {
+    last_player == None;
   } else {
     true;
   };
