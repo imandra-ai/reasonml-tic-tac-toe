@@ -18,9 +18,7 @@ let initialState = {
   status: TicTacToeLogic.status(TicTacToeLogic.initial_game),
 };
 
-/* greeting and children are props. `children` isn't used, therefore ignored.
-   We ignore it by prepending it with an underscore */
-let make = (~onGameFinished, _children) => {
+let make = (~useBrokenLogic, ~onGameFinished, _children) => {
   /* spread the other default fields of component here and override a few */
   ...component,
   initialState: () => initialState,
@@ -29,7 +27,13 @@ let make = (~onGameFinished, _children) => {
     switch (action) {
     | Restart => ReasonReact.Update(initialState)
     | Move(move) =>
-      let (next, status) = TicTacToeLogic.play(state.game, move);
+      let play = TicTacToeLogic.play(if (useBrokenLogic) {
+        TicTacToeLogic.is_valid_move_broken
+      } else {
+        TicTacToeLogic.is_valid_move
+      });
+
+      let (next, status) = play(state.game, move);
       let newState = {status, game: next};
       switch (status) {
       | Won(_)

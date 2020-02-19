@@ -12,7 +12,7 @@ type action =
 
 let component = ReasonReact.reducerComponent("App");
 
-let make = _children => {
+let make = (~useBrokenLogic, _children) => {
   ...component,
   initialState: () => {status: InProgress},
   reducer: (action, _state) =>
@@ -26,6 +26,6 @@ let make = _children => {
         css("display: flex; flex-direction: column; align-items: center;")
       )>
       <h1> (ReasonReact.string("Tic Tac Toe")) </h1>
-      <TicTacToe onGameFinished=(() => self.send(Finish)) />
+      <TicTacToe useBrokenLogic onGameFinished=(() => self.send(Finish)) />
     </div>,
 };

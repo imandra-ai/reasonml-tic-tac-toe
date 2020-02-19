@@ -179,6 +179,17 @@ let is_valid_game = game => {
   && (!winning_X && !winning_O || winning_X != winning_O);
 };
 
+/* deliberately broken version of is_valid_move. See the full explanation at
+   https://docs.imandra.ai/imandra-docs/notebooks/reasonml-tic-tac-toe/ */
+let is_valid_move_broken = (game, player, move) =>
+  ! (is_winning(game, X) || is_winning(game, O) || is_tie(game))
+  && is_valid_game(game)
+  && (
+  game.last_player == None
+    && player == initial_player
+  || game.last_player == Some(other_player(player))
+);
+
 /* instance((game) => is_valid_game(game)); */
 /* instance((game) => is_valid_game(game) && is_winning(game, X)); */
 /* instance((game) => is_valid_game(game) && is_winning(game, O)); */
@@ -222,23 +233,18 @@ let status = game =>
     InProgress;
   };
 
-let play = ({last_player, _} as game, move) => {
+/* modified slightly from the notebook version to allow us to inject the broken
+is_valid_move function for demonstration purposes */
+let play = (is_valid_fn, {last_player, _} as game, move) => {
   let player =
     switch (last_player) {
     | None => initial_player
     | Some(player) => other_player(player)
     };
-  if (is_valid_move(game, player, move)) {
+  if (is_valid_fn(game, player, move)) {
     let game = play_move(game, player, move);
     (game, status(game));
   } else {
     (game, InvalidMove(move));
   };
 };
-/* verify((game, player, move) => */
-/*   (is_valid_game(game) && is_valid_move(game, player, move)) */
-/*   ==> is_valid_game(play_move(game, player, move)) */
-/* ); */
-/* is_valid_game(CX.game); */
-/* is_valid_move(CX.game, CX.player, CX.move); */
-/* is_valid_game(play_move(CX.game, CX.player, CX.move)); */
