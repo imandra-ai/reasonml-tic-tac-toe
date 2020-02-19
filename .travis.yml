@@ -1,0 +1,12 @@
+language: node_js
+cache: npm
+node_js:
+- 10
+script:
+- docker pull imandra/imandra-client-switch
+- npm run build
+- npm run parcel:production
+- npm deploy
+env:
+  global:
+    secure: "XUazZ8C7psg8p0Yh6uQvu1TzdNfMzc+6I/SXQybba37uj6hwRaI74mGoxe2RV5z57nCyb5LCoqPbCnyHRtfEyjETSazn1sQW/c8wMNNWnVgVySViGedtdhMrgSzhoa1J44HdIY+5PreLsmTp15OFSMJjiM72Ml1nJO9CI36Cd75y17zIIRBMiVxsj9bvGWWf/tPy7TbMC9S3isLvCpMDs4pH7+x8VB2pYyvAvZyHXqfcshOAIRFZMPOBV2e01zEsOMMYxAcNz+JiDivu6Lfrhf+iT1jfwF+aejORh1r8Rga1HtQzVw1J29n+4uuqK377isa1jfJinP5VKfSdr7SyQv8OlDDTdmeOHSiavVSPfys2fN/O6cyTbsJjkBplhtxRoE8JF/pIRl3X3/rQe5yvqGmf+G+zJNXHG196zNWlMq+Es/Yta4NOUFNthwNO206J/k4rzyrdzjbQoEXbyMtzYdtgVFjoSmtzUSQu53PgMBDVvNRGGEgq4XBc/GUtmYC4AHeA5qJbo+nKNLVqBmrSF+zZkALj9iEfnX7wjl3hRsFdsG8IVJTvVRdDXsVtWfPsSrjoCQCC1OeRa94r9EyeC4wf5+PyLhJ63UbwHHYZ4vZSs7Rn4112ubMteFQJtpEa5VK9rTv3ruaSwovQZkDNjxy9sW7la2WNzOWndL/gFMA="
